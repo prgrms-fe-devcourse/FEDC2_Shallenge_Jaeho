@@ -14,6 +14,14 @@ export default {
       defaultValue: "text",
       control: "text",
     },
+    variant: {
+      defaultValue: "outline",
+      control: "text",
+    },
+    bgColor: {
+      defaultValue: "#FFFFFF",
+      control: "color",
+    },
   },
 };
 
