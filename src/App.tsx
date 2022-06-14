@@ -1,4 +1,4 @@
-import Header from "./components/Header";
+import Header from "./layout/Header";
 import { Input } from "@chakra-ui/react";
 function App() {
   return (
