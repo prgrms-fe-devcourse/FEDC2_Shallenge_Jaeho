@@ -1,5 +1,5 @@
 import { Input } from "@chakra-ui/react";
-import Header from "../components/Header";
+import Header from "../layout/Header";
 export default {
   title: "Component/Header",
   component: "Header",

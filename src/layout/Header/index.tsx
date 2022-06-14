@@ -24,12 +24,7 @@ const Header = ({ children, backgroundColor = "#ffffff" }: headerTypes) => {
     left: "34px",
   };
 
-  return (
-    <div style={headerStyle}>
-      <img src="../../assets/logo.svg" style={logoStyle}></img>
-      {children}
-    </div>
-  );
+  return <div style={headerStyle}>{children}</div>;
 };
 
 export default Header;
