@@ -12,8 +12,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 640px;
-  height: 96px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 96px;
+  height: 100%;
 `;
 
 const SubContainer = styled.div`
@@ -51,7 +53,7 @@ const Footer = ({ width = 640, height = 96 }: footerTypes) => {
   return (
     <Container style={FooterStyle}>
       {footerList.map((item) => (
-        <SubContainer>
+        <SubContainer key={item.name}>
           <Icon name={item.name} />
           <ChakraText size="md" align="center">
             {item.nameKor}
