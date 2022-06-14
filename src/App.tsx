@@ -1,7 +1,13 @@
+import Header from "./components/Header";
+import { Input } from "@chakra-ui/react";
 function App() {
   return (
     <div>
-      <div> asda</div>
+      <Header>
+        <div style={{ width: 320 }}>
+          <Input variant="filled" placeholder="@김땡땡" />
+        </div>
+      </Header>
     </div>
   );
 }
