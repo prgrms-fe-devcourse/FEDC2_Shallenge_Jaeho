@@ -17,6 +17,8 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {},
+  "rules": {
+    "@typescript-eslint/no-unsafe-assignment": "null"
+  },
   "ignorePatterns": ["dist/", "node_modules/"]
 }
