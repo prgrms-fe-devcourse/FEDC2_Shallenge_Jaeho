@@ -10,6 +10,7 @@ type footerTypes = {
 
 const Container = styled.div`
   display: flex;
+  background-color: #ffffff;
   justify-content: space-around;
   align-items: center;
   max-width: 640px;

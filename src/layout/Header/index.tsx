@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 type headerTypes = {
   children: React.ReactNode;
@@ -7,13 +8,14 @@ type headerTypes = {
 const Header = ({ children, backgroundColor = "#ffffff" }: headerTypes) => {
   const headerStyle: React.CSSProperties = {
     height: 80,
-    width: "100%",
+    width: "640px",
     maxWidth: 640,
     borderBottom: "1px solid #DADADA",
     backgroundColor,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
   };
 
   const logoStyle: React.CSSProperties = {
