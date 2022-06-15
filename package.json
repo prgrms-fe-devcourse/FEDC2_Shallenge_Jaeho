@@ -13,6 +13,7 @@
     "@types/node": "^16.11.38",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
+    "axios": "^0.27.2",
     "buffer": "^6.0.3",
     "feather-icons": "^4.29.0",
     "framer-motion": "^6.3.11",
