@@ -1,7 +1,7 @@
 import ChallengeTitle from "@domain/ChallengePage/ChallengeTitle";
 
 export default {
-  title: "Domain/ChallengeTitle",
+  title: "Domain/ChallengePage/ChallengeTitle",
   component: ChallengeTitle,
   argTypes: {
     startDate: { defaultValue: "2022.05.23", control: "text" },
