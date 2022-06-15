@@ -1,5 +1,4 @@
 import Card from "../components/base/Card";
-
 export default {
   title: "Component/Base/Card",
   component: "Card",
@@ -23,6 +22,8 @@ export const Challange = () => {
       type="challange"
       heading="공원 달리기"
       text="가지고 싶었던 런닝 운동화 사기"
+      commentCount={12}
+      cheerCount={30}
     ></Card>
   );
 };

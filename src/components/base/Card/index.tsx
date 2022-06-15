@@ -1,24 +1,28 @@
-import { Avatar, Heading, Text, Box } from "@chakra-ui/react";
+import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import Social from "../Social";
 
 type CardTypes = {
   type: "challange" | "user" | "follow";
   heading: string;
   text: string;
-  borderRadius?: number;
   avatarSrc?: string;
   avatarSize?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
+  commentCount?: number;
+  cheerCount?: number;
 };
 
 const Card = ({
-  borderRadius = 5,
   type,
   avatarSize = "lg",
   avatarSrc,
   heading,
   text,
+  commentCount = 0,
+  cheerCount = 0,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
-    borderRadius,
+    position: "relative",
+    borderRadius: "5px",
     maxWidth: 610,
     margin: "0 15px",
     height: type === "challange" ? 120 : 96,
@@ -41,6 +45,14 @@ const Card = ({
         </Heading>
         <Text fontSize={"md"}>{text}</Text>
       </Box>
+      {type === "challange" ? (
+        <Flex position={"absolute"} right={"16px"} bottom={"30px"}>
+          <Social type="comment" count={commentCount} size="side"></Social>
+          <Social type="cheer" count={cheerCount} size="side"></Social>
+        </Flex>
+      ) : (
+        ""
+      )}
     </Box>
   );
 };
