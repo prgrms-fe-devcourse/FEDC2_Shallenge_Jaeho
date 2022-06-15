@@ -9,7 +9,11 @@ export const Default = () => {
   return (
     <>
       <CertificationButton></CertificationButton>
-      <CertificationButton color="#D9D9D9" name="check"></CertificationButton>
+      <CertificationButton
+        bgColor="#D9D9D9"
+        name="check"
+        color="#000000"
+      ></CertificationButton>
     </>
   );
 };
