@@ -1,7 +1,7 @@
 import { Input } from "@chakra-ui/react";
-import Header from "../layout/Header";
+import Header from "../../layout/Header";
 export default {
-  title: "Component/Header",
+  title: "Component/Layout/Header",
   component: "Header",
 };
 
@@ -21,7 +21,6 @@ export const Default = () => {
     </Header>
   );
 };
-// chakra ui 적용 안됨
 export const WithInput = () => {
   return (
     <div>
