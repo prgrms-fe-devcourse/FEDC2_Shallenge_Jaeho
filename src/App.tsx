@@ -1,7 +1,9 @@
+import AppRouter from "./components/Router";
+
 function App() {
   return (
     <div>
-      <div> asda</div>
+      <AppRouter />
     </div>
   );
 }
