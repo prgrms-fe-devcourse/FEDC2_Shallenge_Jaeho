@@ -10,36 +10,35 @@ type ChallengeTitleTypes = {
   restDay: number;
 };
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 610px;
+  width: 100%;
+`;
+
+const DateContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+`;
+
 const ChallengeTitle = ({
   startDate,
   endDate,
-  width,
-  title,
-  restDay,
+  title = "목표 제목",
+  restDay = 30,
 }: ChallengeTitleTypes) => {
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    max-width: 610px;
-    width: ${width}px;
-  `;
-
-  const DateContainer = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  `;
-
-  const TitleContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-  `;
-
   return (
     <Container>
       <DateContainer>
