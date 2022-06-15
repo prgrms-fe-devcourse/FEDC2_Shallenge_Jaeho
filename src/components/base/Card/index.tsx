@@ -2,7 +2,7 @@ import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 import Social from "../Social";
 
 type CardTypes = {
-  type: "challange" | "user" | "follow";
+  type: "challange" | "user";
   heading: string;
   text: string;
   avatarSrc?: string;

@@ -27,14 +27,3 @@ export const Challange = () => {
     ></Card>
   );
 };
-
-export const Follow = () => {
-  return (
-    <Card
-      avatarSrc="#"
-      type="follow"
-      heading="김땡땡"
-      text="오늘 하루도 열심히!"
-    ></Card>
-  );
-};
