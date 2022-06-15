@@ -16,6 +16,7 @@
     "buffer": "^6.0.3",
     "feather-icons": "^4.29.0",
     "framer-motion": "^6.3.11",
+    "jotai": "^1.7.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.39.1",
