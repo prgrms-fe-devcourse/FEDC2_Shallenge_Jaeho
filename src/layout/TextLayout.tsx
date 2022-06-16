@@ -1,26 +1,20 @@
 import Header from "@layout/Header";
 import Footer from "@layout/Footer";
-import ChakraInput from "@base/ChakraInput";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 
 type LayoutTypes = {
   children: React.ReactNode;
-  type: "input" | "text";
   text: string;
 };
-const Layout = ({ children, type, text }: LayoutTypes) => {
+const Layout = ({ children, text }: LayoutTypes) => {
   return (
     <Flex justifyContent="center">
       <Flex flexDirection="column" alignItems="center">
         <Flex position="sticky">
           <Header>
-            {type === "input" ? (
-              <ChakraInput text={text} variant="filled"></ChakraInput>
-            ) : (
-              <Heading size="xl" color="#ff7900">
-                {text}
-              </Heading>
-            )}
+            <Heading size="xl" color="#ff7900">
+              {text}
+            </Heading>
           </Header>
         </Flex>
         <Box
