@@ -5,6 +5,10 @@ export default {
   component: ChakraText,
 };
 
-export const Default = () => {
-  return <ChakraText size="lg">Text</ChakraText>;
+export const LgText = () => {
+  return <ChakraText size="lg">lg-Text</ChakraText>;
+};
+
+export const MdText = () => {
+  return <ChakraText size="md">md-Text</ChakraText>;
 };
