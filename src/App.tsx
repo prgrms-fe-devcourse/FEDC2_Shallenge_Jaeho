@@ -1,13 +1,10 @@
-import Header from "./layout/Header";
-import { Input } from "@chakra-ui/react";
+import InputLayout from "@layout/InputLayout";
 function App() {
   return (
     <div>
-      <Header>
-        <div style={{ width: 320 }}>
-          <Input variant="filled" placeholder="@김땡땡" />
-        </div>
-      </Header>
+      <InputLayout placeholder="@김땡땡">
+        <div>hello!</div>
+      </InputLayout>
     </div>
   );
 }

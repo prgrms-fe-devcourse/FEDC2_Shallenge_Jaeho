@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { loadTokenFromLocalStorage } from "../lib/localStorage";
+import { loadTokenFromLocalStorage } from "./localStorage";
 
 const BASE_URL = process.env.API_BASE_URL;
 

@@ -7,11 +7,7 @@ type textTypes = {
   color?: string;
 };
 
-const ChakraText = ({
-  children,
-  size = "lg",
-  color = "black",
-}: textTypes) => {
+const ChakraText = ({ children, size = "lg", color = "black" }: textTypes) => {
   return (
     <Text textAlign="center" fontSize={size} color={color}>
       {children}
