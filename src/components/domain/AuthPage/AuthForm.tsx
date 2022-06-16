@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import {
   Button,
   Input,
@@ -8,7 +9,9 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import { FormData } from "@pages/AuthPage";
 import { useState } from "react";
+import { UseFormSetValue } from "react-hook-form";
 
 const TabsContainer = styled.div`
   margin-top: 40px;
@@ -35,7 +38,20 @@ const CButton = styled(Button)`
   }
 `;
 
-const AuthForm = () => {
+interface AuthFormProps {
+  setValue: UseFormSetValue<FormData>;
+  onLogInSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
+  onSignUpSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
+}
+const AuthForm = ({
+  setValue,
+  onLogInSubmit,
+  onSignUpSubmit,
+}: AuthFormProps) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
@@ -69,43 +85,67 @@ const AuthForm = () => {
         </TabList>
         <TabPanels style={{ backgroundColor: "white" }}>
           <TabPanel>
-            <form style={{ padding: 0, marginTop: "136px" }}>
+            <form
+              onSubmit={onLogInSubmit}
+              style={{ padding: 0, marginTop: "136px" }}
+            >
               <CInput
                 type="email"
+                required
                 placeholder="이메일을 입력하세요"
                 focusBorderColor="none"
+                onChange={(e) => {
+                  setValue("logInEmail", e.target.value);
+                }}
               />
               <CInput
                 type="password"
+                required
                 placeholder="비밀번호를 입력하세요"
                 focusBorderColor="none"
+                onChange={(e) => {
+                  setValue("logInPassword", e.target.value);
+                }}
               />
-              <CButton>로그인</CButton>
+              <CButton type="submit">로그인</CButton>
             </form>
           </TabPanel>
           <TabPanel>
-            <form style={{ marginTop: "64px" }}>
+            <form onSubmit={onSignUpSubmit} style={{ marginTop: "64px" }}>
               <CInput
                 type="email"
+                required
                 placeholder="이메일을 입력하세요"
                 focusBorderColor="none"
+                onChange={(e) => {
+                  setValue("signInEmail", e.target.value);
+                }}
               />
               <CInput
                 type="text"
+                required
                 placeholder="닉네임을 입력하세요"
                 focusBorderColor="none"
+                onChange={(e) => {
+                  setValue("signInFullName", e.target.value);
+                }}
               />
               <CInput
                 type="password"
+                required
                 placeholder="비밀번호를 입력하세요"
                 focusBorderColor="none"
+                onChange={(e) => {
+                  setValue("signInPassword", e.target.value);
+                }}
               />
               <CInput
                 type="password"
+                required
                 placeholder="비밀번호 확인을 입력하세요"
                 focusBorderColor="none"
               />
-              <CButton>회원가입</CButton>
+              <CButton type="submit">회원가입</CButton>
             </form>
           </TabPanel>
         </TabPanels>
