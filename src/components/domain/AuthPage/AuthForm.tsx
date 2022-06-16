@@ -21,8 +21,15 @@ const TabsContainer = styled.div`
 `;
 
 const CInput = styled(Input)`
-  width: calc(100% - 210px);
+  min-width: calc(100% - 210px);
+  width: 320px;
   margin-bottom: 24px;
+`;
+
+const Form = styled.form`
+  height: 388px;
+  display: flex;
+  align-items: center;
 `;
 
 const CButton = styled(Button)`
@@ -85,68 +92,71 @@ const AuthForm = ({
         </TabList>
         <TabPanels style={{ backgroundColor: "white" }}>
           <TabPanel>
-            <form
-              onSubmit={onLogInSubmit}
-              style={{ padding: 0, marginTop: "136px" }}
-            >
-              <CInput
-                type="email"
-                required
-                placeholder="이메일을 입력하세요"
-                focusBorderColor="none"
-                onChange={(e) => {
-                  setValue("logInEmail", e.target.value);
-                }}
-              />
-              <CInput
-                type="password"
-                required
-                placeholder="비밀번호를 입력하세요"
-                focusBorderColor="none"
-                onChange={(e) => {
-                  setValue("logInPassword", e.target.value);
-                }}
-              />
-              <CButton type="submit">로그인</CButton>
-            </form>
+            <Form onSubmit={onLogInSubmit}>
+              <div>
+                <CInput
+                  type="email"
+                  required
+                  placeholder="이메일을 입력하세요"
+                  focusBorderColor="none"
+                  onChange={(e) => {
+                    setValue("logInEmail", e.target.value);
+                  }}
+                />
+                <CInput
+                  type="password"
+                  required
+                  placeholder="비밀번호를 입력하세요"
+                  focusBorderColor="none"
+                  onChange={(e) => {
+                    setValue("logInPassword", e.target.value);
+                  }}
+                />
+                <CButton style={{}} type="submit">
+                  로그인
+                </CButton>
+              </div>
+            </Form>
           </TabPanel>
           <TabPanel>
-            <form onSubmit={onSignUpSubmit} style={{ marginTop: "64px" }}>
-              <CInput
-                type="email"
-                required
-                placeholder="이메일을 입력하세요"
-                focusBorderColor="none"
-                onChange={(e) => {
-                  setValue("signInEmail", e.target.value);
-                }}
-              />
-              <CInput
-                type="text"
-                required
-                placeholder="닉네임을 입력하세요"
-                focusBorderColor="none"
-                onChange={(e) => {
-                  setValue("signInFullName", e.target.value);
-                }}
-              />
-              <CInput
-                type="password"
-                required
-                placeholder="비밀번호를 입력하세요"
-                focusBorderColor="none"
-                onChange={(e) => {
-                  setValue("signInPassword", e.target.value);
-                }}
-              />
-              <CInput
-                type="password"
-                required
-                placeholder="비밀번호 확인을 입력하세요"
-                focusBorderColor="none"
-              />
-              <CButton type="submit">회원가입</CButton>
-            </form>
+            <Form onSubmit={onSignUpSubmit}>
+              <div>
+                <CInput
+                  type="email"
+                  required
+                  placeholder="이메일을 입력하세요"
+                  focusBorderColor="none"
+                  onChange={(e) => {
+                    setValue("signInEmail", e.target.value);
+                  }}
+                />
+                <CInput
+                  type="text"
+                  required
+                  placeholder="닉네임을 입력하세요"
+                  focusBorderColor="none"
+                  onChange={(e) => {
+                    setValue("signInFullName", e.target.value);
+                  }}
+                />
+                <CInput
+                  type="password"
+                  required
+                  placeholder="비밀번호를 입력하세요"
+                  focusBorderColor="none"
+                  onChange={(e) => {
+                    setValue("signInPassword", e.target.value);
+                  }}
+                />
+                <CInput
+                  type="password"
+                  required
+                  placeholder="비밀번호 확인을 입력하세요"
+                  focusBorderColor="none"
+                />
+                <CButton type="submit">회원가입</CButton>
+              </div>
+            </Form>
           </TabPanel>
         </TabPanels>
       </Tabs>
