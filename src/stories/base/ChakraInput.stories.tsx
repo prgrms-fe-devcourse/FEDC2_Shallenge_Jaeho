@@ -3,28 +3,22 @@ import ChakraInput from "@base/ChakraInput";
 export default {
   title: "Component/ChakraInput",
   component: ChakraInput,
-  argTypes: {
-    text: { defaultValue: "placeholder부분입니다", control: "text" },
-    size: { defaultValue: "lg", control: "text" },
-    width: {
-      defaultValue: 400,
-      control: { type: "range", min: 100, max: 640 },
-    },
-    type: {
-      defaultValue: "text",
-      control: "text",
-    },
-    variant: {
-      defaultValue: "outline",
-      control: "text",
-    },
-    bgColor: {
-      defaultValue: "#FFFFFF",
-      control: "color",
-    },
-  },
 };
 
-export const Default = (args: any) => {
-  return <ChakraInput {...args}>Text</ChakraInput>;
+export const Outline = () => {
+  return (
+    <ChakraInput
+      placeholder="outline placeholder"
+      variant="outline"
+    ></ChakraInput>
+  );
+};
+
+export const Filled = () => {
+  return (
+    <ChakraInput
+      placeholder="filled placeholder"
+      variant="filled"
+    ></ChakraInput>
+  );
 };
