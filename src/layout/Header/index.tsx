@@ -8,8 +8,8 @@ type headerTypes = {
 const Header = ({ children, backgroundColor = "#ffffff" }: headerTypes) => {
   const headerStyle: React.CSSProperties = {
     height: 80,
-    width: "640px",
-    maxWidth: 640,
+    width: "100%",
+    maxWidth: "640px",
     borderBottom: "1px solid #DADADA",
     backgroundColor,
     display: "flex",

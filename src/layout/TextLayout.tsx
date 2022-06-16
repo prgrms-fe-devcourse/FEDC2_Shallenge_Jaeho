@@ -2,15 +2,15 @@ import Header from "@layout/Header";
 import Footer from "@layout/Footer";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 
-type LayoutTypes = {
+type TextLayoutTypes = {
   children: React.ReactNode;
   text: string;
 };
-const Layout = ({ children, text }: LayoutTypes) => {
+const TextLayout = ({ children, text }: TextLayoutTypes) => {
   return (
     <Flex justifyContent="center">
-      <Flex flexDirection="column" alignItems="center">
-        <Flex position="sticky">
+      <Flex flexDirection="column" width="640px" alignItems="center">
+        <Flex position="sticky" width="100%">
           <Header>
             <Heading size="xl" color="#ff7900">
               {text}
@@ -34,4 +34,4 @@ const Layout = ({ children, text }: LayoutTypes) => {
   );
 };
 
-export default Layout;
+export default TextLayout;

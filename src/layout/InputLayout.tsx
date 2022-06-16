@@ -10,8 +10,8 @@ type InputLayoutTypes = {
 const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
   return (
     <Flex justifyContent="center">
-      <Flex flexDirection="column" alignItems="center">
-        <Flex position="sticky">
+      <Flex flexDirection="column" width="640px" alignItems="center">
+        <Flex position="sticky" width="100%">
           <Header>
             <ChakraInput text={placeholder} variant="filled"></ChakraInput>
           </Header>
