@@ -5,11 +5,10 @@ export default {
   component: CertificationButton,
 };
 
-export const Default = () => {
-  return (
-    <>
-      <CertificationButton isActive={true}></CertificationButton>
-      <CertificationButton isActive={false}></CertificationButton>
-    </>
-  );
+export const Active = () => {
+  return <CertificationButton isActive={true}></CertificationButton>;
+};
+
+export const UnActive = () => {
+  return <CertificationButton isActive={false}></CertificationButton>;
 };
