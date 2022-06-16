@@ -1,26 +1,25 @@
 import { Input } from "@chakra-ui/react";
 
 type inputTypes = {
-  text: string;
+  placeholder: string;
+  variant: string;
   size?: string;
   width?: number;
   type?: string;
-  variant?: string;
-  bgColor?: string;
 };
 
 const ChakraInput = ({
-  text,
+  placeholder = "placeholder입니다",
+  variant = "outline",
   size = "lg",
   width = 400,
   type = "text",
-  variant = "outline",
-  bgColor = "#FFFFFF",
 }: inputTypes) => {
+  const bgColor = variant === "outline" ? "#FFFFFF" : "#E2E8F0";
   return (
     <Input
       type={type}
-      placeholder={text}
+      placeholder={placeholder}
       size={size}
       width={width}
       variant={variant}

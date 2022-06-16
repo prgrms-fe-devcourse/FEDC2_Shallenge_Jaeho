@@ -1,37 +1,8 @@
-import React from "react";
-import styled from "@emotion/styled";
 import Icon from "@base/Icon";
 import ChakraText from "@base/ChakraText";
+import { Flex } from "@chakra-ui/react";
 
-type footerTypes = {
-  width: number;
-  height: number;
-};
-
-const Container = styled.div`
-  display: flex;
-  background-color: #ffffff;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 640px;
-  width: 100%;
-  max-height: 96px;
-  height: 100%;
-`;
-
-const SubContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-`;
-
-const Footer = ({ width = 640, height = 96 }: footerTypes) => {
-  const FooterStyle: React.CSSProperties = {
-    width,
-    height,
-  };
-
+const Footer = () => {
   const footerList = [
     {
       name: "home",
@@ -52,16 +23,19 @@ const Footer = ({ width = 640, height = 96 }: footerTypes) => {
   ];
 
   return (
-    <Container style={FooterStyle}>
+    <Flex justifyContent="space-around" alignItems="center" w="100%" h="96px">
       {footerList.map((item) => (
-        <SubContainer key={item.name}>
+        <Flex
+          key={item.name}
+          flexDirection="column"
+          alignItems="center"
+          gap="5px"
+        >
           <Icon name={item.name} />
-          <ChakraText size="md" align="center">
-            {item.nameKor}
-          </ChakraText>
-        </SubContainer>
+          <ChakraText size="md">{item.nameKor}</ChakraText>
+        </Flex>
       ))}
-    </Container>
+    </Flex>
   );
 };
 
