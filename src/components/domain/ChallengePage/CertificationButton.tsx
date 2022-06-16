@@ -5,7 +5,7 @@ type activeType = {
   isActive: boolean;
 };
 
-const ChallengeCertificationButton = ({ isActive }: activeType) => {
+const CertificationButton = ({ isActive }: activeType) => {
   const bgColor = isActive ? "#FF7900" : "#D9D9D9";
   const name = isActive ? "arrow-up" : "check";
   const color = isActive ? "#FFFFFF" : "#000000";
@@ -17,4 +17,4 @@ const ChallengeCertificationButton = ({ isActive }: activeType) => {
   );
 };
 
-export default ChallengeCertificationButton;
+export default CertificationButton;
