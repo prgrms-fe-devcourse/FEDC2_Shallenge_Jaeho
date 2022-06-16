@@ -5,15 +5,10 @@ export default {
   component: CertificationButton,
 };
 
-export const Default = () => {
-  return (
-    <>
-      <CertificationButton></CertificationButton>
-      <CertificationButton
-        bgColor="#D9D9D9"
-        name="check"
-        color="#000000"
-      ></CertificationButton>
-    </>
-  );
+export const Active = () => {
+  return <CertificationButton isActive={true}></CertificationButton>;
+};
+
+export const UnActive = () => {
+  return <CertificationButton isActive={false}></CertificationButton>;
 };
