@@ -2,21 +2,19 @@ import axios from "axios";
 
 import { loadTokenFromLocalStorage } from "./localStorage";
 
-const BASE_URL = process.env.API_BASE_URL;
-
 const instance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 instance.interceptors.request.use((config) => {
-  const token = loadTokenFromLocalStorage();
-  if (!config.headers) {
-    return;
+  if (!config?.headers) {
+    throw new Error(`Axios config headers must be provided`);
   }
-  const headers = config.headers;
-  headers.Authorization = token ? `Bearer ${token}` : "";
+  const token = loadTokenFromLocalStorage();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
-
-instance.interceptors.response.use();
 
 export default instance;
