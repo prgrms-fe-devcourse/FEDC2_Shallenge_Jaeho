@@ -6,6 +6,7 @@ export default {
   argTypes: {
     size: { defaultValue: "md", control: "text" },
     align: { defaultValue: "center", control: "text" },
+    color: { control: "color" },
   },
 };
 
