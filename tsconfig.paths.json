@@ -8,7 +8,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@api/*": ["src/api/*"],
       "@layout/*": ["src/layout/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }
