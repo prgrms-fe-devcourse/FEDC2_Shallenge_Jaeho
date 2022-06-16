@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getToken } from "../lib/token";
+
+import { loadTokenFromLocalStorage } from "../lib/localStorage";
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -8,7 +9,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  const token = getToken();
+  const token = loadTokenFromLocalStorage();
   if (!config.headers) {
     return;
   }
