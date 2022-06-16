@@ -1,24 +1,24 @@
 import React from "react";
-import { Text, TypographyProps } from "@chakra-ui/react";
+import { Heading, TypographyProps } from "@chakra-ui/react";
 
-type textTypes = {
+type headingTypes = {
   children: React.ReactNode;
   size?: string;
   align?: TypographyProps["textAlign"];
   color?: string;
 };
 
-const ChakraText = ({
+const ChakraHeading = ({
   children,
   size = "lg",
   align = "center",
   color = "black",
-}: textTypes) => {
+}: headingTypes) => {
   return (
-    <Text textAlign={align} fontSize={size} color={color}>
+    <Heading textAlign={align} fontSize={size} color={color}>
       {children}
-    </Text>
+    </Heading>
   );
 };
 
-export default ChakraText;
+export default ChakraHeading;
