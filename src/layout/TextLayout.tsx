@@ -26,8 +26,8 @@ const TextLayout = ({ children, text }: TextLayoutTypes) => {
         >
           {children}
         </Box>
-        <Flex justifyContent="center" position="sticky">
-          <Footer width={640} height={96}></Footer>
+        <Flex w="100%" justifyContent="center" position="sticky">
+          <Footer></Footer>
         </Flex>
       </Flex>
     </Flex>

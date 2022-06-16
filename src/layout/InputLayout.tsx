@@ -13,7 +13,10 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
       <Flex flexDirection="column" width="640px" alignItems="center">
         <Flex position="sticky" width="100%">
           <Header>
-            <ChakraInput text={placeholder} variant="filled"></ChakraInput>
+            <ChakraInput
+              placeholder={placeholder}
+              variant="filled"
+            ></ChakraInput>
           </Header>
         </Flex>
         <Box
@@ -25,8 +28,8 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
         >
           {children}
         </Box>
-        <Flex justifyContent="center" position="sticky">
-          <Footer width={640} height={96}></Footer>
+        <Flex w="100%" justifyContent="center" position="sticky">
+          <Footer></Footer>
         </Flex>
       </Flex>
     </Flex>
