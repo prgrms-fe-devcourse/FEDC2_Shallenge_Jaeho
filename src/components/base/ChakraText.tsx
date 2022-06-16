@@ -1,15 +1,14 @@
 import React from "react";
-import { Text, TypographyProps } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 type textTypes = {
   children: React.ReactNode;
-  size: string;
-  align?: TypographyProps["textAlign"];
+  size: "sm" | "md" | "lg";
 };
 
-const ChakraText = ({ children, size, align }: textTypes) => {
+const ChakraText = ({ children, size }: textTypes) => {
   return (
-    <Text textAlign={align} fontSize={size}>
+    <Text textAlign="center" fontSize={size}>
       {children}
     </Text>
   );
