@@ -3,7 +3,7 @@ function App() {
   return (
     <div>
       <InputLayout placeholder="@김땡땡">
-        <div>hello!</div>
+        <div style={{ height: 1000 }}>hello!</div>
       </InputLayout>
     </div>
   );
