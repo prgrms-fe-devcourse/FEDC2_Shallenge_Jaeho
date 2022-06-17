@@ -19,7 +19,7 @@ const TextLayout = ({ children, text }: TextLayoutTypes) => {
         </Flex>
         <Box
           width="100%"
-          height="calc(100vh - 96px - 80px - 32px)"
+          height="calc(100vh - 96px - 80px)"
           overflowY="auto"
           backgroundColor="#F4F6F8"
           padding="0 15px"
