@@ -11,7 +11,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
-  onClick?: (e?: React.MouseEvent<HTMLElement>) => Promise<void>;
+  onClick?: () => void;
 };
 
 const Card = ({
@@ -38,7 +38,7 @@ const Card = ({
   };
 
   return (
-    <Box style={CardStyle} margin={margin}>
+    <Box style={CardStyle} margin={margin} onClick={onClick}>
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading

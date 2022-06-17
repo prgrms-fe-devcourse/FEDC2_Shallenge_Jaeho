@@ -47,6 +47,9 @@ const HomePage = () => {
   const onClickMore = (channelId: string): void => {
     navigate(`challenge/${channelId}`);
   };
+  const onClickChallange = (channelId: string, challangeId: string): void => {
+    navigate(`challenge/${channelId}/${challangeId}`);
+  };
 
   return (
     <>
@@ -60,7 +63,7 @@ const HomePage = () => {
             cursor: "pointer",
           }}
           onClick={() => {
-            onClickMore("1");
+            onClickMore("dummyChannelId");
           }}
         >
           more{">"}
@@ -75,7 +78,9 @@ const HomePage = () => {
             commentCount={12}
             cheerCount={23}
             margin="16px 0"
-            onClick={() => {}}
+            onClick={() => {
+              onClickChallange("dummyChannel", "dummyChallange");
+            }}
           ></Card>
         );
       })}
