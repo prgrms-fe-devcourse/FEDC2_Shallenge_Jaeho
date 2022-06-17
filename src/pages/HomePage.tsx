@@ -1,15 +1,46 @@
 import { Heading, Text, Flex } from "@chakra-ui/layout";
 import Card from "@base/Card";
 import { useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
+import { Channel } from "src/types";
 
-const MoreText = styled(Text)`
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const dummyData = [{}, {}, {}, {}, {}, {}, {}, {}];
+export const channelsList: Channel[] = [
+  {
+    authRequired: false, // 사용되지 않음
+    posts: [],
+    _id: "channelid1", // 채널 id
+    name: "💪운동",
+    description: "운동",
+    createdAt: "2022-06-07T09:44:19.128Z",
+    updatedAt: "2022-06-07T09:44:19.128Z",
+  },
+  {
+    authRequired: false, // 사용되지 않음
+    posts: [],
+    _id: "channelid2", // 채널 id
+    name: "📘독서",
+    description: "독서",
+    createdAt: "2022-06-07T09:44:19.128Z",
+    updatedAt: "2022-06-07T09:44:19.128Z",
+  },
+  {
+    authRequired: false, // 사용되지 않음
+    posts: [],
+    _id: "channelid3", // 채널 id
+    name: "✍️자기계발",
+    description: "자기계발",
+    createdAt: "2022-06-07T09:44:19.128Z",
+    updatedAt: "2022-06-07T09:44:19.128Z",
+  },
+  {
+    authRequired: false, // 사용되지 않음
+    posts: [],
+    _id: "channelid4", // 채널 id
+    name: "⏱️루틴",
+    description: "루틴",
+    createdAt: "2022-06-07T09:44:19.128Z",
+    updatedAt: "2022-06-07T09:44:19.128Z",
+  },
+];
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -21,18 +52,21 @@ const HomePage = () => {
     <>
       <Flex paddingTop="48px" justifyContent="space-between">
         <Heading size="xl">💪운동</Heading>
-        <MoreText
+        <Text
           size="sm"
           color="#ff7900"
           alignSelf={"end"}
+          _hover={{
+            cursor: "pointer",
+          }}
           onClick={() => {
             onClickMore("1");
           }}
         >
           more{">"}
-        </MoreText>
+        </Text>
       </Flex>
-      {dummyData.slice(0, 2).map((challange) => {
+      {channelsList.slice(0, 2).map((challange) => {
         return (
           <Card
             type="challange"
@@ -41,7 +75,29 @@ const HomePage = () => {
             commentCount={12}
             cheerCount={23}
             margin="16px 0"
+            onClick={() => {}}
           ></Card>
+        );
+      })}
+      {channelsList.map((channel) => {
+        const postList = channel.posts.slice(0, 2);
+        return (
+          <Flex paddingTop="48px" justifyContent="space-between">
+            <Heading size="xl">{channel.name}</Heading>
+            <Text
+              size="sm"
+              color="#ff7900"
+              alignSelf={"end"}
+              _hover={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onClickMore(channel._id);
+              }}
+            >
+              more{">"}
+            </Text>
+          </Flex>
         );
       })}
     </>
