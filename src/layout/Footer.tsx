@@ -30,6 +30,7 @@ const Footer = () => {
           flexDirection="column"
           alignItems="center"
           gap="5px"
+          cursor="pointer"
         >
           <Icon name={item.name} />
           <ChakraText size="md">{item.nameKor}</ChakraText>
