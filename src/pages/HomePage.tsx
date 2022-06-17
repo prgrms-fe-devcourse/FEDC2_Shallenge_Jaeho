@@ -1,18 +1,36 @@
-import React from "react";
 import { Heading, Text, Flex } from "@chakra-ui/layout";
-import InputLayout from "@layout/InputLayout";
 import Card from "@base/Card";
+import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const MoreText = styled(Text)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const dummyData = [{}, {}, {}, {}, {}, {}, {}, {}];
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const onClickMore = (channelId: string): void => {
+    navigate(`challenge/${channelId}`);
+  };
+
   return (
     <>
       <Flex paddingTop="48px" justifyContent="space-between">
         <Heading size="xl">💪운동</Heading>
-        <Text size="sm" color="#ff7900" alignSelf={"end"}>
+        <MoreText
+          size="sm"
+          color="#ff7900"
+          alignSelf={"end"}
+          onClick={() => {
+            onClickMore("1");
+          }}
+        >
           more{">"}
-        </Text>
+        </MoreText>
       </Flex>
       {dummyData.slice(0, 2).map((challange) => {
         return (

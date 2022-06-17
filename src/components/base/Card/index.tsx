@@ -1,4 +1,5 @@
 import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import React from "react";
 import Social from "../Social";
 
 type CardTypes = {
@@ -10,6 +11,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
+  onClick?: (e?: React.MouseEvent<HTMLElement>) => Promise<void>;
 };
 
 const Card = ({
@@ -21,6 +23,7 @@ const Card = ({
   commentCount = 0,
   cheerCount = 0,
   margin = "0",
+  onClick,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
