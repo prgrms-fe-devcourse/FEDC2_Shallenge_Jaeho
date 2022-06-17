@@ -21,12 +21,13 @@ const TextLayout = ({ children, text }: TextLayoutTypes) => {
           width="100%"
           height="calc(100vh - 96px - 80px)"
           overflowY="auto"
+          overflowX="hidden"
           backgroundColor="#F4F6F8"
           padding="0 15px"
         >
           {children}
         </Box>
-        <Flex w="100%" justifyContent="center" position="sticky">
+        <Flex w="100%" justifyContent="center" position="sticky" zIndex={1}>
           <Footer></Footer>
         </Flex>
       </Flex>
