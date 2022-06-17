@@ -3,7 +3,9 @@ import AppRouter from "./components/Router";
 function App() {
   return (
     <div>
-      <AppRouter />
+      <InputLayout placeholder="@김땡땡">
+        <AppRouter />
+      </InputLayout>
     </div>
   );
 }

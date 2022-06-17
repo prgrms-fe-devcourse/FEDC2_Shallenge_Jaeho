@@ -9,6 +9,7 @@ type CardTypes = {
   avatarSize?: "2xs" | "xs" | "sm" | "lg" | "xl" | "2xl";
   commentCount?: number;
   cheerCount?: number;
+  margin?: string | number;
 };
 
 const Card = ({
@@ -19,12 +20,13 @@ const Card = ({
   text,
   commentCount = 0,
   cheerCount = 0,
+  margin = 0,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
     borderRadius: "5px",
+    width: "100%",
     maxWidth: 610,
-    margin: "0 15px",
     height: type === "challange" ? 120 : 96,
     backgroundColor: "#ffffff",
     display: "flex",
@@ -34,7 +36,7 @@ const Card = ({
   };
 
   return (
-    <Box style={CardStyle}>
+    <Box style={CardStyle} margin={margin}>
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading

@@ -1,16 +1,18 @@
-import InputLayout from "@layout/InputLayout";
+import QueryString from "qs";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import QueryString from "qs";
-import { Flex, Text } from "@chakra-ui/react";
+import { User } from "src/types";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import InputLayout from "@layout/InputLayout";
+import Card from "@base/Card";
 
-const dummyUser = [
+const userList: User[] = [
   {
     coverImage: "자기소개",
     image: "프로필이미지주소", // 프로필 이미지
     role: "role",
-    emailVerified: Boolean, // 사용되지 않음
-    banned: Boolean, // 사용되지 않음
+    emailVerified: true, // 사용되지 않음
+    banned: false, // 사용되지 않음
     isOnline: true,
     posts: [],
     likes: [],
@@ -29,8 +31,8 @@ const dummyUser = [
     coverImage: "자기소개",
     image: "프로필이미지주소", // 프로필 이미지
     role: "role",
-    emailVerified: Boolean, // 사용되지 않음
-    banned: Boolean, // 사용되지 않음
+    emailVerified: true, // 사용되지 않음
+    banned: false, // 사용되지 않음
     isOnline: true,
     posts: [],
     likes: [],
@@ -49,8 +51,8 @@ const dummyUser = [
     coverImage: "자기소개",
     image: "프로필이미지주소", // 프로필 이미지
     role: "role",
-    emailVerified: Boolean, // 사용되지 않음
-    banned: Boolean, // 사용되지 않음
+    emailVerified: true, // 사용되지 않음
+    banned: false, // 사용되지 않음
     isOnline: true,
     posts: [],
     likes: [],
@@ -74,19 +76,49 @@ const SearchUserPage = () => {
   const [userName, setUserName] = useState(query.userName as string);
   // userName으로 user을 찾는 로직
   return (
-    <InputLayout placeholder="@김땡땡">
-      <Flex justifyContent={"center"} width="100%">
-        {dummyUser.length === 0 ? (
-          <Text fontSize="lg" paddingTop="80px">
-            <span>{userName}</span>으로 찾은 사용자가 없어요 😢
-            <br />
-            다른 이름으로 찾아보시는 건 어떠신가요?
+    <Flex justifyContent={"center"} width="100%">
+      {userList.length === 0 ? (
+        <Text
+          fontSize="lg"
+          paddingTop="80px"
+          color="#727272"
+          textAlign="center"
+        >
+          <Box
+            padding="2px"
+            display="inline-block"
+            backgroundColor="#e4e4e4"
+            borderRadius="4px"
+          >
+            {userName}
+          </Box>
+          으로 찾은 사용자가 없어요 😢
+          <br />
+          다른 이름으로 찾아보시는 건 어떠신가요?
+        </Text>
+      ) : (
+        <Flex width="100%" flexDirection="column">
+          <Text
+            fontSize="lg"
+            padding={"40px 0"}
+            alignSelf="center"
+            color="#838489"
+          >
+            {userName} 으로 찾은 사용자들이에요
           </Text>
-        ) : (
-          <Flex></Flex>
-        )}
-      </Flex>
-    </InputLayout>
+          {userList.map((user) => {
+            return (
+              <Card
+                type="user"
+                heading={user.fullName}
+                text={user.coverImage ?? "한줄 소개 없음"}
+                margin="4px 0"
+              ></Card>
+            );
+          })}
+        </Flex>
+      )}
+    </Flex>
   );
 };
 

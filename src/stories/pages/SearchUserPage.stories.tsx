@@ -1,3 +1,4 @@
+import InputLayout from "@layout/InputLayout";
 import SearchUserPage from "@pages/SearchUserPage";
 export default {
   title: "Pages/SearchUserPage",
@@ -5,5 +6,9 @@ export default {
 };
 
 export const Default = () => {
-  return <SearchUserPage></SearchUserPage>;
+  return (
+    <InputLayout placeholder="@김땡땡">
+      <SearchUserPage></SearchUserPage>
+    </InputLayout>
+  );
 };
