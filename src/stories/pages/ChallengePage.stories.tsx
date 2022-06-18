@@ -14,20 +14,11 @@ export const Guest = () => {
   );
 };
 
-export const UserActive = () => {
+export const User = () => {
   return (
     <>
       <GlobalStyles />
-      <ChallengePage isGuestDummy={false} isActiveDummy={true}></ChallengePage>
-    </>
-  );
-};
-
-export const UserInActive = () => {
-  return (
-    <>
-      <GlobalStyles />
-      <ChallengePage isGuestDummy={false} isActiveDummy={false}></ChallengePage>
+      <ChallengePage isGuestDummy={false}></ChallengePage>
     </>
   );
 };
