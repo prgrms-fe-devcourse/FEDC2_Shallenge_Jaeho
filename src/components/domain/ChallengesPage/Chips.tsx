@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 interface ChipsProps {
   names: string[];
@@ -9,7 +10,7 @@ interface ChipsProps {
 const ChipsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 const Chip = styled(Button)`
@@ -19,16 +20,28 @@ const Chip = styled(Button)`
   color: #838489;
 
   &:hover {
-    color: white;
+    color: white !important;
     background-color: #ffaa6d;
   }
 `;
 
 const Chips = ({ names, setChannelName }: ChipsProps) => {
+  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
+
   return (
     <ChipsContainer>
-      {names.map((name) => (
-        <Chip key={name} onClick={() => setChannelName(name)}>
+      {names.map((name, index) => (
+        <Chip
+          key={name}
+          onClick={() => {
+            setChannelName(name);
+            setSelectedChannelIndex(index);
+          }}
+          style={{
+            color: selectedChannelIndex === index ? "white" : "#838489",
+            backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
+          }}
+        >
           {name}
         </Chip>
       ))}
