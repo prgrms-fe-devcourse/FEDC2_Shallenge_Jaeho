@@ -1,9 +1,29 @@
-import ChakraInput from "@base/ChakraInput";
 import { Button, Flex, Heading } from "@chakra-ui/react";
+import ChakraInput from "@base/ChakraInput";
 import ChallengeChannelRadio from "@domain/CreateChallengePage/ChallengeChannelRadio";
 import TextLayout from "@layout/TextLayout";
+import { useEffect, useState } from "react";
 
 const CreateChallengePage = () => {
+  const [challengeTitle, setChallengeTitle] = useState("");
+  const [channel, setChannel] = useState("운동");
+  const [startDate, setStartDate] = useState("");
+  const [reward, setReward] = useState("");
+
+  useEffect(() => {
+    console.log(challengeTitle, channel, startDate, reward);
+  }, [challengeTitle, channel, startDate, reward]);
+
+  const onChallengeTitle = (newChallengeTitle: string) => {
+    setChallengeTitle(newChallengeTitle);
+  };
+  const onChannel = (newChannel: string) => {
+    setChannel(newChannel);
+  };
+  const onReward = (newReward: string) => {
+    setReward(newReward);
+  };
+
   return (
     <TextLayout text="30일 챌린지 만들기">
       <Flex
@@ -21,11 +41,14 @@ const CreateChallengePage = () => {
             placeholder="목표를 작성해주세요 \(@^0^@)/"
             variant="outline"
             width="100%"
-          ></ChakraInput>
+            onChangeValue={onChallengeTitle}
+          >
+            {challengeTitle}
+          </ChakraInput>
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">🗂 채널</Heading>
-          <ChallengeChannelRadio />
+          <ChallengeChannelRadio onChangeValue={onChannel} />
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">📆 시작일</Heading>
@@ -41,6 +64,7 @@ const CreateChallengePage = () => {
             placeholder="평소 원하는 것을 입력해주세요 ( $ _ $ )"
             variant="outline"
             width="100%"
+            onChangeValue={onReward}
           ></ChakraInput>
         </Flex>
         <Flex justifyContent="center">
