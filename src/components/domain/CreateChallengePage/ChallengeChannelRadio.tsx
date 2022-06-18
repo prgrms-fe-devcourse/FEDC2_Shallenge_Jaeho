@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Box, HStack, useRadio, useRadioGroup } from "@chakra-ui/react";
+import { Box, HStack, Text, useRadio, useRadioGroup } from "@chakra-ui/react";
 
 function RadioCard(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -14,12 +14,12 @@ function RadioCard(props: any) {
         {...checkbox}
         cursor="pointer"
         borderRadius="10px"
+        padding="10px 20px"
         bg="#F4F6F8"
         _checked={{
           bg: "#FF7900",
           color: "#F4F6F8",
         }}
-        padding="6px 16px"
       >
         {props.children}
       </Box>
@@ -38,12 +38,12 @@ const ChallengeChannelRadio = () => {
   const group = getRootProps();
 
   return (
-    <HStack {...group}>
+    <HStack {...group} spacing="20px">
       {channels.map((channelName) => {
         const radio = getRadioProps({ value: channelName });
         return (
           <RadioCard key={channelName} {...radio}>
-            {channelName}
+            <Text fontSize="lg">{channelName}</Text>
           </RadioCard>
         );
       })}
