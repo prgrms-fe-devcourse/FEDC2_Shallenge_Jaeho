@@ -38,7 +38,12 @@ const Card = ({
   };
 
   return (
-    <Box style={CardStyle} margin={margin} onClick={onClick}>
+    <Box
+      style={CardStyle}
+      margin={margin}
+      _hover={{ cursor: "pointer" }}
+      onClick={onClick}
+    >
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading
