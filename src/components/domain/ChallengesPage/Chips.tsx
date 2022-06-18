@@ -30,21 +30,22 @@ const Chips = ({ names, setChannelName }: ChipsProps) => {
 
   return (
     <ChipsContainer>
-      {names.map((name, index) => (
-        <Chip
-          key={name}
-          onClick={() => {
-            setChannelName(name);
-            setSelectedChannelIndex(index);
-          }}
-          style={{
-            color: selectedChannelIndex === index ? "white" : "#838489",
-            backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
-          }}
-        >
-          {name}
-        </Chip>
-      ))}
+      {names.length !== 0 &&
+        names.map((name, index) => (
+          <Chip
+            key={name}
+            onClick={() => {
+              setChannelName(name);
+              setSelectedChannelIndex(index);
+            }}
+            style={{
+              color: selectedChannelIndex === index ? "white" : "#838489",
+              backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
+            }}
+          >
+            {name}
+          </Chip>
+        ))}
     </ChipsContainer>
   );
 };
