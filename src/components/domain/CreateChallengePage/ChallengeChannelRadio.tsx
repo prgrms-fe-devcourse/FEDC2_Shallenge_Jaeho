@@ -1,5 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Box, HStack, Text, useRadio, useRadioGroup } from "@chakra-ui/react";
+
+type ChallengeChannelRadioType = {
+  onChangeValue?: any;
+};
 
 function RadioCard(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -27,12 +32,14 @@ function RadioCard(props: any) {
   );
 }
 
-const ChallengeChannelRadio = () => {
+const ChallengeChannelRadio = ({
+  onChangeValue,
+}: ChallengeChannelRadioType) => {
   const channels = ["운동", "독서", "공부", "루틴", "자기계발"];
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "channel",
     defaultValue: "운동",
-    onChange: console.log,
+    onChange: onChangeValue ? onChangeValue : console.log,
   });
 
   const group = getRootProps();
