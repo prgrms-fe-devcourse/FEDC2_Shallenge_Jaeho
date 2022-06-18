@@ -3,6 +3,7 @@ import ChakraInput from "@base/ChakraInput";
 import ChallengeChannelRadio from "@domain/CreateChallengePage/ChallengeChannelRadio";
 import TextLayout from "@layout/TextLayout";
 import { useEffect, useState } from "react";
+import StartDateCalendar from "@domain/CreateChallengePage/StartDateCalendar";
 
 const CreateChallengePage = () => {
   const [challengeTitle, setChallengeTitle] = useState("");
@@ -19,6 +20,9 @@ const CreateChallengePage = () => {
   };
   const onChannel = (newChannel: string) => {
     setChannel(newChannel);
+  };
+  const onStartDate = (newStartDate: string) => {
+    setStartDate(newStartDate);
   };
   const onReward = (newReward: string) => {
     setReward(newReward);
@@ -52,11 +56,7 @@ const CreateChallengePage = () => {
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">📆 시작일</Heading>
-          <ChakraInput
-            placeholder="시작일을 선택해주세요 \(*°▽°*)/"
-            variant="outline"
-            width="100%"
-          ></ChakraInput>
+          <StartDateCalendar onChangeValue={onStartDate} />
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">🏁 보상</Heading>
