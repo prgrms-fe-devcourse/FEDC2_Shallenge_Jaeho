@@ -39,7 +39,7 @@ const dummyData = [
   { day: 30, isChecked: false },
 ];
 
-const ChallengePage = () => {
+const ChallengePage = ({ isGuestDummy = true, isActiveDummy = true }) => {
   const ChallengeTitle = "Challenge 제목"; // title.challengeTitle
   const reward = "보상 내용"; // title.reward
   const commentCount = 0; // comments.length
@@ -49,8 +49,8 @@ const ChallengePage = () => {
   const presentDay = 0; // (계산) 현재날짜 - 시작일, 최소값 0
   const restDay = 30 - presentDay; // (계산) 30 - presentDay, 최대값 30
   const endDate = "2022.06.23"; // (계산) 시작일 + 30
-  const isActive = true; // days[presentDay].isChecked
-  const isGuest = true; // _id 값과 비교할 현재 유저 _id
+  const isActive = isGuestDummy; // days[presentDay].isChecked
+  const isGuest = isActiveDummy; // _id 값과 비교할 현재 유저 _id
   return (
     <TextLayout text={ChallengeTitle}>
       <Flex marginTop="16px">
