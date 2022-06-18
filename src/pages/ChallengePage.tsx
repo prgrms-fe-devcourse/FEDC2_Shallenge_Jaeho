@@ -1,9 +1,10 @@
+import { Circle, Flex } from "@chakra-ui/react";
+import { add, differenceInDays, format } from "date-fns";
 import TextLayout from "@layout/TextLayout";
 import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
-import { Circle, Flex } from "@chakra-ui/react";
-import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
+import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
 
 const dummyData = [
@@ -39,18 +40,23 @@ const dummyData = [
   { day: 30, isChecked: false },
 ];
 
-const ChallengePage = ({ isGuestDummy = true, isActiveDummy = true }) => {
+const ChallengePage = ({ isGuestDummy = true }) => {
+  let isGuest = isGuestDummy; // _id 값과 비교할 현재 유저 _id
   const ChallengeTitle = "Challenge 제목"; // title.challengeTitle
   const reward = "보상 내용"; // title.reward
   const commentCount = 0; // comments.length
   const cheerUpCount = 0; // likes.length
   const days = dummyData; // title.days
-  const startDate = "2022.05.23"; // title.startDate
-  const presentDay = 0; // (계산) 현재날짜 - 시작일, 최소값 0
-  const restDay = 30 - presentDay; // (계산) 30 - presentDay, 최대값 30
-  const endDate = "2022.06.23"; // (계산) 시작일 + 30
-  const isActive = isGuestDummy; // days[presentDay].isChecked
-  const isGuest = isActiveDummy; // _id 값과 비교할 현재 유저 _id
+  const startDate = "2022-06-20"; // title.startDate
+  let presentDay = differenceInDays(
+    new Date(format(new Date(), "yyyy-MM-dd")),
+    new Date(startDate)
+  );
+  if (presentDay < 0 || 29 < presentDay) isGuest = true;
+  if (presentDay < 0) presentDay = 0;
+  if (29 < presentDay) presentDay = 30;
+  const restDay = 30 - presentDay;
+  const endDate = format(add(new Date(startDate), { days: 29 }), "yyyy-MM-dd");
   return (
     <TextLayout text={ChallengeTitle}>
       <Flex marginTop="16px">
@@ -83,10 +89,12 @@ const ChallengePage = ({ isGuestDummy = true, isActiveDummy = true }) => {
           position="absolute"
           left="50%"
           transform="translate(-50%, 0%)"
-          bottom="60px"
+          bottom="80px"
           zIndex={2}
         >
-          <CertificationButton isActive={isActive}></CertificationButton>
+          <CertificationButton
+            isActive={!days[presentDay].isChecked}
+          ></CertificationButton>
         </Circle>
       )}
     </TextLayout>
