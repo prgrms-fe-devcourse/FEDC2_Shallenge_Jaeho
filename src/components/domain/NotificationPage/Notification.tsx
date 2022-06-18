@@ -8,8 +8,15 @@ type NotificationType = {
 
 const Notification = ({ avatarSrc, userName, alarmType }: NotificationType) => {
   return (
-    <Flex w="100%" h="96px" alignItems="center" bg="#ffffff" flexShrink={0}>
-      <Avatar size="lg" src={avatarSrc} marginLeft="8px" marginRight="16px" />
+    <Flex
+      w="100%"
+      h="96px"
+      padding="0 16px"
+      alignItems="center"
+      bg="#ffffff"
+      flexShrink={0}
+    >
+      <Avatar size="lg" src={avatarSrc} marginRight="16px" />
       <Text fontSize={"lg"}>
         <span style={{ fontWeight: "bold" }}>{userName}</span>
         님이
