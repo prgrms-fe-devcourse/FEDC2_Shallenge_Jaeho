@@ -2,7 +2,7 @@ import { Circle } from "@chakra-ui/react";
 import Icon from "@base/Icon";
 
 type activeType = {
-  isActive: boolean;
+  isActive?: boolean;
 };
 
 const CertificationButton = ({ isActive }: activeType) => {
