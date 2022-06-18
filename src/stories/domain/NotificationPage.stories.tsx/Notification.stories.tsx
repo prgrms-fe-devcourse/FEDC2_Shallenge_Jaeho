@@ -10,6 +10,7 @@ export const Default = () => {
     <Flex w="610px" height="100vh" flexDirection="column">
       <Notification avatarSrc="" userName="사용자1" alarmType="follow" />
       <Notification avatarSrc="" userName="사용자1" alarmType="comment" />
+      <Notification avatarSrc="" userName="사용자1" alarmType="cheer" />
     </Flex>
   );
 };
