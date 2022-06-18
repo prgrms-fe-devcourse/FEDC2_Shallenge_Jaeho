@@ -1,10 +1,12 @@
 import React from "react";
 import { Notification } from "src/types";
 import NotiComponent from "@domain/NotificationPage/Notification";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
+import DefaultText from "@base/DefaultText";
 
 const NotificationPage = () => {
   const notificationList: Notification[] = [
+    /*
     {
       seen: false,
       _id: "notificationId1",
@@ -34,24 +36,28 @@ const NotificationPage = () => {
       createdAt: "2022-05-12T09:44:19.128",
       updatedAt: "2022-05-12T09:44:19.128",
     },
+    */
   ];
 
   return (
-    <Flex direction="column">
-      <NotiComponent
-        alarmType="follow"
-        avatarSrc=""
-        userName="사용자1"
-      ></NotiComponent>
-      {notificationList.map((notification) => {
-        return (
-          <NotiComponent
-            alarmType={notification.follow ? "follow" : "comment"}
-            avatarSrc=""
-            userName="사용자1"
-          ></NotiComponent>
-        );
-      })}
+    <Flex direction="column" padding="40px 0">
+      {notificationList.length ? (
+        notificationList.map((notification) => {
+          return (
+            <NotiComponent
+              alarmType={notification.follow ? "follow" : "comment"}
+              avatarSrc=""
+              userName="사용자1"
+            ></NotiComponent>
+          );
+        })
+      ) : (
+        <DefaultText>
+          알람이 아직 안 왔어요!
+          <br />
+          먼저 다가가 보시는 건 어떠신가요?😊
+        </DefaultText>
+      )}
     </Flex>
   );
 };
