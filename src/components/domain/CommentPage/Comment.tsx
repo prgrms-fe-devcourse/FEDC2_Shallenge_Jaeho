@@ -7,7 +7,7 @@ const Comment = () => {
   const avatarSrc = undefined; // API추가시 author.image
   const commentAuthor = "author.fullName";
   const commentContent =
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccccccccccc dddddddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeefffffffffffff";
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse tempore dolore quisquam iure asperiores, expedita eum soluta aliquid voluptatum quia natus ut laborum, aspernatur quos! Quaerat ipsum commodi nesciunt dolore.";
   const commentCreated = "2022-06-23"; // createdAt
   return (
     <Flex
