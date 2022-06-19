@@ -17,8 +17,12 @@ const HomePage = () => {
       {channelsList.map((channel) => {
         const postList = channel.posts.slice(0, 2);
         return (
-          <>
-            <Flex paddingTop="48px" justifyContent="space-between">
+          <Flex flexDirection="column" key={channel._id}>
+            <Flex
+              paddingTop="48px"
+              justifyContent="space-between"
+              key={channel._id}
+            >
               <Heading size="xl">{channel.name}</Heading>
               <Text
                 size="sm"
@@ -46,10 +50,11 @@ const HomePage = () => {
                   onClick={() => {
                     onClickChallange(channel._id, post._id);
                   }}
+                  key={post._id}
                 ></Card>
               );
             })}
-          </>
+          </Flex>
         );
       })}
     </>
