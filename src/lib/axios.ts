@@ -11,8 +11,9 @@ instance.interceptors.request.use((config) => {
     throw new Error(`Axios config headers must be provided`);
   }
   const token = loadTokenFromLocalStorage();
+
   if (token) {
-    config.headers.Authorization = `bearer ${token}`;
+    config.headers["Authorization"] = `bearer ${token}`;
   }
   return config;
 });
