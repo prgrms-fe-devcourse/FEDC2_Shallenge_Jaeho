@@ -21,7 +21,6 @@ const Card = ({
   commentCount = 0,
   cheerCount = 0,
   margin = 0,
-
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
