@@ -15,16 +15,16 @@ const CreateChallengePage = () => {
     console.log(challengeTitle, channel, startDate, reward);
   }, [challengeTitle, channel, startDate, reward]);
 
-  const onChallengeTitle = (newChallengeTitle: string) => {
+  const onChallengeTitleChange = (newChallengeTitle: string) => {
     setChallengeTitle(newChallengeTitle);
   };
-  const onChannel = (newChannel: string) => {
+  const onChannelChange = (newChannel: string) => {
     setChannel(newChannel);
   };
-  const onStartDate = (newStartDate: string) => {
+  const onStartDateChange = (newStartDate: string) => {
     setStartDate(newStartDate);
   };
-  const onReward = (newReward: string) => {
+  const onRewardChange = (newReward: string) => {
     setReward(newReward);
   };
 
@@ -45,18 +45,18 @@ const CreateChallengePage = () => {
             placeholder="목표를 작성해주세요 \(@^0^@)/"
             variant="outline"
             width="100%"
-            onChangeValue={onChallengeTitle}
+            onChangeValue={onChallengeTitleChange}
           >
             {challengeTitle}
           </ChakraInput>
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">🗂 채널</Heading>
-          <ChallengeChannelRadio onChangeValue={onChannel} />
+          <ChallengeChannelRadio onChangeValue={onChannelChange} />
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">📆 시작일</Heading>
-          <StartDateCalendar onChangeValue={onStartDate} />
+          <StartDateCalendar onChangeValue={onStartDateChange} />
         </Flex>
         <Flex direction="column" gap="16px">
           <Heading size="xl">🏁 보상</Heading>
@@ -64,7 +64,7 @@ const CreateChallengePage = () => {
             placeholder="평소 원하는 것을 입력해주세요 ( $ _ $ )"
             variant="outline"
             width="100%"
-            onChangeValue={onReward}
+            onChangeValue={onRewardChange}
           ></ChakraInput>
         </Flex>
         <Flex justifyContent="center">
