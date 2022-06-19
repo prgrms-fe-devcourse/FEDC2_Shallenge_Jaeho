@@ -10,6 +10,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
+  styleProps?: object;
 };
 
 const Card = ({
@@ -21,6 +22,7 @@ const Card = ({
   commentCount = 0,
   cheerCount = 0,
   margin = 0,
+  styleProps = {},
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
@@ -36,7 +38,7 @@ const Card = ({
   };
 
   return (
-    <Box style={CardStyle} margin={margin}>
+    <Box style={{ ...CardStyle, ...styleProps }} margin={margin}>
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading
