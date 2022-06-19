@@ -1,6 +1,6 @@
 import React from "react";
 import { Notification } from "src/types";
-import NotiComponent from "@domain/NotificationPage/Notification";
+import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
 
@@ -128,7 +128,7 @@ const NotificationPage = () => {
       {notificationList.length ? (
         notificationList.map((notification) => {
           return (
-            <NotiComponent
+            <NotificationCard
               key={notification._id}
               alarmType={
                 notification.follow
@@ -139,7 +139,7 @@ const NotificationPage = () => {
               }
               avatarSrc=""
               userName={notification.author.fullName}
-            ></NotiComponent>
+            ></NotificationCard>
           );
         })
       ) : (
