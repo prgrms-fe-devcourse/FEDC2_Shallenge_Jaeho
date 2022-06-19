@@ -28,6 +28,7 @@ const Card = ({
   const CardStyle: React.CSSProperties = {
     position: "relative",
     borderRadius: "5px",
+    width: "100%",
     maxWidth: 610,
     height: type === "challange" ? 120 : 96,
     backgroundColor: "#ffffff",
