@@ -23,6 +23,7 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
           width="100%"
           height="calc(100vh - 96px - 80px)"
           overflowY="auto"
+          overflowX="hidden"
           backgroundColor="#F4F6F8"
           padding="0 15px"
         >

@@ -3,30 +3,30 @@ import ChakraText from "@base/ChakraText";
 import ChakraHeading from "@base/ChakraHeading";
 import { Flex } from "@chakra-ui/react";
 
-type ChallengeTitleTypes = {
+type ChallengeRewardTypes = {
   startDate: string;
   endDate: string;
-  width: number;
-  title: string;
+  reward: string;
   restDay: number;
 };
 
-const TitleContainer = styled.div`
+const RewardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background-color: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 `;
 
-const ChallengeTitle = ({
+const ChallengeReward = ({
   startDate,
   endDate,
-  title = "목표 제목",
+  reward = "보상 내용",
   restDay = 30,
-}: ChallengeTitleTypes) => {
+}: ChallengeRewardTypes) => {
   return (
     <Flex flexDirection="column" maxW="610px" w="100%">
       <Flex justifyContent="space-between" w="100%">
@@ -37,12 +37,12 @@ const ChallengeTitle = ({
           {endDate}
         </ChakraText>
       </Flex>
-      <TitleContainer>
-        <ChakraHeading>{title}</ChakraHeading>
+      <RewardContainer>
+        <ChakraHeading>{reward}</ChakraHeading>
         <ChakraHeading>{restDay}일 남았습니다!</ChakraHeading>
-      </TitleContainer>
+      </RewardContainer>
     </Flex>
   );
 };
 
-export default ChallengeTitle;
+export default ChallengeReward;

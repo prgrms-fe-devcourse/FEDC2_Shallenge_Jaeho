@@ -2,7 +2,7 @@ import Social from "@base/Social";
 import { Center } from "@chakra-ui/react";
 
 type CheerUpButtonType = {
-  isCheered: boolean;
+  isCheered?: boolean;
   count: number;
 };
 
@@ -19,6 +19,7 @@ const CheerUpButton = ({ isCheered = false, count }: CheerUpButtonType) => {
       bgColor={bgColor}
       fill={fill}
       color={color}
+      cursor="pointer"
       _hover={
         isCheered ? { bg: "#FF7900" } : { color: "#FF7900", fill: "#FF7900" }
       }
