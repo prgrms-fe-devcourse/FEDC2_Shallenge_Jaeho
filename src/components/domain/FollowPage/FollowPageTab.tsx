@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { useNavigate } from "react-router-dom";
 import { User } from "src/types";
 import {
   Tab,
@@ -27,6 +28,10 @@ type FollowPageProp = {
 
 const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const navigate = useNavigate();
+  const handleClickUser = (userId: string): void => {
+    navigate(`/profile/${userId}`);
+  };
 
   return (
     <TabsContainer>
@@ -69,6 +74,9 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
                       text={user.coverImage ?? "자기소개 없음"}
                       avatarSrc={user.image}
                       styleProps={{ boxShadow: "none" }}
+                      onClick={() => {
+                        handleClickUser(user._id);
+                      }}
                       key={user._id}
                     ></Card>
                   );
@@ -88,6 +96,9 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
                       heading={user.fullName}
                       text={user.coverImage ?? "자기소개 없음"}
                       avatarSrc={user.image}
+                      onClick={() => {
+                        handleClickUser(user._id);
+                      }}
                       key={user._id}
                     ></Card>
                   );

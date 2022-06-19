@@ -11,6 +11,7 @@ type CardTypes = {
   cheerCount?: number;
   margin?: string | number;
   styleProps?: object;
+  onClick?: () => void;
 };
 
 const Card = ({
@@ -23,6 +24,7 @@ const Card = ({
   cheerCount = 0,
   margin = 0,
   styleProps = {},
+  onClick,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
@@ -38,7 +40,11 @@ const Card = ({
   };
 
   return (
-    <Box style={{ ...CardStyle, ...styleProps }} margin={margin}>
+    <Box
+      style={{ ...CardStyle, ...styleProps }}
+      margin={margin}
+      onClick={onClick}
+    >
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading
