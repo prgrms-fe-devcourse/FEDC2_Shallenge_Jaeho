@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { User } from "src/types";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import InputLayout from "@layout/InputLayout";
 import Card from "@base/Card";
 
 const userList: User[] = [
   {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
+    coverImage: "자기소개1",
+    image: "프로필이미지주소1", // 프로필 이미지
     role: "role",
     emailVerified: true, // 사용되지 않음
     banned: false, // 사용되지 않음
@@ -22,14 +21,14 @@ const userList: User[] = [
     notifications: [],
     messages: [],
     _id: "userid1", // 사용자 id
-    fullName: "사용자닉네임", //
+    fullName: "사용자닉네임1", //
     email: "asd@asd.com",
     createdAt: "2022-05-12T09:44:19.128Z",
     updatedAt: "2022-05-12T09:44:19.128Z",
   },
   {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
+    coverImage: "자기소개2",
+    image: "프로필이미지주소2", // 프로필 이미지
     role: "role",
     emailVerified: true, // 사용되지 않음
     banned: false, // 사용되지 않음
@@ -41,15 +40,15 @@ const userList: User[] = [
     following: [],
     notifications: [],
     messages: [],
-    _id: "userid1", // 사용자 id
-    fullName: "사용자닉네임", //
+    _id: "userid2", // 사용자 id
+    fullName: "사용자닉네임2", //
     email: "asd@asd.com",
     createdAt: "2022-05-12T09:44:19.128Z",
     updatedAt: "2022-05-12T09:44:19.128Z",
   },
   {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
+    coverImage: "자기소개3",
+    image: "프로필이미지주소3", // 프로필 이미지
     role: "role",
     emailVerified: true, // 사용되지 않음
     banned: false, // 사용되지 않음
@@ -61,8 +60,8 @@ const userList: User[] = [
     following: [],
     notifications: [],
     messages: [],
-    _id: "userid1", // 사용자 id
-    fullName: "사용자닉네임", //
+    _id: "userid3", // 사용자 id
+    fullName: "사용자닉네임3", //
     email: "asd@asd.com",
     createdAt: "2022-05-12T09:44:19.128Z",
     updatedAt: "2022-05-12T09:44:19.128Z",
@@ -72,7 +71,6 @@ const userList: User[] = [
 const SearchUserPage = () => {
   const location = useLocation();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
-  console.log(query.userName);
   const [userName, setUserName] = useState(query.userName as string);
   // userName으로 user을 찾는 로직
   return (
@@ -113,6 +111,7 @@ const SearchUserPage = () => {
                 heading={user.fullName}
                 text={user.coverImage ?? "한줄 소개 없음"}
                 margin="4px 0"
+                key={user._id}
               ></Card>
             );
           })}
