@@ -20,11 +20,12 @@ const Card = ({
   text,
   commentCount = 0,
   cheerCount = 0,
-  margin = "0",
+  margin = 0,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
     borderRadius: "5px",
+    width: "100%",
     maxWidth: 610,
     height: type === "challange" ? 120 : 96,
     backgroundColor: "#ffffff",

@@ -19,6 +19,7 @@
     "feather-icons": "^4.29.0",
     "framer-motion": "^6.3.11",
     "jotai": "^1.7.2",
+    "qs": "^6.10.5",
     "react": "^18.1.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.1.0",
