@@ -48,8 +48,16 @@ export interface Post {
   _id: string;
   image?: string;
   imagePublicId?: string;
-  title: string;
-  channel: Channel;
+  title: {
+    title: string;
+    reward: string;
+    days: {
+      day: number;
+      isChecked: boolean;
+    }[];
+    date: string;
+  };
+  channel?: Channel;
   author: User;
   createdAt: string;
   updatedAt: string;
