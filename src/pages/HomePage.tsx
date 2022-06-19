@@ -6,10 +6,10 @@ import { channelsList } from "@domain/HomePage/dummy";
 const HomePage = () => {
   const navigate = useNavigate();
   const onClickMore = (channelId: string): void => {
-    navigate(`challenge/${channelId}`);
+    navigate(`challenges/${channelId}`);
   };
   const onClickChallange = (channelId: string, challangeId: string): void => {
-    navigate(`challenge/${channelId}/${challangeId}`);
+    navigate(`challenges/${channelId}/${challangeId}`);
   };
 
   return (
