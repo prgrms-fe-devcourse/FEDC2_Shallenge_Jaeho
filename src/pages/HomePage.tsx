@@ -1,29 +1,60 @@
-import React from "react";
 import { Heading, Text, Flex } from "@chakra-ui/layout";
-import InputLayout from "@layout/InputLayout";
 import Card from "@base/Card";
-
-const dummyData = [{}, {}, {}, {}, {}, {}, {}, {}];
+import { useNavigate } from "react-router-dom";
+import { channelsList } from "@domain/HomePage/dummy";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const onClickMore = (channelId: string): void => {
+    navigate(`challenge/${channelId}`);
+  };
+  const onClickChallange = (channelId: string, challangeId: string): void => {
+    navigate(`challenge/${channelId}/${challangeId}`);
+  };
+
   return (
     <>
-      <Flex paddingTop="48px" justifyContent="space-between">
-        <Heading size="xl">💪운동</Heading>
-        <Text size="sm" color="#ff7900" alignSelf={"end"}>
-          more{">"}
-        </Text>
-      </Flex>
-      {dummyData.slice(0, 2).map((challange) => {
+      {channelsList.map((channel) => {
+        const postList = channel.posts.slice(0, 2);
         return (
-          <Card
-            type="challange"
-            heading="헬스장에서 30분 이상 운동"
-            text="가지고 싶었던 운동화 구입"
-            commentCount={12}
-            cheerCount={23}
-            margin="16px 0"
-          ></Card>
+          <Flex flexDirection="column" key={channel._id}>
+            <Flex
+              paddingTop="48px"
+              justifyContent="space-between"
+              key={channel._id}
+            >
+              <Heading size="xl">{channel.name}</Heading>
+              <Text
+                size="sm"
+                color="#ff7900"
+                alignSelf={"end"}
+                _hover={{
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  onClickMore(channel._id ?? "dummyChannel");
+                }}
+              >
+                more{">"}
+              </Text>
+            </Flex>
+            {postList.map((post) => {
+              return (
+                <Card
+                  type="challange"
+                  heading={post.title.ChallengeTitle}
+                  text={post.title.reward}
+                  commentCount={post.comments.length}
+                  cheerCount={post.likes.length}
+                  margin="16px 0"
+                  onClick={() => {
+                    onClickChallange(channel._id, post._id);
+                  }}
+                  key={post._id}
+                ></Card>
+              );
+            })}
+          </Flex>
         );
       })}
     </>
