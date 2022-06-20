@@ -44,7 +44,9 @@ const AppRouter = () => {
           <Route path="challenges/:challengeId" element={<ChallengePage />} />
         </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route element={<InputLayout />}>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );
