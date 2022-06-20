@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import GlobalStyles from "@styles/GlobalStyles";
+import GlobalStyles from "./styles/GlobalStyles";
 import App from "./App";
 
 const queryClient = new QueryClient();
