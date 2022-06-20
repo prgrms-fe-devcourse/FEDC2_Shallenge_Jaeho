@@ -18,7 +18,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
   const handleClick = (id: string) => {
     console.log(id);
     console.log(location.pathname);
-    navigate(location.pathname + `/${id}`);
+    navigate(`/challenges/${posts[0].channel._id}/${id}`);
   };
 
   return (

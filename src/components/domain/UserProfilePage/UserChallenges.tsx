@@ -33,8 +33,7 @@ const CButton = styled(Button)`
 const UserChallenges = ({ challenges }: UserChallengesProps) => {
   console.log(challenges);
   const handleChallengeClick = (id: string) => {
-    // challenge 아이디를 통해 이동
-    console.log(id);
+    navigate(`/challenges/${challenges[0].channel._id}/${id}`);
   };
 
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ const UserChallenges = ({ challenges }: UserChallengesProps) => {
   return (
     <UserChallengesContainer>
       <Flex>
-        <Heading size="xl">🎯챌린지</Heading>
+        <Heading size="xl">🎯</Heading>
         <Spacer />
         <CButton size="sm" onClick={handleButtonClick}>
           +
@@ -54,20 +53,24 @@ const UserChallenges = ({ challenges }: UserChallengesProps) => {
       {challenges.length == 0 ? (
         <div>챌린지가 없어요!</div>
       ) : (
-        challenges.map((challenge) => (
-          <CardContainer
-            key={challenge._id}
-            onClick={() => handleChallengeClick(challenge._id)}
-          >
-            <Card
-              type="challange"
-              heading={challenge.title.title}
-              text={challenge.title.reward}
-              commentCount={challenge.comments.length}
-              cheerCount={challenge.likes.length}
-            ></Card>
-          </CardContainer>
-        ))
+        challenges.map((challenge) => {
+          const jsonString = challenge.title.replaceAll("'", '"');
+          const jsonObject = JSON.parse(jsonString);
+          return (
+            <CardContainer
+              key={challenge._id}
+              onClick={() => handleChallengeClick(challenge._id)}
+            >
+              <Card
+                type="challange"
+                heading={jsonObject.challengeTitle}
+                text={jsonObject.reward}
+                commentCount={challenge.comments.length}
+                cheerCount={challenge.likes.length}
+              ></Card>
+            </CardContainer>
+          );
+        })
       )}
     </UserChallengesContainer>
   );
