@@ -1,6 +1,5 @@
 import { Circle, Flex } from "@chakra-ui/react";
 import { add, differenceInDays, format } from "date-fns";
-import TextLayout from "@layout/TextLayout";
 import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
 import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
@@ -40,14 +39,13 @@ const dummyData = [
   { day: 30, isChecked: false },
 ];
 
-const ChallengePage = ({ isGuestDummy = true }) => {
+const ChallengePage = ({ isGuestDummy = false }) => {
   let isGuest = isGuestDummy; // _id 값과 비교할 현재 유저 _id
-  const ChallengeTitle = "Challenge 제목"; // title.challengeTitle
   const reward = "보상 내용"; // title.reward
   const commentCount = 0; // comments.length
   const cheerUpCount = 0; // likes.length
   const days = dummyData; // title.days
-  const startDate = "2022-06-20"; // title.startDate
+  const startDate = "2022-06-17"; // title.startDate
   let presentDay = differenceInDays(
     new Date(format(new Date(), "yyyy-MM-dd")),
     new Date(startDate)
@@ -58,7 +56,7 @@ const ChallengePage = ({ isGuestDummy = true }) => {
   const restDay = 30 - presentDay;
   const endDate = format(add(new Date(startDate), { days: 29 }), "yyyy-MM-dd");
   return (
-    <TextLayout text={ChallengeTitle}>
+    <>
       <Flex marginTop="16px">
         <ChallengeReward
           startDate={startDate}
@@ -89,7 +87,7 @@ const ChallengePage = ({ isGuestDummy = true }) => {
           position="absolute"
           left="50%"
           transform="translate(-50%, 0%)"
-          bottom="80px"
+          bottom="58px"
           zIndex={2}
         >
           <CertificationButton
@@ -97,7 +95,7 @@ const ChallengePage = ({ isGuestDummy = true }) => {
           ></CertificationButton>
         </Circle>
       )}
-    </TextLayout>
+    </>
   );
 };
 
