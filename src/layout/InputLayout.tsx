@@ -11,7 +11,7 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
   return (
     <Flex justifyContent="center">
       <Flex flexDirection="column" width="640px" alignItems="center">
-        <Flex position="sticky" width="100%">
+        <Flex position="sticky" width="100%" zIndex={3}>
           <Header>
             <ChakraInput
               placeholder={placeholder}
