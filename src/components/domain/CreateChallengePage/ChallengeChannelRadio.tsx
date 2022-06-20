@@ -4,6 +4,7 @@ import { Box, HStack, Text, useRadio, useRadioGroup } from "@chakra-ui/react";
 
 type ChallengeChannelRadioType = {
   onChangeValue?: any;
+  channelList?: any;
 };
 
 function RadioCard(props: any) {
@@ -34,11 +35,12 @@ function RadioCard(props: any) {
 
 const ChallengeChannelRadio = ({
   onChangeValue,
+  channelList,
 }: ChallengeChannelRadioType) => {
-  const channels = ["운동", "독서", "공부", "루틴", "자기계발"];
+  const channels = channelList;
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "channel",
-    defaultValue: "운동",
+    defaultValue: channels[0],
     onChange: onChangeValue ? onChangeValue : console.log,
   });
 
@@ -46,14 +48,15 @@ const ChallengeChannelRadio = ({
 
   return (
     <HStack {...group} spacing="20px">
-      {channels.map((channelName) => {
-        const radio = getRadioProps({ value: channelName });
-        return (
-          <RadioCard key={channelName} {...radio}>
-            <Text fontSize="lg">{channelName}</Text>
-          </RadioCard>
-        );
-      })}
+      {channels &&
+        channels.map((channelName: any) => {
+          const radio = getRadioProps({ value: channelName });
+          return (
+            <RadioCard key={channelName} {...radio}>
+              <Text fontSize="lg">{channelName}</Text>
+            </RadioCard>
+          );
+        })}
     </HStack>
   );
 };
