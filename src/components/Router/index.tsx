@@ -67,6 +67,7 @@ const AppRouter = () => {
           element={<ChallengePage />}
         />
 
+        <Route path="/challenges/" element={<ChallengesPage />} />
         <Route path="/challenges/:channelId" element={<ChallengesPage />} />
 
         <Route
