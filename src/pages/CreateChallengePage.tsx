@@ -1,30 +1,75 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { useEffect, useState } from "react";
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import ChakraInput from "@base/ChakraInput";
 import ChallengeChannelRadio from "@domain/CreateChallengePage/ChallengeChannelRadio";
-import { useEffect, useState } from "react";
 import StartDateCalendar from "@domain/CreateChallengePage/StartDateCalendar";
+import useGetChannelList from "@hooks/quries/useGetChannelList";
+import { fetchPostPostByChannelId } from "@api/post";
+import { useNavigate } from "react-router-dom";
+
+const challengeTable = Array.from({ length: 30 }, (_, index) => ({
+  day: index,
+  isChecked: false,
+}));
 
 const CreateChallengePage = () => {
+  const navigate = useNavigate();
   const [challengeTitle, setChallengeTitle] = useState("");
-  const [channel, setChannel] = useState("운동");
+  const [channel, setChannel] = useState("");
   const [startDate, setStartDate] = useState("");
   const [reward, setReward] = useState("");
 
+  const { data: channelList } = useGetChannelList();
   useEffect(() => {
-    console.log(challengeTitle, channel, startDate, reward);
-  }, [challengeTitle, channel, startDate, reward]);
+    setChannel(channelList?.data[0]._id);
+  }, [channelList]);
 
   const onChallengeTitleChange = (newChallengeTitle: string) => {
-    setChallengeTitle(newChallengeTitle);
+    setChallengeTitle(newChallengeTitle.trim());
   };
   const onChannelChange = (newChannel: string) => {
-    setChannel(newChannel);
+    const channelId = channelList!.data.filter(({ description }: any) => {
+      return description === newChannel;
+    })[0]._id;
+    setChannel(channelId);
   };
   const onStartDateChange = (newStartDate: string) => {
     setStartDate(newStartDate);
   };
   const onRewardChange = (newReward: string) => {
-    setReward(newReward);
+    setReward(newReward.trim());
+  };
+
+  const checkForm = () => {
+    if (challengeTitle === "") return false;
+    if (reward === "") return false;
+    return true;
+  };
+
+  const onSubmitEvent = () => {
+    if (checkForm()) {
+      const newChallenge = {
+        challengeTitle: challengeTitle,
+        reward,
+        days: challengeTable,
+        startDate: startDate,
+      };
+      void submitChallengeForm(newChallenge);
+    }
+  };
+
+  const submitChallengeForm = async (newChallenge: any) => {
+    const response: any = await fetchPostPostByChannelId({
+      title: JSON.stringify(newChallenge),
+      image: null,
+      channelId: channel,
+    });
+    if (response.status === 200) {
+      navigate("/my/profile");
+    } else {
+      alert("다시 시도바랍니다.");
+    }
   };
 
   return (
@@ -44,13 +89,18 @@ const CreateChallengePage = () => {
           variant="outline"
           width="100%"
           onChangeValue={onChallengeTitleChange}
-        >
-          {challengeTitle}
-        </ChakraInput>
+        ></ChakraInput>
       </Flex>
       <Flex direction="column" gap="16px">
         <Heading size="xl">🗂 채널</Heading>
-        <ChallengeChannelRadio onChangeValue={onChannelChange} />
+        {channelList && (
+          <ChallengeChannelRadio
+            onChangeValue={onChannelChange}
+            channelList={channelList.data.map((channel: any) => {
+              return channel.description;
+            })}
+          />
+        )}
       </Flex>
       <Flex direction="column" gap="16px">
         <Heading size="xl">📆 시작일</Heading>
@@ -67,12 +117,14 @@ const CreateChallengePage = () => {
       </Flex>
       <Flex justifyContent="center">
         <Button
+          isDisabled={!checkForm()}
           size="lg"
           bg="#FFAA6D"
           w="240px"
           marginTop="20px"
           color="#FFFFFF"
-          _hover={{ bg: "#FF7900" }}
+          _hover={checkForm() ? { bg: "#FF7900" } : { bg: "#FFAA6D" }}
+          onClick={onSubmitEvent}
         >
           생성하기
         </Button>
