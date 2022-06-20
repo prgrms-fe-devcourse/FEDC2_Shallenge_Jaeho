@@ -1,4 +1,5 @@
 import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import React from "react";
 import Social from "../Social";
 
 type CardTypes = {
@@ -43,6 +44,7 @@ const Card = ({
     <Box
       style={{ ...CardStyle, ...styleProps }}
       margin={margin}
+      _hover={{ cursor: "pointer" }}
       onClick={onClick}
     >
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
