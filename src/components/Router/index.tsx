@@ -47,7 +47,9 @@ const AppRouter = () => {
           </Route>
         </Route>
 
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route element={<InputLayout />}>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );
