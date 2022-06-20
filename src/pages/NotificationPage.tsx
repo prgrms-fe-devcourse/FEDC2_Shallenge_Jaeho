@@ -1,10 +1,18 @@
 import React from "react";
+
 import { Notification } from "src/types";
 import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
+import useNotifications from "@hooks/quries/useNotifications";
 
 const NotificationPage = () => {
+  const { data: response, isLoading } = useNotifications();
+
+  if (isLoading) {
+    return <></>;
+  }
+
   const notificationList: Notification[] = [
     {
       // follow type
@@ -125,6 +133,7 @@ const NotificationPage = () => {
 
   return (
     <Flex direction="column" padding="40px 0">
+      <h1>{JSON.stringify(response?.data)}</h1>
       {notificationList.length ? (
         notificationList.map((notification) => {
           return (

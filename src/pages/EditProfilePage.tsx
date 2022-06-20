@@ -1,6 +1,14 @@
+import { ChangeEvent, useState } from "react";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
+
 import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { fetchPostLogout } from "@api/auth";
+import { fetchPutUpdatedPassword } from "@api/setting";
+
+import userAtom from "@store/user";
+import { deleteTokenFromLocalStorage } from "@lib/localStorage";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -49,65 +57,76 @@ const LogoutButton = styled(Button)`
 `;
 
 const EditProfilePage = () => {
+  const [myUser, setMyUser] = useAtom(userAtom);
   const [newFullName, setNewFullName] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const image = "";
-  const email = "asdfds@adsfdsaf";
-  const fullName = "chogyejin";
+  const navigate = useNavigate();
 
   const onChangeProfileImageClick = () => {
-    console.log("프로필이미지변경클릭");
+    // console.log("프로필이미지변경클릭");
   };
 
   const onChangeFullNameClick = () => {
-    console.log(newFullName);
     if (!newFullName) {
       alert("새로운 닉네임을 입력하세요!");
       return;
     }
 
     if (confirm(newFullName + "으로 변경하시겠어요?")) {
-      // api
       alert("변경되었습니다.");
     }
   };
 
-  const onChangePasswordClick = () => {
-    console.log(newPassword);
-    if (!newFullName) {
+  const onPasswordClick = () => {
+    if (!newPassword) {
       alert("새로운 비밀번호를 입력하세요!");
       return;
     }
 
     if (confirm("정말 변경하시겠어요?")) {
-      // api
-      alert("변경되었습니다.");
+      fetchPutUpdatedPassword(newPassword)
+        .then(() => {
+          alert("변경되었습니다.");
+        })
+        .catch(() => {
+          alert("비밀번호변경이 실패했습니다");
+        });
     }
   };
 
+  const onPasswordChange = (e: any) => {
+    const password = e.target.value as string;
+    setNewPassword(password);
+  };
+
   const onLogoutClick = () => {
-    console.log("로그아웃 클릭");
-    // 로그아웃 api
+    fetchPostLogout()
+      .then(() => {
+        setMyUser(null);
+        deleteTokenFromLocalStorage();
+      })
+      .catch(() => {
+        alert("로그인 실패");
+      })
+      .finally(() => {
+        navigate("/");
+      });
   };
 
   return (
     <EditProfilePageContainer>
-      <Avatar size="2xl" src={image} />
+      <Avatar size="2xl" src={myUser?.image} />
       <ChangeButton display="block" onClick={onChangeProfileImageClick}>
         프로필 사진 변경
       </ChangeButton>
       <FormContainer>
         <CFlex>
           <InfoText>이메일</InfoText>
-          <div>{email}</div>
+          <div>{myUser?.email}</div>
         </CFlex>
         <CFlex>
           <InfoText>닉네임</InfoText>
-          <CInput
-            type="text"
-            placeholder={`현재는 ${fullName}`}
-            onChange={(e) => setNewFullName(e.target.value)}
-          />
+          <CInput type="text" placeholder={myUser?.fullName} />
           <ChangeButton onClick={onChangeFullNameClick}>변경</ChangeButton>
         </CFlex>
         <CFlex>
@@ -115,9 +134,10 @@ const EditProfilePage = () => {
           <CInput
             type="password"
             placeholder="새 비밀번호를 입력해주세요"
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={newPassword}
+            onChange={onPasswordChange}
           />
-          <ChangeButton onClick={onChangePasswordClick}>변경</ChangeButton>
+          <ChangeButton onClick={onPasswordClick}>변경</ChangeButton>
         </CFlex>
       </FormContainer>
       <LogoutButton onClick={onLogoutClick}>로그아웃</LogoutButton>

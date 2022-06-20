@@ -43,10 +43,3 @@ const StartDateCalendar = ({ onChangeValue }: StartDateCalendarProps) => {
 };
 
 export default StartDateCalendar;
-{
-  /* <ChakraInput
-  placeholder="시작일을 선택해주세요 \(*°▽°*)/"
-  variant="outline"
-  width="100%"
-></ChakraInput> */
-}
