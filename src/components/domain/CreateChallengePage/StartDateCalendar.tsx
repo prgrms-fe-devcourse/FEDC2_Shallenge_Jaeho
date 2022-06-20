@@ -28,6 +28,7 @@ const StartDateCalendar = ({ onChangeValue }: StartDateCalendarProps) => {
       showPopperArrow={false}
       customInput={
         <Input
+          isReadOnly={true}
           placeholder="시작일을 선택해주세요 \(*°▽°*)/"
           variant="outline"
           width="100%"

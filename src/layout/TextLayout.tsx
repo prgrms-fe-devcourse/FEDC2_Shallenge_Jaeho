@@ -1,19 +1,20 @@
+import { useAtom } from "jotai";
+import { Outlet } from "react-router-dom";
+
 import Header from "@layout/Header";
 import Footer from "@layout/Footer";
 import { Box, Flex, Heading } from "@chakra-ui/react";
+import userAtom from "@store/user";
 
-type TextLayoutTypes = {
-  children: React.ReactNode;
-  text: string;
-};
-const TextLayout = ({ children, text }: TextLayoutTypes) => {
+const TextLayout = () => {
+  const [myUser] = useAtom(userAtom);
   return (
     <Flex justifyContent="center">
       <Flex flexDirection="column" width="640px" alignItems="center">
         <Flex position="sticky" width="100%">
           <Header>
             <Heading size="xl" color="#ff7900">
-              {text}
+              1
             </Heading>
           </Header>
         </Flex>
@@ -25,10 +26,10 @@ const TextLayout = ({ children, text }: TextLayoutTypes) => {
           backgroundColor="#F4F6F8"
           padding="0 15px"
         >
-          {children}
+          <Outlet />
         </Box>
         <Flex w="100%" justifyContent="center" position="sticky" zIndex={1}>
-          <Footer></Footer>
+          <Footer user={myUser}></Footer>
         </Flex>
       </Flex>
     </Flex>

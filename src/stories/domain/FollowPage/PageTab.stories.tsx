@@ -8,8 +8,9 @@ export default {
 
 export const Default = () => {
   return (
-    <TextLayout text="닉네임">
-      <FollowPageTab followingList={[]} followersList={[]}></FollowPageTab>
-    </TextLayout>
+    <></>
+    // <TextLayout text="닉네임">
+    //   <FollowPageTab followingList={[]} followersList={[]}></FollowPageTab>
+    // </TextLayout>
   );
 };

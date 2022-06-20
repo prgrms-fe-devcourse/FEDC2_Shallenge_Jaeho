@@ -1,7 +1,8 @@
 import React from "react";
-import useAuth from "@hooks/useAuth";
 import { useAtom } from "jotai";
-import userAtom from "../../store/user";
+
+import useAuth from "@hooks/useAuth";
+import userAtom from "@store/user";
 import { User } from "../../types/index";
 
 interface Props {

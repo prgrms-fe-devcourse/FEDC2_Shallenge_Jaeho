@@ -1,13 +1,7 @@
-import InputLayout from "@layout/InputLayout";
 import AppRouter from "./components/Router";
-function App() {
-  return (
-    <div>
-      <InputLayout placeholder="@김땡땡">
-        <AppRouter />
-      </InputLayout>
-    </div>
-  );
-}
+
+const App = () => {
+  return <AppRouter />;
+};
 
 export default App;

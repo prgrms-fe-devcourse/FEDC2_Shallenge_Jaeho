@@ -10,3 +10,7 @@ export const loadTokenFromLocalStorage = (): string | null => {
   const token = storage.getItem(TOKEN_KEY);
   return token;
 };
+
+export const deleteTokenFromLocalStorage = () => {
+  storage.removeItem(TOKEN_KEY);
+};

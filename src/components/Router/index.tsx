@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router-dom";
+
 import LoginPage from "@pages/LoginPage";
 import ChallengePage from "@pages/ChallengePage";
 import ChallengesPage from "@pages/ChallengesPage";
@@ -10,75 +12,41 @@ import NotFoundPage from "@pages/NotFoundPage";
 import NotificationPage from "@pages/NotificationPage";
 import SearchUserPage from "@pages/SearchUserPage";
 import UserProfilePage from "@pages/UserProfilePage";
-import { Route, Routes } from "react-router-dom";
 import MyProfilePage from "@pages/MyProfilePage";
 
 import AuthProvider from "../Provider/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
+import InputLayout from "@layout/InputLayout";
+import TextLayout from "@layout/TextLayout";
 
 const AppRouter = () => {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route element={<InputLayout />}>
+          <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/my/profile/"
-          element={
-            <PrivateRoute>
-              <MyProfilePage />
-            </PrivateRoute>
-          }
-        />
+          <Route path="my" element={<PrivateRoute />}>
+            <Route path="profile" element={<MyProfilePage />} />
+            <Route path="profile/edit" element={<EditProfilePage />} />
+            <Route path="challenge/create" element={<CreateChallengePage />} />
+            <Route path="notifications" element={<NotificationPage />} />
+          </Route>
 
-        <Route
-          path="/my/profile/edit"
-          element={
-            <PrivateRoute>
-              <EditProfilePage />
-            </PrivateRoute>
-          }
-        />
+          <Route path="/follow/:userId" element={<FollowPage />} />
 
-        <Route
-          path="/my/challenge/create"
-          element={
-            <PrivateRoute>
-              <CreateChallengePage />
-            </PrivateRoute>
-          }
-        />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/search" element={<SearchUserPage />} />
+        </Route>
 
-        <Route
-          path="/my/notifications"
-          element={
-            <PrivateRoute>
-              <NotificationPage />
-            </PrivateRoute>
-          }
-        />
+        <Route element={<TextLayout />}>
+          <Route path="challenges" element={<ChallengesPage />} />
+          <Route path="challenges/:challengeId" element={<ChallengePage />} />
+        </Route>
 
-        <Route path="/follow/:userId" element={<FollowPage />} />
-
-        <Route path="/login" element={<LoginPage />} />
-
-        <Route
-          path="/challenges/:channelId/:challengeId"
-          element={<ChallengePage />}
-        />
-
-        <Route path="/challenges/:channelId" element={<ChallengesPage />} />
-
-        <Route
-          path="/challenges/:channelId/:challengeId/comment"
-          element={<CommentPage />}
-        />
-
-        <Route path="/search" element={<SearchUserPage />} />
-
-        <Route path="/profile/:userId" element={<UserProfilePage />} />
-
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route element={<InputLayout />}>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );

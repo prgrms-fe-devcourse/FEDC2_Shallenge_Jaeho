@@ -53,6 +53,7 @@ const AuthPage = () => {
         await fetchPostSignUp(signInEmail, signInFullName, signInPassword);
         alert("회원가입성공! 다시로그인해주세요");
         navigate("/login");
+        location.reload();
       } catch (err) {
         console.log("회원가입로직실패");
       }
