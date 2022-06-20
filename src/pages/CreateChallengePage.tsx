@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useEffect, useState } from "react";
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import ChakraInput from "@base/ChakraInput";
