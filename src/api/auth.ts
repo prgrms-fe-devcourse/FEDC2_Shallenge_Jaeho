@@ -16,9 +16,7 @@ export const fetchPostSignUp = (
   password: string
 ) =>
   axios.post("/signup", {
-    data: {
-      email,
-      fullName,
-      password,
-    },
+    email,
+    fullName,
+    password,
   });
