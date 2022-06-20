@@ -12,11 +12,13 @@ export const fetchPostPostByChannelId = ({
   channelId,
 }: {
   title: string;
-  image?: string;
+  image?: string | null;
   channelId: string;
 }) =>
   axios.post("/posts/create", {
-    data: { title, image, channelId },
+    title,
+    image,
+    channelId,
   });
 
 export const fetchGetPostByPostId = (postId: string) =>
