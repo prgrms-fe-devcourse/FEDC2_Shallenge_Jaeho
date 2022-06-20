@@ -12,7 +12,7 @@ instance.interceptors.request.use((config) => {
   }
   const token = loadTokenFromLocalStorage();
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `bearer ${token}`;
   }
   return config;
 });
