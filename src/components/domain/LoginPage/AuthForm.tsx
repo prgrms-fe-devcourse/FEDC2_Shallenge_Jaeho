@@ -9,7 +9,7 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { FormData } from "@pages/AuthPage";
+import { FormData } from "@pages/LoginPage";
 import { useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 

@@ -9,7 +9,7 @@
       "@api/*": ["src/api/*"],
       "@layout/*": ["src/layout/*"],
       "@lib/*": ["src/lib/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@store/*": ["src/store/*"]
     }
   }
 }
