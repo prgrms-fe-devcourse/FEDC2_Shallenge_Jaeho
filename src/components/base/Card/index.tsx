@@ -11,6 +11,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
+  styleProps?: object;
   onClick?: () => void;
 };
 
@@ -22,7 +23,8 @@ const Card = ({
   text,
   commentCount = 0,
   cheerCount = 0,
-  margin = "0",
+  margin = 0,
+  styleProps = {},
   onClick,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
@@ -40,7 +42,7 @@ const Card = ({
 
   return (
     <Box
-      style={CardStyle}
+      style={{ ...CardStyle, ...styleProps }}
       margin={margin}
       _hover={{ cursor: "pointer" }}
       onClick={onClick}
