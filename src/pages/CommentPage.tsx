@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Comment from "@domain/CommentPage/Comment";
 import CommentInput from "@domain/CommentPage/CommentInput";
@@ -117,7 +118,34 @@ const dummyData = [
 ];
 
 const CommentPage = () => {
-  const comments = dummyData;
+  const [list, setList] = useState(dummyData);
+  const [commentValue, setCommentValue] = useState("");
+  const comments = list;
+  const postId = "post_id";
+
+  const onCommentValueChange = (newCommentValue: string) => {
+    const newComment = newCommentValue.trim();
+    if (newComment !== "") setCommentValue(newComment);
+  };
+
+  useEffect(() => {
+    if (commentValue !== "") {
+      setList([
+        ...list,
+        {
+          _id: "0" + Date(),
+          comment: commentValue,
+          author: {
+            _id: "author._id",
+            image: undefined,
+            fullName: "author.fullName1",
+          },
+          createdAt: "2022-06-23 17:23",
+        },
+      ]);
+    }
+  }, [commentValue]);
+
   return (
     <>
       <Flex direction="column" gap="8px" padding="40px 0" mb="48px">
@@ -142,7 +170,9 @@ const CommentPage = () => {
         bottom="96px"
         zIndex={2}
       >
-        <CommentInput></CommentInput>
+        <form>
+          <CommentInput onValueChange={onCommentValueChange}></CommentInput>
+        </form>
       </Box>
     </>
   );
