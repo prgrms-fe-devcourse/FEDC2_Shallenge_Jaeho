@@ -1,25 +1,44 @@
-import { useState } from "react";
-import { channelsData, channelData } from "@domain/ChallengesPage/dummy";
+import { useEffect, useState } from "react";
+import { channelsData } from "@domain/ChallengesPage/dummy";
 import Chips from "@domain/ChallengesPage/Chips";
+import { fetchGetChannelByName, fetchGetChannels } from "@api/channel";
+import { Channel, Post } from "src/types";
+import { fetchGetPostByPostId, fetchGetPostListByChannel } from "@api/post";
 import Challenges from "@domain/ChallengesPage/Challenges";
 
-// console.log(channelsData); // channels 데이터 가져오기
-
 const ChallengesPage = () => {
-  const [channels, setChannels] = useState(channelsData); // 데이터 가져오면 setState 하기
-  const [channelName, setChannelName] = useState(channelsData[0].name); // channelName 기본값 처음에 사용, 채널 바뀌면 다시 데이터 요청
+  const [channels, setChannels] = useState<Channel[]>();
+  const [challenges, setChallenges] = useState<Post[]>();
+  const [channelName, setChannelName] = useState("📖 독서");
 
-  // ~~//challenges//[name]으로 접속
-  // name을 처음에 알아내서 데이터 요청
-  // name으로 요청한 결과에 대해 에러가 있으면 404
+  useEffect(() => {
+    void (async () => {
+      const result = await fetchGetChannels();
+      if (result.data) {
+        setChannels(result.data);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    setChannelName(channelName);
+    void (async () => {
+      const channelResult = await fetchGetChannelByName(channelName);
+      if (channelResult.data) {
+        const channelId = channelResult.data._id;
+        const challengesResult = await fetchGetPostListByChannel(channelId);
+        setChallenges(challengesResult.data);
+      }
+    })();
+  }, [channelName]);
 
   return (
     <>
       <Chips
-        names={channels.map((challenge) => challenge.name)}
+        names={(channels || []).map((challenge) => challenge.name)}
         setChannelName={setChannelName}
       />
-      <Challenges channelData={channelData.posts} />
+      <Challenges posts={challenges || []} />
     </>
   );
 };

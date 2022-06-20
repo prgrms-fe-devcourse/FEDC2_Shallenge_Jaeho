@@ -1,4 +1,5 @@
 import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import React from "react";
 import Social from "../Social";
 
 type CardTypes = {
@@ -10,6 +11,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
+  onClick?: () => void;
 };
 
 const Card = ({
@@ -21,10 +23,12 @@ const Card = ({
   commentCount = 0,
   cheerCount = 0,
   margin = "0",
+  onClick,
 }: CardTypes) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
     borderRadius: "5px",
+    width: "100%",
     maxWidth: 610,
     height: type === "challange" ? 120 : 96,
     backgroundColor: "#ffffff",
@@ -35,7 +39,12 @@ const Card = ({
   };
 
   return (
-    <Box style={CardStyle} margin={margin}>
+    <Box
+      style={CardStyle}
+      margin={margin}
+      _hover={{ cursor: "pointer" }}
+      onClick={onClick}
+    >
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
       <Box marginLeft={"24px"}>
         <Heading

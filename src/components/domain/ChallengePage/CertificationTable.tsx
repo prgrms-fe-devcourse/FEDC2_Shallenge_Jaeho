@@ -13,14 +13,15 @@ type CertificationTableType = {
 const CertificationTable = ({ days }: CertificationTableType) => {
   return (
     <Grid templateColumns="repeat(6, 1fr)" gridGap="20px" w="340px">
-      {days.map((d) => (
-        <GridItem>
-          <CertificationBox
-            key={d.day}
-            isChecked={d.isChecked}
-          ></CertificationBox>
-        </GridItem>
-      ))}
+      {days.length === 30 &&
+        days.map((d) => (
+          <GridItem>
+            <CertificationBox
+              key={d.day}
+              isChecked={d.isChecked}
+            ></CertificationBox>
+          </GridItem>
+        ))}
     </Grid>
   );
 };

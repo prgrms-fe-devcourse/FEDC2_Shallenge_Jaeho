@@ -48,16 +48,8 @@ export interface Post {
   _id: string;
   image?: string;
   imagePublicId?: string;
-  title: {
-    title: string;
-    reward: string;
-    date: string;
-    days: {
-      day: number;
-      isChecked: boolean;
-    }[];
-  };
-  channel: string;
+  title: string;
+  channel: Channel;
   author: User;
   createdAt: string;
   updatedAt: string;
@@ -90,6 +82,19 @@ export interface User {
   _id: string;
   fullName: string;
   email: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Notification {
+  seen: boolean;
+  _id: string;
+  author: User;
+  user: User | string;
+  post: string | null; // 포스트 id
+  follow?: string; // 사용자 id
+  comment?: Comment;
+  message?: string; // 메시지 id
   createdAt: string;
   updatedAt: string;
 }
