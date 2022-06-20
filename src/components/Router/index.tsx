@@ -40,14 +40,13 @@ const AppRouter = () => {
         </Route>
 
         <Route element={<TextLayout />}>
-          <Route path="challenges" element={<ChallengesPage />}>
-            <Route path=":channelId" element={<ChallengesPage />}>
-              <Route path=":challengeId" element={<ChallengePage />} />
-            </Route>
-          </Route>
+          <Route path="challenges" element={<ChallengesPage />} />
+          <Route path="challenges/:challengeId" element={<ChallengePage />} />
         </Route>
 
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route element={<InputLayout />}>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );

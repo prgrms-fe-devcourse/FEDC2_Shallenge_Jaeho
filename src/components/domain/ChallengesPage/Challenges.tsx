@@ -14,11 +14,8 @@ const CardContainer = styled.div`
 
 const Challenges = ({ posts }: ChallengesProps) => {
   const navigate = useNavigate();
-  console.log(location);
   const handleClick = (id: string) => {
-    console.log(id);
-    console.log(location.pathname);
-    navigate(`/challenges/${posts[0].channel._id}/${id}`);
+    navigate(`/challenges/${id}`);
   };
 
   return (
