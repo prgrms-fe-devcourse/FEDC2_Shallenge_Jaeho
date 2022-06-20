@@ -22,61 +22,23 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/my/profile/"
-          element={
-            <PrivateRoute>
-              <MyProfilePage />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="/my/profile/edit"
-          element={
-            <PrivateRoute>
-              <EditProfilePage />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="/my/challenge/create"
-          element={
-            <PrivateRoute>
-              <CreateChallengePage />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="/my/notifications"
-          element={
-            <PrivateRoute>
-              <NotificationPage />
-            </PrivateRoute>
-          }
-        />
+        <Route path="my" element={<PrivateRoute />}>
+          <Route path="profile" element={<MyProfilePage />} />
+          <Route path="profile/edit" element={<EditProfilePage />} />
+          <Route path="challenge/create" element={<CreateChallengePage />} />
+          <Route path="notifications" element={<NotificationPage />} />
+        </Route>
 
         <Route path="/follow/:userId" element={<FollowPage />} />
 
         <Route path="/login" element={<LoginPage />} />
-
-        <Route
-          path="/challenges/:channelId/:challengeId"
-          element={<ChallengePage />}
-        />
-
-        <Route path="/challenges/:channelId" element={<ChallengesPage />} />
-
-        <Route
-          path="/challenges/:channelId/:challengeId/comment"
-          element={<CommentPage />}
-        />
-
         <Route path="/search" element={<SearchUserPage />} />
 
-        <Route path="/profile/:userId" element={<UserProfilePage />} />
+        <Route path="challenges" element={<ChallengesPage />}>
+          <Route path=":channelId" element={<ChallengesPage />}>
+            <Route path=":challengeId" element={<ChallengePage />} />
+          </Route>
+        </Route>
 
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
