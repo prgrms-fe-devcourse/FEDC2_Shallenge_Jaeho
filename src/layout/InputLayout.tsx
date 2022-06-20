@@ -1,22 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import { useAtom } from "jotai";
+
 import Header from "@layout/Header";
 import Footer from "@layout/Footer";
 import ChakraInput from "@base/ChakraInput";
 import { Box, Flex } from "@chakra-ui/react";
-import React, { useState } from "react";
+import userAtom from "@store/user";
+import searchInputAtom from "@store/searchInput";
 
-type InputLayoutTypes = {
-  children: React.ReactNode;
-  placeholder: string;
-};
-const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
+const InputLayout = () => {
   const navigate = useNavigate();
+  const [myUser] = useAtom(userAtom);
+  const [searchInput, setSearchInput] = useAtom(searchInputAtom);
 
-  const [inputText, setInputText] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(`/search?userName=${inputText}`);
+    navigate(`/search?userName=${searchInput}`);
   };
+
   return (
     <Flex justifyContent="center">
       <Flex flexDirection="column" width="640px" alignItems="center">
@@ -24,9 +26,9 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
           <Header>
             <form onSubmit={handleSubmit}>
               <ChakraInput
-                placeholder={placeholder}
+                placeholder={myUser ? myUser.fullName : ""}
                 variant="filled"
-                onChangeValue={setInputText}
+                onChangeValue={setSearchInput}
               ></ChakraInput>
             </form>
           </Header>
@@ -39,10 +41,10 @@ const InputLayout = ({ children, placeholder }: InputLayoutTypes) => {
           backgroundColor="#F4F6F8"
           padding="0 15px"
         >
-          {children}
+          <Outlet />
         </Box>
         <Flex w="100%" justifyContent="center" position="sticky">
-          <Footer></Footer>
+          <Footer user={myUser}></Footer>
         </Flex>
       </Flex>
     </Flex>
