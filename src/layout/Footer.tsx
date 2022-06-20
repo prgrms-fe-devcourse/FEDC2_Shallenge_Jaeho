@@ -23,7 +23,7 @@ const Footer = ({ user }: Props) => {
           <ChakraText size="md">홈</ChakraText>
         </Flex>
       </Link>
-      <Link to="/channels">
+      <Link to="/challenges">
         <Flex
           flexDirection="column"
           alignItems="center"
