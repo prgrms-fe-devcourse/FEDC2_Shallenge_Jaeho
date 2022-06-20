@@ -15,11 +15,8 @@ const CertificationTable = ({ days }: CertificationTableType) => {
     <Grid templateColumns="repeat(6, 1fr)" gridGap="20px" w="340px">
       {days.length === 30 &&
         days.map((d) => (
-          <GridItem>
-            <CertificationBox
-              key={d.day}
-              isChecked={d.isChecked}
-            ></CertificationBox>
+          <GridItem key={d.day}>
+            <CertificationBox isChecked={d.isChecked}></CertificationBox>
           </GridItem>
         ))}
     </Grid>

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { channelsData } from "@domain/ChallengesPage/dummy";
 import Chips from "@domain/ChallengesPage/Chips";
 import { fetchGetChannelByName, fetchGetChannels } from "@api/channel";
 import { Channel, Post } from "src/types";
-import { fetchGetPostByPostId, fetchGetPostListByChannel } from "@api/post";
+import { fetchGetPostListByChannel } from "@api/post";
 import Challenges from "@domain/ChallengesPage/Challenges";
 
 const ChallengesPage = () => {
