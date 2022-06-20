@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { fechPostListsByChannelsIdList } from "@api/post";
 
 const useGetPostListByChannelIdLists = (channelIdList: string[]) => {
-  return useQuery(["postList", channelIdList], () =>
+  return useQuery(["postLists", channelIdList], () =>
     fechPostListsByChannelsIdList(channelIdList)
   );
 };

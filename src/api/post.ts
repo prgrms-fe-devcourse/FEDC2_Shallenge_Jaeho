@@ -32,7 +32,5 @@ export const fechPostListsByChannelsIdList = async (
 ) => {
   return await Promise.all(
     channelIdList.map((channelId) => fetchGetPostListByChannel(channelId))
-  ).then((results) => {
-    console.log(results);
-  });
+  );
 };
