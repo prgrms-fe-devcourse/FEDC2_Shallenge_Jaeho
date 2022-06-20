@@ -7,8 +7,9 @@ export default {
 
 export const Default = () => {
   return (
-    <InputLayout placeholder="@김땡땡">
-      <SearchUserPage/>
-    </InputLayout>
+    <></>
+    // <InputLayout placeholder="@김땡땡">
+    //   <SearchUserPage/>
+    // </InputLayout>
   );
 };

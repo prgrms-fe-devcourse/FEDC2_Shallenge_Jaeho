@@ -8,35 +8,36 @@ export default {
 
 export const Default = () => {
   return (
-    <TextLayout text="Shallange">
-      <Box
-        width="100%"
-        height="96px"
-        backgroundColor="#cccccc"
-        margin="16px 0"
-        borderRadius="5px"
-      ></Box>
-      <Box
-        width="100%"
-        height="96px"
-        backgroundColor="#cccccc"
-        margin="16px 0"
-        borderRadius="5px"
-      ></Box>
-      <Box
-        width="100%"
-        height="96px"
-        backgroundColor="#cccccc"
-        margin="16px 0"
-        borderRadius="5px"
-      ></Box>
-      <Box
-        width="100%"
-        height="96px"
-        backgroundColor="#cccccc"
-        margin="16px 0"
-        borderRadius="5px"
-      ></Box>
-    </TextLayout>
+    <></>
+    // <TextLayout text="Shallange">
+    //   <Box
+    //     width="100%"
+    //     height="96px"
+    //     backgroundColor="#cccccc"
+    //     margin="16px 0"
+    //     borderRadius="5px"
+    //   ></Box>
+    //   <Box
+    //     width="100%"
+    //     height="96px"
+    //     backgroundColor="#cccccc"
+    //     margin="16px 0"
+    //     borderRadius="5px"
+    //   ></Box>
+    //   <Box
+    //     width="100%"
+    //     height="96px"
+    //     backgroundColor="#cccccc"
+    //     margin="16px 0"
+    //     borderRadius="5px"
+    //   ></Box>
+    //   <Box
+    //     width="100%"
+    //     height="96px"
+    //     backgroundColor="#cccccc"
+    //     margin="16px 0"
+    //     borderRadius="5px"
+    //   ></Box>
+    // </TextLayout>
   );
 };
