@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 
 import useAuth from "@hooks/useAuth";
 import userAtom from "@store/user";
-import { User } from "@type/index";
+import { User } from "../../types/index";
 
 interface Props {
   children: React.ReactNode;
