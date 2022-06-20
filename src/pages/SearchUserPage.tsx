@@ -72,6 +72,11 @@ const SearchUserPage = () => {
   const location = useLocation();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
+
+  if (userName !== query.userName) {
+    setUserName(query.userName as string);
+  }
+
   // userName으로 user을 찾는 로직
   return (
     <Flex justifyContent={"center"} width="100%">
