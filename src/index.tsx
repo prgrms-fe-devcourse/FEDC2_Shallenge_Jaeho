@@ -1,10 +1,11 @@
-import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
-import GlobalStyles from "./styles/GlobalStyles";
+
+import { ChakraProvider } from "@chakra-ui/react";
+import GlobalStyles from "@styles/GlobalStyles";
+import App from "./App";
 
 const queryClient = new QueryClient();
 
