@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Input } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type inputTypes = {
   placeholder: string;
@@ -26,20 +26,19 @@ const ChakraInput = ({
   const borderColor = variant === "outline" ? "#E2E8F0" : "transparent";
   const [value, setValue] = useState(children);
 
-  useEffect(() => {
-    onChangeValue ? onChangeValue(value) : undefined;
-  }, [value]);
-
   return (
     <Input
       value={value}
       onChange={(event) => {
         setValue(event.target.value);
+        onChangeValue(event.target.value);
       }}
+      name="input"
       type={type}
       placeholder={placeholder}
       size={size}
-      width={width}
+      maxWidth={width}
+      width="100%"
       variant={variant}
       border={border}
       borderColor={borderColor}
