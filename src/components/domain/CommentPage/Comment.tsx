@@ -17,7 +17,7 @@ const Comment = ({
       gap="20px"
     >
       <Avatar size={avatarSize} src={avatarSrc}></Avatar>
-      <Flex direction="column" w="100%" gap="5px">
+      <Flex direction="column" w="100%" gap="10px">
         <Flex w="100%" justifyContent="space-between">
           <Heading size="sm">{commentAuthor}</Heading>
           <Flex alignItems="flex-end" gap="5px">
