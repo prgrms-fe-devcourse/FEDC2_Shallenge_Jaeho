@@ -3,13 +3,22 @@ import { useState } from "react";
 import { Circle, Flex, Textarea } from "@chakra-ui/react";
 import Icon from "@base/Icon";
 
-function resize(obj: HTMLTextAreaElement) {
-  obj.style.height = "1px";
-  obj.style.height = 12 + obj.scrollHeight + "px";
-}
+type commentInputTypes = {
+  onValueChange?: (param: string) => void;
+};
 
-const CommentInput = () => {
+const CommentInput = ({ onValueChange }: commentInputTypes) => {
   const [value, setValue] = useState("");
+
+  const resize = (obj: HTMLTextAreaElement) => {
+    obj.style.height = "1px";
+    obj.style.height = 12 + obj.scrollHeight + "px";
+  };
+
+  const onChangeEvent = () => {
+    onValueChange ? onValueChange(value) : undefined;
+    setValue("");
+  };
 
   return (
     <>
@@ -21,6 +30,7 @@ const CommentInput = () => {
         bg="#FFFFFF"
       >
         <Textarea
+          name="commentContent"
           value={value}
           width="100%"
           overflow="visible"
@@ -29,12 +39,18 @@ const CommentInput = () => {
           border="none"
           outline="none"
           _focusVisible={{ boxShadow: "none" }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              onChangeEvent();
+            }
+          }}
           onChange={(event) => {
             setValue(event.target.value);
             resize(event.target);
           }}
         ></Textarea>
-        <Circle _hover={{ cursor: "pointer" }}>
+        <Circle _hover={{ cursor: "pointer" }} onClick={onChangeEvent}>
           <Icon name="arrow-up-circle"></Icon>
         </Circle>
       </Flex>
