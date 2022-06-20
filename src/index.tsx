@@ -13,14 +13,12 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <ChakraProvider>
-          <GlobalStyles />
-          <App />
-        </ChakraProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <GlobalStyles />
+        <App />
+      </ChakraProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );

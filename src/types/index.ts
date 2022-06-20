@@ -48,22 +48,7 @@ export interface Post {
   _id: string;
   image?: string;
   imagePublicId?: string;
-  title: {
-    challengeTitle: string; // Challenge 제목
-    reward: string; // 보상 내용
-    days: [
-      // 잔디 (ChallengeTable에 이용)
-      {
-        day: 0;
-        isChecked: boolean;
-      },
-      {
-        day: 1;
-        isChecked: boolean;
-      }
-    ];
-    startDate: string; // 시작일 2022-06-23
-  };
+  title: string;
   channel: Channel;
   author: User;
   createdAt: string;
