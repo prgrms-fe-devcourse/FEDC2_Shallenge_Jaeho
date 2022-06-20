@@ -26,3 +26,13 @@ export const fetchDeletePostByPostId = (id: string) =>
   axios.delete(`/posts/delete`, {
     data: { id },
   });
+
+export const fechPostListsByChannelsIdList = async (
+  channelIdList: string[]
+) => {
+  return await Promise.all(
+    channelIdList.map((channelId) => fetchGetPostListByChannel(channelId))
+  ).then((results) => {
+    console.log(results);
+  });
+};

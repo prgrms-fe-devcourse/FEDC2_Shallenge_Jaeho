@@ -22,7 +22,7 @@ const StartDateCalendar = ({ onChangeValue }: StartDateCalendarProps) => {
     <DatePicker
       locale={ko}
       selected={startDate}
-      onChange={(date) => setStartDate(date as Date)}
+      onChange={(date) => setStartDate(date)}
       dateFormat="yyyy년 MM월 dd일 (eee)"
       minDate={new Date()}
       showPopperArrow={false}
