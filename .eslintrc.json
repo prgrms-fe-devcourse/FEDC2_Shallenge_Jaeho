@@ -18,7 +18,6 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-
     "prettier/prettier": [
       "error",
       {
@@ -27,7 +26,8 @@
     ],
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/no-unsafe-call": "off"
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off"
   },
   "ignorePatterns": ["dist/", "node_modules/"]
 }
