@@ -11,8 +11,8 @@ const HomePage = () => {
   const onClickMore = (channelId: string): void => {
     navigate(`challenges/${channelId}`);
   };
-  const onClickChallange = (channelId: string, challangeId: string): void => {
-    navigate(`challenges/${channelId}/${challangeId}`);
+  const onClickChallange = (challengeId: string): void => {
+    navigate(`challenge/${challengeId}`);
   };
 
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
@@ -79,7 +79,7 @@ const HomePage = () => {
                   cheerCount={post.likes.length}
                   margin="16px 0"
                   onClick={() => {
-                    onClickChallange(channel._id, post._id);
+                    onClickChallange(post._id);
                   }}
                   key={post._id}
                 ></Card>
