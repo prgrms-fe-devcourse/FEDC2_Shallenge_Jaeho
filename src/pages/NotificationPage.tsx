@@ -5,8 +5,10 @@ import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
 import useNotifications from "@hooks/quries/useNotifications";
+import usePageTitle from "@hooks/usePageTitle";
 
 const NotificationPage = () => {
+  usePageTitle("알람");
   const { data: response, isLoading } = useNotifications();
 
   if (isLoading) {

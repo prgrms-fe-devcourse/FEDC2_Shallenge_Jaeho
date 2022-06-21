@@ -8,6 +8,7 @@ import { saveTokenToLocalStorage } from "@lib/localStorage";
 import { useAtom } from "jotai";
 import userAtom from "../store/user";
 import { User } from "src/types";
+import usePageTitle from "@hooks/usePageTitle";
 
 export interface FormData {
   logInEmail: string;
@@ -25,6 +26,7 @@ interface LoginResponse {
 }
 
 const AuthPage = () => {
+  usePageTitle("Shallange");
   const navigate = useNavigate();
   const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);

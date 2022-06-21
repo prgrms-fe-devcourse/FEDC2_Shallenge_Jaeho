@@ -5,6 +5,7 @@ import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import usePageTitle from "@hooks/usePageTitle";
 
 const dummyData = [
   { day: 1, isChecked: true },
@@ -40,6 +41,7 @@ const dummyData = [
 ];
 
 const ChallengePage = ({ isGuestDummy = false }) => {
+  usePageTitle("30일 챌린지 만들기");
   let isGuest = isGuestDummy; // _id 값과 비교할 현재 유저 _id
   const reward = "보상 내용"; // title.reward
   const commentCount = 0; // comments.length
