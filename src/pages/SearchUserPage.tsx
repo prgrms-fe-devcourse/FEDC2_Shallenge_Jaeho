@@ -1,14 +1,15 @@
 import QueryString from "qs";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { User } from "src/types";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
 import Card from "@base/Card";
 import useGetUserList from "@hooks/quries/useGetUserList";
 
 const SearchUserPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
   const [userList, setUserList] = useState<User[]>([]);
@@ -27,6 +28,10 @@ const SearchUserPage = () => {
     setUserName(query.userName as string);
   }
 
+  const handleClickUserCard = (userId: string) => {
+    navigate(`/profile/${userId}`);
+  };
+
   return (
     <Flex justifyContent={"center"} width="100%">
       {userList.length === 0 ? (
@@ -38,7 +43,7 @@ const SearchUserPage = () => {
         </DefaultText>
       ) : (
         <Flex width="100%" flexDirection="column">
-          <DefaultText>
+          <DefaultText styleProps={{ padding: "32px 0px" }}>
             {userName}
             으로 찾은 사용자들이에요
           </DefaultText>
@@ -50,6 +55,9 @@ const SearchUserPage = () => {
                 text={user.coverImage ?? "한줄 소개 없음"}
                 margin="4px 0"
                 key={user._id}
+                onClick={() => {
+                  handleClickUserCard(user._id);
+                }}
               ></Card>
             );
           })}
