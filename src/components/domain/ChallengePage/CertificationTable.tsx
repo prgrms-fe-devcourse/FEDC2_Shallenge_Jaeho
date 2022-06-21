@@ -7,10 +7,10 @@ type CertificationBoxType = {
 };
 
 type CertificationTableType = {
-  days: Array<CertificationBoxType>;
+  children: Array<CertificationBoxType>;
 };
 
-const CertificationTable = ({ days }: CertificationTableType) => {
+const CertificationTable = ({ children: days }: CertificationTableType) => {
   return (
     <Grid templateColumns="repeat(6, 1fr)" gridGap="20px" w="340px">
       {days.length === 30 &&
