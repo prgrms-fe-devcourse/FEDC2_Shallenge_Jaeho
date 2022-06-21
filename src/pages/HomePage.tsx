@@ -32,6 +32,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (res) {
+      console.log(res);
       setPostLists(res.map((r) => r.data));
     }
   }, [res]);
