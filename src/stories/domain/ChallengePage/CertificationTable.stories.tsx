@@ -39,5 +39,5 @@ export default {
 };
 
 export const isCheckedTrue = () => {
-  return <CertificationTable days={dummyData}></CertificationTable>;
+  return <CertificationTable>{dummyData}</CertificationTable>;
 };
