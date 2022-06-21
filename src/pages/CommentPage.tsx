@@ -19,6 +19,7 @@ const CommentPage = () => {
   const [myUser] = useAtom(userAtom);
   const [commentList, setCommentList] = useState([]);
   const [commentValue, setCommentValue] = useState("");
+  const [show, setShow] = useState(false);
 
   const [, , , postId] = window.location.pathname.split("/");
   const { data: Contents } = useGetChallenge(postId);
@@ -27,6 +28,7 @@ const CommentPage = () => {
     if (Contents?.status === 200) {
       const { comments } = Contents?.data;
       setCommentList(comments);
+      setShow(true);
     }
   }, [Contents]);
 
@@ -89,7 +91,7 @@ const CommentPage = () => {
         mb="48px"
         onClick={onDeleteCommentEvent}
       >
-        {commentList.length === 0 ? (
+        {show && commentList.length === 0 ? (
           <DefaultText>댓글이 아직 없습니다!</DefaultText>
         ) : (
           <List spacing={2}>
