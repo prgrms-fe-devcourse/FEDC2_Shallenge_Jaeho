@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable no-unsafe-optional-chaining */
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Circle, Flex } from "@chakra-ui/react";
 import { add, differenceInDays, format } from "date-fns";
+import { useAtom } from "jotai";
+import userAtom from "@store/user";
+import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
+import { fetchPutPost } from "@api/post";
 import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
 import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
-import { useEffect, useState } from "react";
 import useGetChallenge from "@hooks/quries/useGetChallenge";
-import { useNavigate } from "react-router-dom";
-import { useAtom } from "jotai";
-import userAtom from "@store/user";
-import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
@@ -22,12 +23,12 @@ const ChallengePage = () => {
   const [reward, setReward] = useState("");
   const [commentCount, setCommentCount] = useState(0);
   const [cheerUpCount, setCheerUpCount] = useState(0);
-  const [days, setDays] = useState([
-    {
-      day: 0,
+  const [days, setDays] = useState(
+    Array.from({ length: 30 }, (_, index) => ({
+      day: index,
       isChecked: false,
-    },
-  ]);
+    }))
+  );
   const [startDate, setStartDate] = useState("");
   const [presentDay, setPresentDay] = useState(0);
   const [restDay, setRestDay] = useState(30);
@@ -95,6 +96,7 @@ const ChallengePage = () => {
     setIsCheered(false);
     setCheerUpId("");
   };
+
   const onCheerUpEvent = async () => {
     if (isCheered) {
       const { status } = await fetchDeleteLikeByPostId(cheerUpId);
@@ -105,8 +107,23 @@ const ChallengePage = () => {
     }
   };
 
-  const onCertificationEvent = () => {
-    console.log("certification!");
+  const onCertificationEvent = async () => {
+    const updatedDays = days.map((item) =>
+      item.day === presentDay ? { ...item, isChecked: true } : item
+    );
+
+    const { title } = Contents?.data;
+    const newTitle = { ...JSON.parse(title), days: updatedDays };
+
+    const updatedPost = {
+      postId,
+      title: JSON.stringify(newTitle),
+      image: null,
+      channelId,
+    };
+
+    const { status } = await fetchPutPost(updatedPost);
+    status === 200 ? setDays(updatedDays) : console.log("다시 시도해주세요!");
   };
   return (
     <>
@@ -130,7 +147,7 @@ const ChallengePage = () => {
             borderRadius="15px"
           >
             <Flex margin="60px 90px">
-              <CertificationTable days={days}></CertificationTable>
+              <CertificationTable>{days}</CertificationTable>
             </Flex>
             <Flex gap="160px" marginBottom="26px">
               <Flex
