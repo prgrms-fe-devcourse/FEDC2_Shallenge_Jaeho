@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import LoginPage from "@pages/LoginPage";
 import ChallengePage from "@pages/ChallengePage";
@@ -22,6 +23,9 @@ import TextLayout from "@layout/TextLayout";
 const AppRouter = () => {
   return (
     <AuthProvider>
+      <Helmet>
+        <title>Shallenge</title>
+      </Helmet>
       <Routes>
         <Route element={<InputLayout />}>
           <Route path="/" element={<HomePage />} />
