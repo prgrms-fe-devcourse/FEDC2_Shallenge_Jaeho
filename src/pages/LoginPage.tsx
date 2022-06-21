@@ -25,7 +25,7 @@ interface LoginResponse {
   };
 }
 
-const AuthPage = () => {
+const LoginPage = () => {
   usePageTitle("Shallange");
   const navigate = useNavigate();
   const toast = useToast();
@@ -98,4 +98,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default LoginPage;

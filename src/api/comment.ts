@@ -2,7 +2,8 @@ import axios from "@lib/axios";
 
 export const fetchPostCommentByPostId = (comment: string, postId: string) =>
   axios.post("/comments/create", {
-    data: { comment, postId },
+    comment,
+    postId,
   });
 
 export const fetchDeleteCommentByPostId = (id: string) =>

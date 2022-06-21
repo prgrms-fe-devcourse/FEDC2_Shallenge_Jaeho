@@ -15,11 +15,11 @@ export const User = () => {
   );
 };
 
-export const Challange = () => {
+export const Challenge = () => {
   return (
     <Card
       avatarSrc="#"
-      type="challange"
+      type="challenge"
       heading="공원 달리기"
       text="가지고 싶었던 런닝 운동화 사기"
       commentCount={12}
