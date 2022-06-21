@@ -1,8 +1,8 @@
 import axios from "@lib/axios";
 
-export const fetchPostLikeByPostId = (id: string) =>
+export const fetchPostLikeByPostId = (postId: string) =>
   axios.post("/likes/create", {
-    data: { id },
+    postId,
   });
 
 export const fetchDeleteLikeByPostId = (id: string) =>
