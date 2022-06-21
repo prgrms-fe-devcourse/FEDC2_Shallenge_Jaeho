@@ -28,7 +28,9 @@ const Comment = ({
             {isGuest ? (
               <Box width="16px" height="16px" bg="transparent" />
             ) : (
-              <Icon name="trash-2" size={16} color="#FF5A5A" />
+              <Flex _hover={{ cursor: "pointer" }}>
+                <Icon name="trash-2" size={16} color="#FF5A5A" />
+              </Flex>
             )}
           </Flex>
         </Flex>
