@@ -1,6 +1,4 @@
-
 import styled from "@emotion/styled";
-
 import { useAtom } from "jotai";
 
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
