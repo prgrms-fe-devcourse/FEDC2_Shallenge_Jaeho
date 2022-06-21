@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Notification } from "src/types";
 import NotificationCard from "@domain/NotificationPage/Notification";
@@ -9,12 +9,17 @@ import usePageTitle from "@hooks/usePageTitle";
 
 const NotificationPage = () => {
   usePageTitle("알람");
-  const { data: response, isLoading } = useNotifications();
+  const { data: response } = useNotifications();
+  const [notificationList, setNotificationList] = useState<Notification[]>([]);
+  console.log(response);
 
-  if (isLoading) {
-    return <></>;
-  }
-
+  useEffect(() => {
+    if (response) {
+      console.log(response.data);
+      setNotificationList(notificationList);
+    }
+  }, [response]);
+  /*
   const notificationList: Notification[] = [
     {
       // follow type
@@ -132,10 +137,10 @@ const NotificationPage = () => {
       updatedAt: "2022-05-12T09:44:19.128",
     },
   ];
+  */
 
   return (
     <Flex direction="column" padding="40px 0">
-      <h1>{JSON.stringify(response?.data)}</h1>
       {notificationList.length ? (
         notificationList.map((notification) => {
           return (
