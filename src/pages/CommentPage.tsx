@@ -1,162 +1,66 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Comment from "@domain/CommentPage/Comment";
 import CommentInput from "@domain/CommentPage/CommentInput";
-
-const dummyData = [
-  {
-    _id: "0",
-    comment:
-      "첫번 째 댓 글입 니다~Lorem ipsum dolor sit, amet consecteturLorem ipsum dolor sit, amet consecteturLorem ipsum dolor sit, amet consectetur",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName1",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "1",
-    comment: "2번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName2",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "2",
-    comment: "3번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "3",
-    comment: "4번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "4",
-    comment: "5번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "5",
-    comment: "6번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "6",
-    comment: "7번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "7",
-    comment: "8번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "8",
-    comment: "9번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "9",
-    comment: "9번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-  {
-    _id: "10",
-    comment: "10번 째 댓 글입 니다~",
-    author: {
-      _id: "author._id",
-      image: undefined,
-      fullName: "author.fullName3",
-    },
-    createdAt: "2022-06-23 17:23",
-  },
-];
+import { useAtom } from "jotai";
+import userAtom from "@store/user";
+import useGetChallenge from "@hooks/quries/useGetChallenge";
+import { fetchPostCommentByPostId } from "@api/comment";
+import { format } from "date-fns";
 
 const CommentPage = () => {
-  const [list, setList] = useState(dummyData);
+  const [myUser] = useAtom(userAtom);
+  // console.log(myUser);
+  const [commentList, setCommentList] = useState([]);
   const [commentValue, setCommentValue] = useState("");
-  const comments = list;
-  const postId = "post_id";
+
+  const [, , , postId] = window.location.pathname.split("/");
+  const { data: Contents } = useGetChallenge(postId);
+  useEffect(() => {
+    if (Contents?.status === 200) {
+      const { comments } = Contents?.data;
+      setCommentList(comments);
+      console.log(comments);
+    }
+  }, [Contents]);
+
+  useEffect(() => {
+    if (commentValue !== "") {
+      void commentSubmit();
+    }
+  }, [commentValue]);
 
   const onCommentValueChange = (newCommentValue: string) => {
     const newComment = newCommentValue.trim();
     if (newComment !== "") setCommentValue(newComment);
   };
 
-  useEffect(() => {
-    if (commentValue !== "") {
-      setList([
-        ...list,
-        {
-          _id: "0" + Date(),
-          comment: commentValue,
-          author: {
-            _id: "author._id",
-            image: undefined,
-            fullName: "author.fullName1",
-          },
-          createdAt: "2022-06-23 17:23",
-        },
-      ]);
-    }
-  }, [commentValue]);
+  const commentSubmit = async () => {
+    const { data, status } = await fetchPostCommentByPostId(
+      commentValue,
+      postId
+    );
+    status === 200
+      ? setCommentList([...commentList, data])
+      : alert("다시 시도바랍니다!");
+  };
 
   return (
     <>
       <Flex direction="column" gap="8px" padding="40px 0" mb="48px">
-        {comments.map((comment) => {
+        {commentList.map((comment) => {
           return (
             <Comment
               key={comment._id}
+              isGuest={myUser._id !== comment.author._id}
               avatarSrc={comment.author.image}
               commentAuthor={comment.author.fullName}
               commentContent={comment.comment}
-              commentCreatedAt={comment.createdAt}
+              commentCreatedAt={format(
+                new Date(comment.createdAt),
+                "yyyy-MM-dd HH:mm"
+              )}
             ></Comment>
           );
         })}
