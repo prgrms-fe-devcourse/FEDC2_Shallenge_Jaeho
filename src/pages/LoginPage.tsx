@@ -1,14 +1,14 @@
-import AuthForm from "@domain/LoginPage/AuthForm";
+import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 
+import AuthForm from "@domain/LoginPage/AuthForm";
 import { fetchPostLogin, fetchPostSignUp } from "@api/auth";
 import { saveTokenToLocalStorage } from "@lib/localStorage";
-import { useAtom } from "jotai";
-import userAtom from "../store/user";
-import { User } from "src/types";
+import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
+import { User } from "src/types";
 
 export interface FormData {
   logInEmail: string;
