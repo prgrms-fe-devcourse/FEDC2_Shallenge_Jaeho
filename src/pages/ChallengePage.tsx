@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable no-unsafe-optional-chaining */
 import { Circle, Flex } from "@chakra-ui/react";
 import { add, differenceInDays, format } from "date-fns";
 import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
@@ -5,90 +7,157 @@ import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import { useEffect, useState } from "react";
+import useGetChallenge from "@hooks/quries/useGetChallenge";
+import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import userAtom from "@store/user";
+import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
 
-const dummyData = [
-  { day: 1, isChecked: true },
-  { day: 2, isChecked: true },
-  { day: 3, isChecked: false },
-  { day: 4, isChecked: true },
-  { day: 5, isChecked: false },
-  { day: 6, isChecked: false },
-  { day: 7, isChecked: true },
-  { day: 8, isChecked: true },
-  { day: 9, isChecked: false },
-  { day: 10, isChecked: false },
-  { day: 11, isChecked: true },
-  { day: 12, isChecked: true },
-  { day: 13, isChecked: true },
-  { day: 14, isChecked: false },
-  { day: 15, isChecked: true },
-  { day: 16, isChecked: true },
-  { day: 17, isChecked: true },
-  { day: 18, isChecked: true },
-  { day: 19, isChecked: true },
-  { day: 20, isChecked: false },
-  { day: 21, isChecked: false },
-  { day: 22, isChecked: true },
-  { day: 23, isChecked: false },
-  { day: 24, isChecked: true },
-  { day: 25, isChecked: false },
-  { day: 26, isChecked: false },
-  { day: 27, isChecked: true },
-  { day: 28, isChecked: true },
-  { day: 29, isChecked: false },
-  { day: 30, isChecked: false },
-];
+const ChallengePage = () => {
+  const [myUser] = useAtom(userAtom);
 
-const ChallengePage = ({ isGuestDummy = false }) => {
-  let isGuest = isGuestDummy; // _id 값과 비교할 현재 유저 _id
-  const reward = "보상 내용"; // title.reward
-  const commentCount = 0; // comments.length
-  const cheerUpCount = 0; // likes.length
-  const days = dummyData; // title.days
-  const startDate = "2022-06-17"; // title.startDate
-  let presentDay = differenceInDays(
-    new Date(format(new Date(), "yyyy-MM-dd")),
-    new Date(startDate)
-  );
-  if (presentDay < 0 || 29 < presentDay) isGuest = true;
-  if (presentDay < 0) presentDay = 0;
-  if (29 < presentDay) presentDay = 30;
-  const restDay = 30 - presentDay;
-  const endDate = format(add(new Date(startDate), { days: 29 }), "yyyy-MM-dd");
+  const navigate = useNavigate();
+  const [isGuest, setIsGuest] = useState(true);
+  const [reward, setReward] = useState("");
+  const [commentCount, setCommentCount] = useState(0);
+  const [cheerUpCount, setCheerUpCount] = useState(0);
+  const [days, setDays] = useState([
+    {
+      day: 0,
+      isChecked: false,
+    },
+  ]);
+  const [startDate, setStartDate] = useState("");
+  const [presentDay, setPresentDay] = useState(0);
+  const [restDay, setRestDay] = useState(30);
+  const [endDate, setEndDate] = useState("");
+  const [isCheered, setIsCheered] = useState(false);
+  const [cheerUpId, setCheerUpId] = useState("");
+  const [show, setShow] = useState(false);
+
+  const [, , channelId, postId] = window.location.pathname.split("/");
+  const { data: Contents } = useGetChallenge(postId);
+  useEffect(() => {
+    if (Contents?.status === 200) {
+      const { author, title: Content, comments, likes } = Contents?.data;
+      const { days, reward, startDate: date } = JSON.parse(Content);
+      const calculatedPresentDay = differenceInDays(
+        new Date(format(new Date(), "yyyy-MM-dd")),
+        new Date(date)
+      );
+      validateGuest(author._id);
+      setReward(reward);
+      setCommentCount(comments.length);
+      setCheerUpCount(likes.length);
+      checkIsCheered(likes);
+      setDays(days);
+      setStartDate(date);
+      setPresentDay(calculatedPresentDay);
+      validateDate(calculatedPresentDay);
+      setEndDate(format(add(new Date(date), { days: 29 }), "yyyy-MM-dd"));
+    }
+  }, [Contents]);
+
+  useEffect(() => {
+    setRestDay(30 - presentDay);
+    setShow(true);
+  }, [presentDay]);
+
+  const validateGuest = (postUserId) => {
+    if (myUser && myUser._id === postUserId) setIsGuest(false);
+  };
+  const validateDate = (calculatedPresentDay: number) => {
+    if (calculatedPresentDay < 0 || 29 < calculatedPresentDay) setIsGuest(true);
+    if (calculatedPresentDay < 0) setPresentDay(0);
+    if (29 < calculatedPresentDay) setPresentDay(30);
+  };
+  const checkIsCheered = (cheerUpList) => {
+    const userCheerUp = cheerUpList.filter((cheerUpUser) => {
+      return myUser && cheerUpUser.user === myUser._id;
+    });
+    if (userCheerUp.length === 0) {
+      setIsCheered(false);
+    } else {
+      setIsCheered(true);
+      setCheerUpId(userCheerUp[0]._id);
+    }
+  };
+
+  const setCheerUpYes = (cheerUpId) => {
+    setCheerUpCount(cheerUpCount + 1);
+    setIsCheered(true);
+    setCheerUpId(cheerUpId);
+  };
+
+  const setCheerUpNo = () => {
+    setCheerUpCount(cheerUpCount - 1);
+    setIsCheered(false);
+    setCheerUpId("");
+  };
+  const onCheerUpEvent = async () => {
+    if (isCheered) {
+      const { status } = await fetchDeleteLikeByPostId(cheerUpId);
+      status === 200 ? setCheerUpNo() : alert("다시 시도바랍니다.");
+    } else {
+      const { data, status } = await fetchPostLikeByPostId(postId);
+      status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
+    }
+  };
+
+  const onCertificationEvent = () => {
+    console.log("certification!");
+  };
   return (
     <>
-      <Flex marginTop="16px">
-        <ChallengeReward
-          startDate={startDate}
-          endDate={endDate}
-          reward={reward}
-          restDay={restDay}
-        ></ChallengeReward>
-      </Flex>
-      <Flex
-        margin="40px 45px"
-        direction="column"
-        alignItems="center"
-        maxWidth="520px"
-        w="100%"
-        bg="#FFFFFF"
-        borderRadius="15px"
-      >
-        <Flex margin="60px 90px">
-          <CertificationTable days={days}></CertificationTable>
-        </Flex>
-        <Flex gap="160px" marginBottom="26px">
-          <CommentButton count={commentCount}></CommentButton>
-          <CheerUpButton count={cheerUpCount}></CheerUpButton>
-        </Flex>
-      </Flex>
-      {!isGuest && (
+      {show && (
+        <>
+          <Flex marginTop="16px">
+            <ChallengeReward
+              startDate={startDate}
+              endDate={endDate}
+              reward={reward}
+              restDay={restDay}
+            ></ChallengeReward>
+          </Flex>
+          <Flex
+            margin="40px 45px"
+            direction="column"
+            alignItems="center"
+            maxWidth="520px"
+            w="100%"
+            bg="#FFFFFF"
+            borderRadius="15px"
+          >
+            <Flex margin="60px 90px">
+              <CertificationTable days={days}></CertificationTable>
+            </Flex>
+            <Flex gap="160px" marginBottom="26px">
+              <Flex
+                onClick={() =>
+                  navigate(`/challenges/${channelId}/${postId}/comment`)
+                }
+              >
+                <CommentButton count={commentCount}></CommentButton>
+              </Flex>
+              <Flex onClick={onCheerUpEvent}>
+                <CheerUpButton
+                  isCheered={isCheered}
+                  count={cheerUpCount}
+                ></CheerUpButton>
+              </Flex>
+            </Flex>
+          </Flex>
+        </>
+      )}
+      {show && !isGuest && (
         <Circle
           position="absolute"
           left="50%"
           transform="translate(-50%, 0%)"
           bottom="58px"
           zIndex={2}
+          onClick={onCertificationEvent}
         >
           <CertificationButton
             isActive={!days[presentDay].isChecked}
