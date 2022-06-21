@@ -9,7 +9,7 @@ export const Guest = () => {
   return (
     <>
       <GlobalStyles />
-      <ChallengePage isGuestDummy={true}></ChallengePage>
+      {/* <ChallengePage isGuestDummy={true}></ChallengePage> */}
     </>
   );
 };
@@ -18,7 +18,7 @@ export const User = () => {
   return (
     <>
       <GlobalStyles />
-      <ChallengePage isGuestDummy={false}></ChallengePage>
+      {/* <ChallengePage isGuestDummy={false}></ChallengePage> */}
     </>
   );
 };
