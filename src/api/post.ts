@@ -21,6 +21,13 @@ export const fetchPostPostByChannelId = ({
     channelId,
   });
 
+export const fetchPutPost = (updatePost: {
+  postId: string;
+  title: string;
+  image?: string | null;
+  channelId: string;
+}) => axios.put("/posts/update", { ...updatePost });
+
 export const fetchGetPostByPostId = (postId: string) =>
   axios.get(`/posts/${postId}`);
 

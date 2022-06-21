@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import LoginPage from "@pages/LoginPage";
 import ChallengePage from "@pages/ChallengePage";
@@ -21,9 +22,21 @@ import OtherProfilePage from "@pages/OtherProfilePage";
 const AppRouter = () => {
   return (
     <AuthProvider>
+      <Helmet>
+        <title>Shallenge</title>
+      </Helmet>
       <Routes>
         <Route element={<InputLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchUserPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
+
+        <Route element={<TextLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="challenges" element={<ChallengesPage />} />
+          <Route path="challenges/:challengeId" element={<ChallengePage />} />
+          <Route path="/follow/:userId" element={<FollowPage />} />
 
           <Route path="my" element={<PrivateRoute />}>
             <Route path="profile" element={<MyProfilePage />} />
@@ -31,21 +44,6 @@ const AppRouter = () => {
             <Route path="challenge/create" element={<CreateChallengePage />} />
             <Route path="notifications" element={<NotificationPage />} />
           </Route>
-
-          <Route path="/follow/:userId" element={<FollowPage />} />
-
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/search" element={<SearchUserPage />} />
-        </Route>
-
-        <Route element={<TextLayout />}>
-          <Route path="profile/:username" element={<OtherProfilePage />} />
-          <Route path="challenges" element={<ChallengesPage />} />
-          <Route path="challenges/:challengeId" element={<ChallengePage />} />
-        </Route>
-
-        <Route element={<InputLayout />}>
-          <Route path="/*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </AuthProvider>

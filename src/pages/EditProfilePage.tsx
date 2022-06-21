@@ -9,6 +9,7 @@ import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
 
 import userAtom from "@store/user";
 import { deleteTokenFromLocalStorage } from "@lib/localStorage";
+import usePageTitle from "@hooks/usePageTitle";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -57,6 +58,7 @@ const LogoutButton = styled(Button)`
 `;
 
 const EditProfilePage = () => {
+  usePageTitle("프로필 설정");
   const [myUser, setMyUser] = useAtom(userAtom);
   const [newFullName, setNewFullName] = useState("");
   const [newPassword, setNewPassword] = useState("");
