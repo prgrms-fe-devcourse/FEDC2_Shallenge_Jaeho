@@ -1,27 +1,30 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import Comment from "@domain/CommentPage/Comment";
 import CommentInput from "@domain/CommentPage/CommentInput";
 import { useAtom } from "jotai";
 import userAtom from "@store/user";
 import useGetChallenge from "@hooks/quries/useGetChallenge";
-import { fetchPostCommentByPostId } from "@api/comment";
+import {
+  fetchDeleteCommentByPostId,
+  fetchPostCommentByPostId,
+} from "@api/comment";
 import { format } from "date-fns";
+import { User } from "../types/index";
 
 const CommentPage = () => {
   const [myUser] = useAtom(userAtom);
-  // console.log(myUser);
   const [commentList, setCommentList] = useState([]);
   const [commentValue, setCommentValue] = useState("");
 
   const [, , , postId] = window.location.pathname.split("/");
   const { data: Contents } = useGetChallenge(postId);
+
   useEffect(() => {
     if (Contents?.status === 200) {
       const { comments } = Contents?.data;
       setCommentList(comments);
-      console.log(comments);
     }
   }, [Contents]);
 
@@ -30,11 +33,6 @@ const CommentPage = () => {
       void commentSubmit();
     }
   }, [commentValue]);
-
-  const onCommentValueChange = (newCommentValue: string) => {
-    const newComment = newCommentValue.trim();
-    if (newComment !== "") setCommentValue(newComment);
-  };
 
   const commentSubmit = async () => {
     const { data, status } = await fetchPostCommentByPostId(
@@ -46,24 +44,60 @@ const CommentPage = () => {
       : alert("다시 시도바랍니다!");
   };
 
+  const commentDelete = async (_id) => {
+    const { data, status } = await fetchDeleteCommentByPostId(_id);
+    status === 200
+      ? setCommentList([
+          ...commentList.filter((comment) => comment._id !== data._id),
+        ])
+      : alert("다시 시도바랍니다!");
+  };
+
+  const onCommentValueChangeEvent = (newCommentValue: string) => {
+    const newComment = newCommentValue.trim();
+    if (newComment !== "") setCommentValue(newComment);
+  };
+
+  const onDeleteCommentEvent = (event) => {
+    if (event.target.tagName === "IMG" && confirm("댓글을 삭제하시겠습니까?")) {
+      const targetCommentId = event.target.closest("li").dataset._id;
+      void commentDelete(targetCommentId);
+    }
+  };
+
   return (
     <>
-      <Flex direction="column" gap="8px" padding="40px 0" mb="48px">
-        {commentList.map((comment) => {
-          return (
-            <Comment
-              key={comment._id}
-              isGuest={myUser._id !== comment.author._id}
-              avatarSrc={comment.author.image}
-              commentAuthor={comment.author.fullName}
-              commentContent={comment.comment}
-              commentCreatedAt={format(
-                new Date(comment.createdAt),
-                "yyyy-MM-dd HH:mm"
-              )}
-            ></Comment>
-          );
-        })}
+      <Flex
+        direction="column"
+        padding="40px 0"
+        mb="48px"
+        onClick={onDeleteCommentEvent}
+      >
+        <List spacing={2}>
+          {commentList.map(
+            (comment: {
+              _id: string;
+              author: User;
+              createdAt: string;
+              comment: string;
+            }) => {
+              return (
+                <ListItem key={comment._id} data-_id={`${comment._id}`}>
+                  <Comment
+                    isGuest={myUser?._id !== comment.author._id}
+                    avatarSrc={comment.author.image}
+                    commentAuthor={comment.author.fullName}
+                    commentContent={comment.comment}
+                    commentCreatedAt={format(
+                      new Date(comment.createdAt),
+                      "yyyy-MM-dd HH:mm"
+                    )}
+                  ></Comment>
+                </ListItem>
+              );
+            }
+          )}
+        </List>
       </Flex>
       <Box
         position="absolute"
@@ -75,7 +109,9 @@ const CommentPage = () => {
         zIndex={2}
       >
         <form>
-          <CommentInput onValueChange={onCommentValueChange}></CommentInput>
+          <CommentInput
+            onValueChange={onCommentValueChangeEvent}
+          ></CommentInput>
         </form>
       </Box>
     </>
