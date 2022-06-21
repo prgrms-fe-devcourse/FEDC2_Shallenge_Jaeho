@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import LoginPage from "@pages/LoginPage";
 import ChallengePage from "@pages/ChallengePage";
 import ChallengesPage from "@pages/ChallengesPage";
-import CommentPage from "@pages/CommentPage";
 import CreateChallengePage from "@pages/CreateChallengePage";
 import EditProfilePage from "@pages/EditProfilePage";
 import FollowPage from "@pages/FollowPage";
@@ -12,13 +11,13 @@ import HomePage from "@pages/HomePage";
 import NotFoundPage from "@pages/NotFoundPage";
 import NotificationPage from "@pages/NotificationPage";
 import SearchUserPage from "@pages/SearchUserPage";
-import UserProfilePage from "@pages/UserProfilePage";
 import MyProfilePage from "@pages/MyProfilePage";
 
 import AuthProvider from "../Provider/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import InputLayout from "@layout/InputLayout";
 import TextLayout from "@layout/TextLayout";
+import OtherProfilePage from "@pages/OtherProfilePage";
 
 const AppRouter = () => {
   return (

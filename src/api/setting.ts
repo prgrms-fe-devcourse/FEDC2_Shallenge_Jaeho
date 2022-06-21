@@ -1,11 +1,12 @@
 import axios from "@lib/axios";
 
-export const fetchPutUpdateMyInfo = (fullName: string, username: string) =>
+export const fetchPutUpdateMyInfo = (fullName: string) =>
   axios.put("/settings/update-user", {
-    data: { fullName, username },
+    fullName,
+    username: "",
   });
 
 export const fetchPutUpdatedPassword = (password: string) =>
   axios.put("/settings/update-password", {
-    data: { password },
+    password,
   });
