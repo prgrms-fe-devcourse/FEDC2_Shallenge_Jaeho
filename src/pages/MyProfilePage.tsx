@@ -1,9 +1,11 @@
+import styled from "@emotion/styled";
+import { useAtom } from "jotai";
+
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import MyChallenges from "@domain/ProfilePage/MyChallenges";
 import UserSummary from "@domain/ProfilePage/MySummary";
-import styled from "@emotion/styled";
 import userAtom from "@store/user";
-import { useAtom } from "jotai";
+import usePageTitle from "@hooks/usePageTitle";
 
 const UserInfo = styled.div`
   position: relative;
@@ -15,7 +17,7 @@ const UserInfo = styled.div`
 
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);
-
+  usePageTitle(myUser.fullName);
   return (
     <>
       <UserInfo>
