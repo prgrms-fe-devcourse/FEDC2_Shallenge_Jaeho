@@ -8,8 +8,8 @@ import { Channel, Post } from "../types/index";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const onClickMore = (channelId: string): void => {
-    navigate(`challenges/${channelId}`);
+  const onClickMore = () => {
+    navigate(`challenges/`);
   };
   const onClickChallange = (challengeId: string): void => {
     navigate(`challenge/${challengeId}`);
@@ -22,7 +22,6 @@ const HomePage = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data);
       setChannelsList(data.data as Array<Channel>);
     }
   }, [data]);
@@ -33,8 +32,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (res) {
-      console.log(res.map((r) => r.data));
-      setPostLists(res.map((r) => r.data));
+      setPostLists(res.map((r: { data: any }) => r.data));
     }
   }, [res]);
 
@@ -61,7 +59,7 @@ const HomePage = () => {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  onClickMore(channel._id);
+                  onClickMore();
                 }}
               >
                 more{">"}
