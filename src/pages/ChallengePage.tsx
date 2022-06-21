@@ -102,7 +102,7 @@ const ChallengePage = () => {
   };
 
   const onCheerUpEvent = async () => {
-    if (!myUser._id) {
+    if (myUser) {
       alert("로그인 후 이용가능합니다.");
     } else if (isCheered) {
       const { status } = await fetchDeleteLikeByPostId(cheerUpId);
