@@ -1,11 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 
 import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { fetchPostLogout } from "@api/auth";
-import { fetchPutUpdatedPassword } from "@api/setting";
+import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
 
 import userAtom from "@store/user";
 import { deleteTokenFromLocalStorage } from "@lib/localStorage";
@@ -66,6 +66,11 @@ const EditProfilePage = () => {
     // console.log("프로필이미지변경클릭");
   };
 
+  const onFullNameChange = (e: any) => {
+    const fullName = e.target.value as string;
+    setNewFullName(fullName);
+  };
+
   const onChangeFullNameClick = () => {
     if (!newFullName) {
       alert("새로운 닉네임을 입력하세요!");
@@ -73,8 +78,19 @@ const EditProfilePage = () => {
     }
 
     if (confirm(newFullName + "으로 변경하시겠어요?")) {
-      alert("변경되었습니다.");
+      fetchPutUpdateMyInfo(newFullName)
+        .then(() => {
+          alert("변경되었습니다.");
+        })
+        .catch(() => {
+          alert("비밀번호변경이 실패했습니다");
+        });
     }
+  };
+
+  const onPasswordChange = (e: any) => {
+    const password = e.target.value as string;
+    setNewPassword(password);
   };
 
   const onPasswordClick = () => {
@@ -93,12 +109,6 @@ const EditProfilePage = () => {
         });
     }
   };
-
-  const onPasswordChange = (e: any) => {
-    const password = e.target.value as string;
-    setNewPassword(password);
-  };
-
   const onLogoutClick = () => {
     fetchPostLogout()
       .then(() => {
@@ -110,6 +120,7 @@ const EditProfilePage = () => {
       })
       .finally(() => {
         navigate("/");
+        location.reload();
       });
   };
 
@@ -126,7 +137,11 @@ const EditProfilePage = () => {
         </CFlex>
         <CFlex>
           <InfoText>닉네임</InfoText>
-          <CInput type="text" placeholder={myUser?.fullName} />
+          <CInput
+            type="text"
+            placeholder={myUser?.fullName}
+            onChange={onFullNameChange}
+          />
           <ChangeButton onClick={onChangeFullNameClick}>변경</ChangeButton>
         </CFlex>
         <CFlex>

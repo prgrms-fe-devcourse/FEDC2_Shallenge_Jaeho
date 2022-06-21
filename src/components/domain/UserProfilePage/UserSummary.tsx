@@ -58,7 +58,7 @@ const UserSummary = ({
         </div>
       </FollowContainer>
       <div>
-        <Link to={`/profile/${123123}/edit`}>
+        <Link to={`${location.pathname}/edit`}>
           <CButton>프로필 수정</CButton>
         </Link>
       </div>
