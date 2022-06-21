@@ -13,10 +13,12 @@ import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import usePageTitle from "@hooks/usePageTitle";
 import useGetChallenge from "@hooks/quries/useGetChallenge";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
+  usePageTitle("30일 챌린지 만들기");
 
   const navigate = useNavigate();
   const [isGuest, setIsGuest] = useState(true);
