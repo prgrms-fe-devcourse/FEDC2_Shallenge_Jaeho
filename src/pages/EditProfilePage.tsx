@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-
+import { useToast } from "@chakra-ui/react";
 import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { fetchPostLogout } from "@api/auth";
@@ -10,6 +10,7 @@ import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
 import userAtom from "@store/user";
 import { deleteTokenFromLocalStorage } from "@lib/localStorage";
 import usePageTitle from "@hooks/usePageTitle";
+import { fetchPostUserProfileImage } from "@api/user";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -36,6 +37,14 @@ const FormContainer = styled.div`
   margin-bottom: 36px;
 `;
 
+const ProfileImageButton = styled.label`
+  padding: 6px 25px;
+  background-color: #ff6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+`;
+
 const CFlex = styled(Flex)`
   align-items: center;
 `;
@@ -58,6 +67,7 @@ const LogoutButton = styled(Button)`
 `;
 
 const EditProfilePage = () => {
+  const toast = useToast();
   usePageTitle("프로필 설정");
   const [myUser, setMyUser] = useAtom(userAtom);
   const [newFullName, setNewFullName] = useState("");
@@ -129,12 +139,40 @@ const EditProfilePage = () => {
       });
   };
 
+  const profileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fd = new FormData();
+    const imageFile = e.target.files[0];
+    fd.append("isCover", "false");
+    fd.append("image", imageFile);
+
+    fetchPostUserProfileImage(fd)
+      .then(() => {
+        toast({
+          title: "프로필 이미지 변경을 성공했습니다!",
+          description: "프로필 이미지 변경 성공",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/my/profile");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <EditProfilePageContainer>
       <Avatar size="2xl" src={myUser?.image} />
-      <ChangeButton display="block" onClick={onChangeProfileImageClick}>
+      <ProfileImageButton htmlFor="profile">
         프로필 사진 변경
-      </ChangeButton>
+      </ProfileImageButton>
+      <input
+        type="file"
+        id="profile"
+        style={{ display: "none" }}
+        onChange={profileChange}
+      />
       <FormContainer>
         <CFlex>
           <InfoText>이메일</InfoText>
