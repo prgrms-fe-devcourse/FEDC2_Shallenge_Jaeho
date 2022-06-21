@@ -84,6 +84,9 @@ const EditProfilePage = () => {
         })
         .catch(() => {
           alert("비밀번호변경이 실패했습니다");
+        })
+        .finally(() => {
+          navigate("/my/profile");
         });
     }
   };

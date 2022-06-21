@@ -31,20 +31,19 @@ const CButton = styled(Button)`
 `;
 
 const UserChallenges = ({ challenges }: UserChallengesProps) => {
-  console.log(challenges);
   const handleChallengeClick = (id: string) => {
-    navigate(`/challenges/${challenges[0].channel._id}/${id}`);
+    navigate(`/challenges/${id}`);
   };
 
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate("/challenges/create");
+    navigate("/my/challenge/create");
   };
 
   return (
     <UserChallengesContainer>
       <Flex>
-        <Heading size="xl">🎯</Heading>
+        <Heading size="xl">🎯챌린지</Heading>
         <Spacer />
         <CButton size="sm" onClick={handleButtonClick}>
           +
