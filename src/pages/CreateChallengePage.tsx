@@ -28,7 +28,7 @@ const CreateChallengePage = () => {
     setChallengeTitle(newChallengeTitle.trim());
   };
   const onChannelChange = (newChannel: string) => {
-    const channelId = channelList!.data.filter(({ description }: any) => {
+    const channelId = channelList.data.filter(({ description }: any) => {
       return description === newChannel;
     })[0]._id;
     setChannel(channelId);
