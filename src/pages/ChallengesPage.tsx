@@ -22,7 +22,6 @@ const ChallengesPage = () => {
   }, []);
 
   useEffect(() => {
-    setChannelName(channelName);
     void (async () => {
       const channelResult = await fetchGetChannelByName(channelName);
       if (channelResult.data) {

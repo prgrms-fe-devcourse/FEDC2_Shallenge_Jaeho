@@ -1,5 +1,5 @@
 import Card from "@base/Card";
-import { Button, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Flex, Heading, Spacer } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { Post } from "src/types";
@@ -19,38 +19,25 @@ const CardContainer = styled.div`
   cursor: pointer;
 `;
 
-const CButton = styled(Button)`
-  color: white;
-  background-color: #ffaa6d;
-  top: 10px;
-  right: 10px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
+const Text = styled.div`
+  text-align: center;
 `;
 
-const UserChallenges = ({ challenges }: UserChallengesProps) => {
+const OtherChallenges = ({ challenges }: UserChallengesProps) => {
   const handleChallengeClick = (id: string) => {
     navigate(`/challenges/${id}`);
   };
 
   const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate("/my/challenge/create");
-  };
 
   return (
     <UserChallengesContainer>
       <Flex>
         <Heading size="xl">🎯챌린지</Heading>
         <Spacer />
-        <CButton size="sm" onClick={handleButtonClick}>
-          +
-        </CButton>
       </Flex>
       {challenges.length == 0 ? (
-        <div>챌린지가 없어요!</div>
+        <Text>챌린지가 없어요!</Text>
       ) : (
         challenges.map((challenge) => {
           const jsonString = challenge.title.replaceAll("'", '"');
@@ -61,7 +48,7 @@ const UserChallenges = ({ challenges }: UserChallengesProps) => {
               onClick={() => handleChallengeClick(challenge._id)}
             >
               <Card
-                type="challange"
+                type="challenge"
                 heading={jsonObject.challengeTitle}
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}
@@ -75,4 +62,4 @@ const UserChallenges = ({ challenges }: UserChallengesProps) => {
   );
 };
 
-export default UserChallenges;
+export default OtherChallenges;

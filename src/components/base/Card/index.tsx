@@ -3,7 +3,7 @@ import React from "react";
 import Social from "../Social";
 
 type CardTypes = {
-  type: "challange" | "user";
+  type: "challenge" | "user";
   heading: string;
   text: string;
   avatarSrc?: string;
@@ -32,7 +32,7 @@ const Card = ({
     borderRadius: "5px",
     width: "100%",
     maxWidth: 610,
-    height: type === "challange" ? 120 : 96,
+    height: type === "challenge" ? 120 : 96,
     backgroundColor: "#ffffff",
     display: "flex",
     alignItems: "center",
@@ -51,13 +51,13 @@ const Card = ({
       <Box marginLeft={"24px"}>
         <Heading
           size={"md"}
-          marginBottom={type === "challange" ? "16px" : "8px"}
+          marginBottom={type === "challenge" ? "16px" : "8px"}
         >
           {heading}
         </Heading>
         <Text fontSize={"md"}>{text}</Text>
       </Box>
-      {type === "challange" ? (
+      {type === "challenge" ? (
         <Flex position={"absolute"} right={"16px"} bottom={"30px"}>
           <Social type="comment" count={commentCount} size="side"></Social>
           <Social type="cheer" count={cheerCount} size="side"></Social>

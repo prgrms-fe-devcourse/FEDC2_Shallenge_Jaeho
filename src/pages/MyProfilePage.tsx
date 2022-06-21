@@ -1,9 +1,11 @@
+
+import styled from "@emotion/styled";
+
 import { useAtom } from "jotai";
 
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
-import UserChallenges from "@domain/ProfilePage/UserChallenges";
+import MyChallenges from "@domain/ProfilePage/MyChallenges";
 import UserSummary from "@domain/ProfilePage/MySummary";
-import styled from "@emotion/styled";
 import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
 
@@ -18,7 +20,6 @@ const UserInfo = styled.div`
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);
   usePageTitle(myUser.fullName);
-
   return (
     <>
       <UserInfo>
@@ -29,7 +30,7 @@ const MyProfilePage = () => {
           followingCount={myUser.following.length}
         />
       </UserInfo>
-      <UserChallenges challenges={myUser.posts} />
+      <MyChallenges challenges={myUser.posts} />
     </>
   );
 };
