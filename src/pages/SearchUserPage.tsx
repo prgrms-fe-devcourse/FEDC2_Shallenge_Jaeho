@@ -4,6 +4,7 @@ import { useLocation } from "react-router";
 import { User } from "src/types";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Card from "@base/Card";
+import useGetUserList from "@hooks/quries/useGetUserList";
 
 const userList: User[] = [
   {
@@ -72,12 +73,22 @@ const SearchUserPage = () => {
   const location = useLocation();
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
+  const [userList, setUserList] = useState<User[]>([]);
+  const { data: res } = useGetUserList();
+
+  useEffect(() => {
+    if (res) {
+      const newUserList: User[] = res.data.filter((user: User) =>
+        user.fullName.match(new RegExp(userName, "i"))
+      );
+      setUserList(newUserList);
+    }
+  }, [userName, res]);
 
   if (userName !== query.userName) {
     setUserName(query.userName as string);
   }
 
-  // userName으로 user을 찾는 로직
   return (
     <Flex justifyContent={"center"} width="100%">
       {userList.length === 0 ? (
@@ -87,14 +98,7 @@ const SearchUserPage = () => {
           color="#727272"
           textAlign="center"
         >
-          <Box
-            padding="2px"
-            display="inline-block"
-            backgroundColor="#e4e4e4"
-            borderRadius="4px"
-          >
-            {userName}
-          </Box>
+          {userName}
           으로 찾은 사용자가 없어요 😢
           <br />
           다른 이름으로 찾아보시는 건 어떠신가요?
@@ -107,9 +111,10 @@ const SearchUserPage = () => {
             alignSelf="center"
             color="#838489"
           >
-            {userName} 으로 찾은 사용자들이에요
+            {userName}
+            으로 찾은 사용자들이에요
           </Text>
-          {userList.map((user) => {
+          {userList.map((user: User) => {
             return (
               <Card
                 type="user"
