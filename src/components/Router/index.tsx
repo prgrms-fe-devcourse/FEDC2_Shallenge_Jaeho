@@ -39,7 +39,7 @@ const AppRouter = () => {
         </Route>
 
         <Route element={<TextLayout />}>
-          <Route path="profile/:userId" element={<OtherProfilePage />} />
+          <Route path="profile/:username" element={<OtherProfilePage />} />
           <Route path="challenges" element={<ChallengesPage />} />
           <Route path="challenges/:challengeId" element={<ChallengePage />} />
         </Route>

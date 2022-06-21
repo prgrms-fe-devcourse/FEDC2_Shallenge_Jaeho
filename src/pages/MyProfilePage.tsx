@@ -1,6 +1,6 @@
-import UserAvatar from "@domain/UserProfilePage/UserAvatar";
-import UserChallenges from "@domain/UserProfilePage/UserChallenges";
-import UserSummary from "@domain/UserProfilePage/UserSummary";
+import UserAvatar from "@domain/ProfilePage/UserAvatar";
+import UserChallenges from "@domain/ProfilePage/UserChallenges";
+import UserSummary from "@domain/ProfilePage/MySummary";
 import styled from "@emotion/styled";
 import userAtom from "@store/user";
 import { useAtom } from "jotai";

@@ -39,11 +39,15 @@ const CButton = styled(Button)`
   }
 `;
 
-const UserSummary = ({
+const OtherSummary = ({
   introduce,
   followerCount,
   followingCount,
 }: UserSummaryProps) => {
+  const handleFollowClick = () => {
+    console.log("팔로우 클릭");
+  };
+
   return (
     <UserSummaryContainer>
       <IntroduceText textAlign="center">{introduce}</IntroduceText>
@@ -58,12 +62,10 @@ const UserSummary = ({
         </div>
       </FollowContainer>
       <div>
-        <Link to={`${location.pathname}/edit`}>
-          <CButton>프로필 수정</CButton>
-        </Link>
+        <CButton onClick={handleFollowClick}>팔로우</CButton>
       </div>
     </UserSummaryContainer>
   );
 };
 
-export default UserSummary;
+export default OtherSummary;
