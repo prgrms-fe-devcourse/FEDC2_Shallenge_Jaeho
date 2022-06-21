@@ -14,7 +14,7 @@ export const fetchPostNotification = ({
   notificationType: "COMMENT" | "FOLLOW" | "LIKE" | "MESSAGE";
   notificationTypeId: string;
   userId: string;
-  postId: string | null;
+  postId?: string | null;
 }) =>
   axios.post("/notifications/create", {
     notificationType,
