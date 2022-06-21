@@ -15,6 +15,7 @@ import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
 import usePageTitle from "@hooks/usePageTitle";
 import useGetChallenge from "@hooks/quries/useGetChallenge";
+import { fetchPostNotification } from "@api/notification";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
@@ -91,6 +92,7 @@ const ChallengePage = () => {
     setCheerUpCount(cheerUpCount + 1);
     setIsCheered(true);
     setCheerUpId(cheerUpId);
+    void onCheerUpNotificationEvent(cheerUpId);
   };
 
   const setCheerUpNo = () => {
@@ -100,13 +102,26 @@ const ChallengePage = () => {
   };
 
   const onCheerUpEvent = async () => {
-    if (isCheered) {
+    if (myUser) {
+      alert("로그인 후 이용가능합니다.");
+    } else if (isCheered) {
       const { status } = await fetchDeleteLikeByPostId(cheerUpId);
       status === 200 ? setCheerUpNo() : alert("다시 시도바랍니다.");
     } else {
       const { data, status } = await fetchPostLikeByPostId(postId);
       status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
     }
+  };
+
+  const onCheerUpNotificationEvent = async (cheerUpId) => {
+    const { status } = await fetchPostNotification({
+      notificationType: "LIKE",
+      notificationTypeId: cheerUpId,
+      userId: myUser._id,
+    });
+    status === 200
+      ? console.log("success like-notification")
+      : console.log("fail like-notification");
   };
 
   const onCertificationEvent = async () => {

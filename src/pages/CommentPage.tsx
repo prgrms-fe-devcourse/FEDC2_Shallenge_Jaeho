@@ -1,8 +1,6 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
-import { Box, Flex, List, ListItem } from "@chakra-ui/react";
-import Comment from "@domain/CommentPage/Comment";
-import CommentInput from "@domain/CommentPage/CommentInput";
+import { format } from "date-fns";
 import { useAtom } from "jotai";
 import userAtom from "@store/user";
 import useGetChallenge from "@hooks/quries/useGetChallenge";
@@ -10,8 +8,11 @@ import {
   fetchDeleteCommentByPostId,
   fetchPostCommentByPostId,
 } from "@api/comment";
-import { format } from "date-fns";
 import { User } from "../types/index";
+import { fetchPostNotification } from "@api/notification";
+import { Box, Flex, List, ListItem } from "@chakra-ui/react";
+import Comment from "@domain/CommentPage/Comment";
+import CommentInput from "@domain/CommentPage/CommentInput";
 
 const CommentPage = () => {
   const [myUser] = useAtom(userAtom);
@@ -34,14 +35,28 @@ const CommentPage = () => {
     }
   }, [commentValue]);
 
+  const onCommentNotificationEvent = async (commentId) => {
+    const { status } = await fetchPostNotification({
+      notificationType: "COMMENT",
+      notificationTypeId: commentId,
+      userId: myUser._id,
+    });
+    status === 200
+      ? console.log("success comment-notification")
+      : console.log("fail comment-notification");
+  };
+
+  const setNewCommentList = (data) => {
+    setCommentList([...commentList, data]);
+    void onCommentNotificationEvent(data._id);
+  };
+
   const commentSubmit = async () => {
     const { data, status } = await fetchPostCommentByPostId(
       commentValue,
       postId
     );
-    status === 200
-      ? setCommentList([...commentList, data])
-      : alert("다시 시도바랍니다!");
+    status === 200 ? setNewCommentList(data) : alert("다시 시도바랍니다!");
   };
 
   const commentDelete = async (_id) => {
@@ -99,21 +114,23 @@ const CommentPage = () => {
           )}
         </List>
       </Flex>
-      <Box
-        position="absolute"
-        maxWidth="640px"
-        width="100%"
-        left="50%"
-        transform="translate(-50%, 0%)"
-        bottom="96px"
-        zIndex={2}
-      >
-        <form>
-          <CommentInput
-            onValueChange={onCommentValueChangeEvent}
-          ></CommentInput>
-        </form>
-      </Box>
+      {myUser && (
+        <Box
+          position="absolute"
+          maxWidth="640px"
+          width="100%"
+          left="50%"
+          transform="translate(-50%, 0%)"
+          bottom="96px"
+          zIndex={2}
+        >
+          <form>
+            <CommentInput
+              onValueChange={onCommentValueChangeEvent}
+            ></CommentInput>
+          </form>
+        </Box>
+      )}
     </>
   );
 };
