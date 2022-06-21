@@ -1,7 +1,8 @@
 import Icon from "@base/Icon";
-import { Avatar, Flex, Heading, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
 
 const Comment = ({
+  isGuest = true,
   avatarSrc = undefined,
   commentAuthor = "author.fullName",
   commentContent = "Lorem ipsum dolor sit, amet consectetur",
@@ -24,7 +25,11 @@ const Comment = ({
             <Text fontSize="md" color="#838489">
               {commentCreatedAt}
             </Text>
-            <Icon name="trash-2" size={16} color="#FF5A5A"></Icon>
+            {isGuest ? (
+              <Box width="16px" height="16px" bg="transparent" />
+            ) : (
+              <Icon name="trash-2" size={16} color="#FF5A5A" />
+            )}
           </Flex>
         </Flex>
         <Text fontSize="lg" wordBreak="break-all">
