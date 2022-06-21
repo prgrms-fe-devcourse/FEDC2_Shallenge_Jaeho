@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 
@@ -68,8 +68,8 @@ const EditProfilePage = () => {
     // console.log("프로필이미지변경클릭");
   };
 
-  const onFullNameChange = (e: any) => {
-    const fullName = e.target.value as string;
+  const onFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fullName = e.target.value;
     setNewFullName(fullName);
   };
 
@@ -93,8 +93,8 @@ const EditProfilePage = () => {
     }
   };
 
-  const onPasswordChange = (e: any) => {
-    const password = e.target.value as string;
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const password = e.target.value;
     setNewPassword(password);
   };
 
