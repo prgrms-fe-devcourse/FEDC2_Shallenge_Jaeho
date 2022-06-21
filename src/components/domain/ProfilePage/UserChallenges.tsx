@@ -30,6 +30,10 @@ const CButton = styled(Button)`
   }
 `;
 
+const Text = styled.div`
+  text-align: center;
+`;
+
 const UserChallenges = ({ challenges }: UserChallengesProps) => {
   const handleChallengeClick = (id: string) => {
     navigate(`/challenges/${id}`);
@@ -50,7 +54,7 @@ const UserChallenges = ({ challenges }: UserChallengesProps) => {
         </CButton>
       </Flex>
       {challenges.length == 0 ? (
-        <div>챌린지가 없어요!</div>
+        <Text>챌린지가 없어요!</Text>
       ) : (
         challenges.map((challenge) => {
           const jsonString = challenge.title.replaceAll("'", '"');
