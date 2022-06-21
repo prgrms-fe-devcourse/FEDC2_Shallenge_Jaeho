@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { User } from "src/types";
 import OtherSummary from "@domain/ProfilePage/OtherSummary";
+import OtherChallenges from "@domain/ProfilePage/OtherChallenges";
 
 const UserInfo = styled.div`
   position: relative;
@@ -41,7 +42,7 @@ const OtherProfilePage = () => {
             followingCount={user.following.length}
           />
         </UserInfo>
-        {/* <UserChallenges challenges={user.posts} />) */}
+        <OtherChallenges challenges={user.posts} />
       </>
     )
   );

@@ -29,6 +29,7 @@ const AppRouter = () => {
         <Route element={<InputLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchUserPage />} />
+          <Route path="/profile/:username" element={<OtherProfilePage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Route>
 
