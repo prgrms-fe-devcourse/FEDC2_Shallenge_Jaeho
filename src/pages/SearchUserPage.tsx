@@ -28,8 +28,8 @@ const SearchUserPage = () => {
     setUserName(query.userName as string);
   }
 
-  const handleClickUserCard = (userId: string) => {
-    navigate(`/profile/${userId}`);
+  const handleClickUserCard = (userId: string, userName: string) => {
+    navigate(`/profile/${userName}`, { state: userId });
   };
 
   return (
@@ -56,7 +56,7 @@ const SearchUserPage = () => {
                 margin="4px 0"
                 key={user._id}
                 onClick={() => {
-                  handleClickUserCard(user._id);
+                  handleClickUserCard(user._id, user.fullName);
                 }}
               ></Card>
             );
