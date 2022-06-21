@@ -3,14 +3,13 @@ import { useAtom } from "jotai";
 
 import useAuth from "@hooks/useAuth";
 import userAtom from "@store/user";
-import { User } from "../../types/index";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AuthProvider({ children }: Props) {
-  const [_, setMyUser] = useAtom(userAtom);
+  const [, setMyUser] = useAtom(userAtom);
 
   const { data: response, isLoading } = useAuth();
 
@@ -18,8 +17,8 @@ function AuthProvider({ children }: Props) {
     return <></>;
   }
 
-  if (response?.data) {
-    setMyUser(response.data as User);
+  if (response.data) {
+    setMyUser(response.data);
   }
 
   return <>{children}</>;
