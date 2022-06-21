@@ -6,7 +6,7 @@ import useNotifications from "@hooks/quries/useNotifications";
 import usePageTitle from "@hooks/usePageTitle";
 
 const NotificationPage = () => {
-  usePageTitle("알람");
+  usePageTitle("알림");
   const { data: response, isLoading } = useNotifications();
 
   if (isLoading) {

@@ -12,7 +12,7 @@ const HomePage = () => {
     navigate(`challenges/`);
   };
   const onClickChallenge = (challengeId: string): void => {
-    navigate(`challenge/${challengeId}`);
+    navigate(`challenges/${challengeId}`);
   };
 
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
