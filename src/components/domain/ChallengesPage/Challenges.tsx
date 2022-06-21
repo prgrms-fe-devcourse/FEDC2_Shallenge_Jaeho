@@ -32,7 +32,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
               onClick={() => handleClick(challenge._id)}
             >
               <Card
-                type="challange"
+                type="challenge"
                 heading={jsonObject.challengeTitle}
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}
