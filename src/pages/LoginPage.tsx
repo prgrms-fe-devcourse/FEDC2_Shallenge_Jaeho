@@ -1,6 +1,7 @@
 import AuthForm from "@domain/LoginPage/AuthForm";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 import { fetchPostLogin, fetchPostSignUp } from "@api/auth";
 import { saveTokenToLocalStorage } from "@lib/localStorage";
@@ -25,6 +26,7 @@ interface LoginResponse {
 
 const AuthPage = () => {
   const navigate = useNavigate();
+  const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);
   const { setValue, handleSubmit } = useForm<FormData>();
 
@@ -41,9 +43,22 @@ const AuthPage = () => {
       const { user, token } = response.data;
       saveTokenToLocalStorage(token);
       setMyUser(user);
+      toast({
+        title: "signUp success",
+        description: "로그인 성공했습니다!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       navigate("/");
     } catch (err) {
-      console.log("로그인실패로직");
+      toast({
+        title: "login failed",
+        description: "로그인 실패했습니다!",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   });
 
@@ -51,11 +66,23 @@ const AuthPage = () => {
     async ({ signInEmail, signInFullName, signInPassword }) => {
       try {
         await fetchPostSignUp(signInEmail, signInFullName, signInPassword);
-        alert("회원가입성공! 다시로그인해주세요");
+        toast({
+          title: "signUp success",
+          description: "회원가입 성공했습니다!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
         navigate("/login");
         location.reload();
       } catch (err) {
-        console.log("회원가입로직실패");
+        toast({
+          title: "signUp failed",
+          description: "올바른 정보를 입력해주세요!",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       }
     }
   );
