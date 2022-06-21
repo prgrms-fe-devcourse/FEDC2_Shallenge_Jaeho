@@ -102,11 +102,7 @@ const ChallengePage = () => {
   };
 
   const checkUser = () => {
-    if (myUser === null || myUser === undefined) {
-      alert("로그인 후 이용가능합니다.");
-      return false;
-    }
-    return true;
+    return myUser === null || myUser === undefined ? false : true;
   };
 
   const onCheerUpEvent = async () => {
@@ -118,6 +114,8 @@ const ChallengePage = () => {
         const { data, status } = await fetchPostLikeByPostId(postId);
         status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
       }
+    } else {
+      alert("로그인 후 이용가능합니다.");
     }
   };
 
