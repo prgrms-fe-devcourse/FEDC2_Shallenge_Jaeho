@@ -95,7 +95,7 @@ const FollowPage = () => {
   useEffect(() => {
     if (userRes) {
       console.log(userRes);
-      setUser(userRes.data);
+      //setUser(userRes.data);
     }
   }, [userRes]);
 
