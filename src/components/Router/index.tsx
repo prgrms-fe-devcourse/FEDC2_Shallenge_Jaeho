@@ -18,6 +18,7 @@ import PrivateRoute from "./PrivateRoute";
 import InputLayout from "@layout/InputLayout";
 import TextLayout from "@layout/TextLayout";
 import OtherProfilePage from "@pages/OtherProfilePage";
+import CommentPage from "@pages/CommentPage";
 
 const AppRouter = () => {
   return (
@@ -35,8 +36,15 @@ const AppRouter = () => {
 
         <Route element={<TextLayout />}>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="challenges" element={<ChallengesPage />} />
-          <Route path="challenges/:challengeId" element={<ChallengePage />} />
+          <Route path="/challenges/:channelId" element={<ChallengesPage />} />
+          <Route
+            path="/challenges/:channelId/:challengeId"
+            element={<ChallengePage />}
+          />
+          <Route
+            path="/challenges/:channelId/:challengeId/comment"
+            element={<CommentPage />}
+          />
           <Route path="/follow/:userId" element={<FollowPage />} />
 
           <Route path="my" element={<PrivateRoute />}>
