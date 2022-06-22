@@ -27,12 +27,13 @@ const HomePage = () => {
   }, [data]);
 
   const { data: res } = useGetPostLists(
-    channelsList.map((channel) => channel._id)
+    channelsList.map((channel: Channel) => channel._id)
   );
 
   useEffect(() => {
     if (res) {
-      setPostLists(res.map((r: { data: any }) => r.data));
+      console.log(res);
+      setPostLists(res.map((r) => r.data));
     }
   }, [res]);
 
