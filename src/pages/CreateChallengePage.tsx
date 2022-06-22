@@ -59,12 +59,12 @@ const CreateChallengePage = () => {
   };
 
   const submitChallengeForm = async (newChallenge: any) => {
-    const response: any = await fetchPostPostByChannelId({
+    const { status }: any = await fetchPostPostByChannelId({
       title: JSON.stringify(newChallenge),
       image: null,
       channelId: channel,
     });
-    if (response.status === 200) {
+    if (status === 200) {
       navigate("/my/profile");
     } else {
       alert("다시 시도바랍니다.");

@@ -4,8 +4,10 @@ import { fetchGetChannelByName, fetchGetChannels } from "@api/channel";
 import { Channel, Post } from "src/types";
 import { fetchGetPostListByChannel } from "@api/post";
 import Challenges from "@domain/ChallengesPage/Challenges";
+import usePageTitle from "@hooks/usePageTitle";
 
 const ChallengesPage = () => {
+  usePageTitle("채널");
   const [channels, setChannels] = useState<Channel[]>();
   const [challenges, setChallenges] = useState<Post[]>();
   const [channelName, setChannelName] = useState("📖 독서");
@@ -20,7 +22,6 @@ const ChallengesPage = () => {
   }, []);
 
   useEffect(() => {
-    setChannelName(channelName);
     void (async () => {
       const channelResult = await fetchGetChannelByName(channelName);
       if (channelResult.data) {

@@ -1,15 +1,12 @@
 import { useAtom } from "jotai";
-import userAtom from "../../store/user";
 import { Navigate, Outlet } from "react-router-dom";
+
+import userAtom from "@store/user";
 
 function PrivateRoute() {
   const [user] = useAtom(userAtom);
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return <Outlet />;
+  return user ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export default PrivateRoute;

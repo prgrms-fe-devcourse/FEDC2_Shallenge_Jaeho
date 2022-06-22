@@ -14,8 +14,8 @@ const CardContainer = styled.div`
 
 const Challenges = ({ posts }: ChallengesProps) => {
   const navigate = useNavigate();
-  const handleClick = (id: string) => {
-    navigate(`/challenges/${id}`);
+  const handleClick = (channelId: string, challengeId: string) => {
+    navigate(`/challenges/${channelId}/${challengeId}`);
   };
 
   return (
@@ -29,10 +29,10 @@ const Challenges = ({ posts }: ChallengesProps) => {
           return (
             <CardContainer
               key={challenge._id}
-              onClick={() => handleClick(challenge._id)}
+              onClick={() => handleClick(challenge.channel._id, challenge._id)}
             >
               <Card
-                type="challange"
+                type="challenge"
                 heading={jsonObject.challengeTitle}
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}

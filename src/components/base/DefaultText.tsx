@@ -3,9 +3,10 @@ import React from "react";
 
 type DefaultTextTypes = {
   children: React.ReactNode;
+  styleProps?: React.CSSProperties;
 };
 
-const DefaultText = ({ children }: DefaultTextTypes) => {
+const DefaultText = ({ children, styleProps = {} }: DefaultTextTypes) => {
   return (
     <Text
       fontSize="lg"
@@ -13,6 +14,7 @@ const DefaultText = ({ children }: DefaultTextTypes) => {
       color="#727272"
       textAlign="center"
       lineHeight="1.6"
+      style={styleProps}
     >
       {children}
     </Text>

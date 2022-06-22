@@ -53,7 +53,7 @@ const Footer = ({ user }: Props) => {
           cursor="pointer"
         >
           <Icon name="user" />
-          <ChakraText size="md">{user ? user.fullName : "로그인"}</ChakraText>
+          <ChakraText size="md">{user ? "정보" : "로그인"}</ChakraText>
         </Flex>
       </Link>
     </Flex>

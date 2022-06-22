@@ -8,11 +8,11 @@ import { Channel, Post } from "../types/index";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const onClickMore = () => {
-    navigate(`challenges/`);
+  const onClickMore = (channelId: string) => {
+    navigate(`/challenges`);
   };
-  const onClickChallange = (challengeId: string): void => {
-    navigate(`challenge/${challengeId}`);
+  const onClickChallenge = (channelId: string, challengeId: string): void => {
+    navigate(`/challenges/${channelId}/${challengeId}`);
   };
 
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
@@ -60,7 +60,7 @@ const HomePage = () => {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  onClickMore();
+                  onClickMore(channel._id);
                 }}
               >
                 more{">"}
@@ -68,17 +68,17 @@ const HomePage = () => {
             </Flex>
             {postList.map((post) => {
               post.title = post.title.replaceAll("'", '"');
-              const challange = JSON.parse(post.title);
+              const challenge = JSON.parse(post.title);
               return (
                 <Card
-                  type="challange"
-                  heading={challange.challengeTitle}
-                  text={challange.reward}
+                  type="challenge"
+                  heading={challenge.challengeTitle}
+                  text={challenge.reward}
                   commentCount={post.comments.length}
                   cheerCount={post.likes.length}
                   margin="16px 0"
                   onClick={() => {
-                    onClickChallange(post._id);
+                    onClickChallenge(post.channel._id, post._id);
                   }}
                   key={post._id}
                 ></Card>

@@ -1,14 +1,16 @@
-import { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-
+import { useToast } from "@chakra-ui/react";
 import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { fetchPostLogout } from "@api/auth";
-import { fetchPutUpdatedPassword } from "@api/setting";
+import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
 
 import userAtom from "@store/user";
 import { deleteTokenFromLocalStorage } from "@lib/localStorage";
+import usePageTitle from "@hooks/usePageTitle";
+import { fetchPostUserProfileImage } from "@api/user";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -35,6 +37,14 @@ const FormContainer = styled.div`
   margin-bottom: 36px;
 `;
 
+const ProfileImageButton = styled.label`
+  padding: 6px 25px;
+  background-color: #ff6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+`;
+
 const CFlex = styled(Flex)`
   align-items: center;
 `;
@@ -57,6 +67,8 @@ const LogoutButton = styled(Button)`
 `;
 
 const EditProfilePage = () => {
+  const toast = useToast();
+  usePageTitle("프로필 설정");
   const [myUser, setMyUser] = useAtom(userAtom);
   const [newFullName, setNewFullName] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -66,6 +78,11 @@ const EditProfilePage = () => {
     // console.log("프로필이미지변경클릭");
   };
 
+  const onFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fullName = e.target.value;
+    setNewFullName(fullName);
+  };
+
   const onChangeFullNameClick = () => {
     if (!newFullName) {
       alert("새로운 닉네임을 입력하세요!");
@@ -73,8 +90,22 @@ const EditProfilePage = () => {
     }
 
     if (confirm(newFullName + "으로 변경하시겠어요?")) {
-      alert("변경되었습니다.");
+      fetchPutUpdateMyInfo(newFullName)
+        .then(() => {
+          alert("변경되었습니다.");
+        })
+        .catch(() => {
+          alert("닉네임 변경에 실패했습니다");
+        })
+        .finally(() => {
+          navigate("/my/profile");
+        });
     }
+  };
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const password = e.target.value;
+    setNewPassword(password);
   };
 
   const onPasswordClick = () => {
@@ -93,12 +124,6 @@ const EditProfilePage = () => {
         });
     }
   };
-
-  const onPasswordChange = (e: any) => {
-    const password = e.target.value as string;
-    setNewPassword(password);
-  };
-
   const onLogoutClick = () => {
     fetchPostLogout()
       .then(() => {
@@ -110,15 +135,44 @@ const EditProfilePage = () => {
       })
       .finally(() => {
         navigate("/");
+        location.reload();
+      });
+  };
+
+  const profileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fd = new FormData();
+    const imageFile = e.target.files[0];
+    fd.append("isCover", "false");
+    fd.append("image", imageFile);
+
+    fetchPostUserProfileImage(fd)
+      .then(() => {
+        toast({
+          title: "프로필 이미지 변경을 성공했습니다!",
+          description: "프로필 이미지 변경 성공",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/my/profile");
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
   return (
     <EditProfilePageContainer>
       <Avatar size="2xl" src={myUser?.image} />
-      <ChangeButton display="block" onClick={onChangeProfileImageClick}>
+      <ProfileImageButton htmlFor="profile">
         프로필 사진 변경
-      </ChangeButton>
+      </ProfileImageButton>
+      <input
+        type="file"
+        id="profile"
+        style={{ display: "none" }}
+        onChange={profileChange}
+      />
       <FormContainer>
         <CFlex>
           <InfoText>이메일</InfoText>
@@ -126,7 +180,11 @@ const EditProfilePage = () => {
         </CFlex>
         <CFlex>
           <InfoText>닉네임</InfoText>
-          <CInput type="text" placeholder={myUser?.fullName} />
+          <CInput
+            type="text"
+            placeholder={myUser?.fullName}
+            onChange={onFullNameChange}
+          />
           <ChangeButton onClick={onChangeFullNameClick}>변경</ChangeButton>
         </CFlex>
         <CFlex>
