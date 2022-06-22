@@ -8,11 +8,11 @@ import { Channel, Post } from "../types/index";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const onClickMore = () => {
-    navigate(`challenges/`);
+  const onClickMore = (channelId: string) => {
+    navigate(`/challenges`);
   };
-  const onClickChallenge = (challengeId: string): void => {
-    navigate(`challenges/${challengeId}`);
+  const onClickChallenge = (channelId: string, challengeId: string): void => {
+    navigate(`/challenges/${channelId}/${challengeId}`);
   };
 
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
@@ -59,7 +59,7 @@ const HomePage = () => {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  onClickMore();
+                  onClickMore(channel._id);
                 }}
               >
                 more{">"}
@@ -77,7 +77,7 @@ const HomePage = () => {
                   cheerCount={post.likes.length}
                   margin="16px 0"
                   onClick={() => {
-                    onClickChallenge(post._id);
+                    onClickChallenge(post.channel._id, post._id);
                   }}
                   key={post._id}
                 ></Card>

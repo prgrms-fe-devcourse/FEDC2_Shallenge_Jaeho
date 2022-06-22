@@ -24,10 +24,9 @@ const Text = styled.div`
 `;
 
 const OtherChallenges = ({ challenges }: UserChallengesProps) => {
-  const handleChallengeClick = (id: string) => {
-    navigate(`/challenges/${id}`);
+  const handleChallengeClick = (channelId: string, challengeId: string) => {
+    navigate(`/challenges/${channelId}/${challengeId}`);
   };
-
   const navigate = useNavigate();
 
   return (
@@ -45,7 +44,9 @@ const OtherChallenges = ({ challenges }: UserChallengesProps) => {
           return (
             <CardContainer
               key={challenge._id}
-              onClick={() => handleChallengeClick(challenge._id)}
+              onClick={() =>
+                handleChallengeClick(challenge.channel._id, challenge._id)
+              }
             >
               <Card
                 type="challenge"
