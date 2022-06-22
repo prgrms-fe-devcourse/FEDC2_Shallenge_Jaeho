@@ -37,6 +37,7 @@ const AppRouter = () => {
         <Route element={<TextLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/challenges/:channelId" element={<ChallengesPage />} />
+          <Route path="/challenges" element={<ChallengesPage />} />
           <Route
             path="/challenges/:channelId/:challengeId"
             element={<ChallengePage />}
