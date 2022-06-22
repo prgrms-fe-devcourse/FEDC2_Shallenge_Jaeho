@@ -19,6 +19,7 @@ const CommentPage = () => {
   const [myUser] = useAtom(userAtom);
   const [commentList, setCommentList] = useState([]);
   const [commentValue, setCommentValue] = useState("");
+  const [authorId, setAuthorId] = useState("");
   const [show, setShow] = useState(false);
 
   const [, , , postId] = window.location.pathname.split("/");
@@ -26,7 +27,8 @@ const CommentPage = () => {
 
   useEffect(() => {
     if (Contents?.status === 200) {
-      const { comments } = Contents?.data;
+      const { author, comments } = Contents?.data;
+      setAuthorId(author._id);
       setCommentList(comments);
       setShow(true);
     }
@@ -42,7 +44,7 @@ const CommentPage = () => {
     const { status } = await fetchPostNotification({
       notificationType: "COMMENT",
       notificationTypeId: commentId,
-      userId: myUser._id,
+      userId: authorId,
     });
     status === 200
       ? console.log("success comment-notification")

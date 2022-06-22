@@ -38,6 +38,7 @@ const ChallengePage = () => {
   const [endDate, setEndDate] = useState("");
   const [isCheered, setIsCheered] = useState(false);
   const [cheerUpId, setCheerUpId] = useState("");
+  const [authorId, setAuthorId] = useState("");
   const [show, setShow] = useState(false);
 
   const [, , channelId, postId] = window.location.pathname.split("/");
@@ -50,6 +51,7 @@ const ChallengePage = () => {
         new Date(format(new Date(), "yyyy-MM-dd")),
         new Date(date)
       );
+      setAuthorId(author._id);
       validateGuest(author._id);
       setReward(reward);
       setCommentCount(comments.length);
@@ -115,7 +117,7 @@ const ChallengePage = () => {
         status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
       }
     } else {
-      alert("로그인 후 이용가능합니다.");
+      alert("로그인 후 이용가능합니다!");
     }
   };
 
@@ -123,7 +125,7 @@ const ChallengePage = () => {
     const { status } = await fetchPostNotification({
       notificationType: "LIKE",
       notificationTypeId: cheerUpId,
-      userId: myUser._id,
+      userId: authorId,
     });
     status === 200
       ? console.log("success like-notification")
