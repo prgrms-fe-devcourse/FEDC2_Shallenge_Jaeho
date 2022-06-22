@@ -11,6 +11,7 @@ import {
 import { User } from "../types/index";
 import { fetchPostNotification } from "@api/notification";
 import { Box, Flex, List, ListItem } from "@chakra-ui/react";
+import DefaultText from "@base/DefaultText";
 import Comment from "@domain/CommentPage/Comment";
 import CommentInput from "@domain/CommentPage/CommentInput";
 
@@ -18,6 +19,7 @@ const CommentPage = () => {
   const [myUser] = useAtom(userAtom);
   const [commentList, setCommentList] = useState([]);
   const [commentValue, setCommentValue] = useState("");
+  const [show, setShow] = useState(false);
 
   const [, , , postId] = window.location.pathname.split("/");
   const { data: Contents } = useGetChallenge(postId);
@@ -26,6 +28,7 @@ const CommentPage = () => {
     if (Contents?.status === 200) {
       const { comments } = Contents?.data;
       setCommentList(comments);
+      setShow(true);
     }
   }, [Contents]);
 
@@ -88,31 +91,35 @@ const CommentPage = () => {
         mb="48px"
         onClick={onDeleteCommentEvent}
       >
-        <List spacing={2}>
-          {commentList.map(
-            (comment: {
-              _id: string;
-              author: User;
-              createdAt: string;
-              comment: string;
-            }) => {
-              return (
-                <ListItem key={comment._id} data-_id={`${comment._id}`}>
-                  <Comment
-                    isGuest={myUser?._id !== comment.author._id}
-                    avatarSrc={comment.author.image}
-                    commentAuthor={comment.author.fullName}
-                    commentContent={comment.comment}
-                    commentCreatedAt={format(
-                      new Date(comment.createdAt),
-                      "yyyy-MM-dd HH:mm"
-                    )}
-                  ></Comment>
-                </ListItem>
-              );
-            }
-          )}
-        </List>
+        {show && commentList.length === 0 ? (
+          <DefaultText>댓글이 아직 없습니다!</DefaultText>
+        ) : (
+          <List spacing={2}>
+            {commentList.map(
+              (comment: {
+                _id: string;
+                author: User;
+                createdAt: string;
+                comment: string;
+              }) => {
+                return (
+                  <ListItem key={comment._id} data-_id={`${comment._id}`}>
+                    <Comment
+                      isGuest={myUser?._id !== comment.author._id}
+                      avatarSrc={comment.author.image}
+                      commentAuthor={comment.author.fullName}
+                      commentContent={comment.comment}
+                      commentCreatedAt={format(
+                        new Date(comment.createdAt),
+                        "yyyy-MM-dd HH:mm"
+                      )}
+                    ></Comment>
+                  </ListItem>
+                );
+              }
+            )}
+          </List>
+        )}
       </Flex>
       {myUser && (
         <Box
