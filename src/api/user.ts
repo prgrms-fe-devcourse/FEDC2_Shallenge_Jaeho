@@ -8,7 +8,6 @@ export const fetchGetUserById = (userId: string) =>
   axios.get(`/users/${userId}`);
 
 export const fetchGetFollowUserList = async (followUserIdList: string[]) => {
-  console.log(followUserIdList);
   return await Promise.all(
     followUserIdList.map((followUserId) => fetchGetUserById(followUserId))
   );

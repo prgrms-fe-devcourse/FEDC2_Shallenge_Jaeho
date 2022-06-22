@@ -32,7 +32,6 @@ const HomePage = () => {
 
   useEffect(() => {
     if (res) {
-      console.log(res);
       setPostLists(res.map((r) => r.data));
     }
   }, [res]);
@@ -76,6 +75,7 @@ const HomePage = () => {
                   text={challenge.reward}
                   commentCount={post.comments.length}
                   cheerCount={post.likes.length}
+                  avatarSrc={post.author.image}
                   margin="16px 0"
                   onClick={() => {
                     onClickChallenge(post.channel._id, post._id);

@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import MyChallenges from "@domain/ProfilePage/MyChallenges";
-import UserSummary from "@domain/ProfilePage/MySummary";
+import MySummary from "@domain/ProfilePage/MySummary";
 import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
 
@@ -22,10 +22,11 @@ const MyProfilePage = () => {
     <>
       <UserInfo>
         <UserAvatar image={myUser.image} name={myUser.fullName} />
-        <UserSummary
+        <MySummary
           introduce={myUser.coverImage}
           followerCount={myUser.followers.length}
           followingCount={myUser.following.length}
+          id={myUser._id}
         />
       </UserInfo>
       <MyChallenges challenges={myUser.posts} />

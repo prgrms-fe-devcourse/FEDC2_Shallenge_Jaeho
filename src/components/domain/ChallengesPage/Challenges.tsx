@@ -37,6 +37,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}
                 cheerCount={challenge.likes.length}
+                avatarSrc={challenge.author.image}
               ></Card>
             </CardContainer>
           );

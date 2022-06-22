@@ -27,7 +27,7 @@ interface LoginResponse {
 }
 
 const LoginPage = () => {
-  usePageTitle("Shallange");
+  usePageTitle("Shallenge");
   const navigate = useNavigate();
   const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);

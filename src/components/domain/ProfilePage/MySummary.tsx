@@ -1,11 +1,12 @@
 import { Button, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface UserSummaryProps {
   introduce: string;
   followerCount: number;
   followingCount: number;
+  id: string;
 }
 
 const IntroduceText = styled(Text)`
@@ -43,17 +44,24 @@ const MySummary = ({
   introduce,
   followerCount,
   followingCount,
+  id,
 }: UserSummaryProps) => {
+  const navigate = useNavigate();
+
+  const handleFollowingClick = () => {
+    navigate(`/follow/${id}`);
+  };
+
   return (
     <UserSummaryContainer>
       <IntroduceText textAlign="center">{introduce}</IntroduceText>
       <FollowContainer>
         <div>
-          <Text>{followerCount}</Text>
+          <Text onClick={handleFollowingClick}>{followerCount}</Text>
           <div>팔로워</div>
         </div>
         <div>
-          <Text>{followingCount}</Text>
+          <Text onClick={handleFollowingClick}>{followingCount}</Text>
           <div>팔로잉</div>
         </div>
       </FollowContainer>

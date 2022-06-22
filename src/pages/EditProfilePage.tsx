@@ -74,10 +74,6 @@ const EditProfilePage = () => {
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
-  const onChangeProfileImageClick = () => {
-    // console.log("프로필이미지변경클릭");
-  };
-
   const onFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fullName = e.target.value;
     setNewFullName(fullName);

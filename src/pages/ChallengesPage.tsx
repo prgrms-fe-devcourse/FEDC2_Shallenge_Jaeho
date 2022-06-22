@@ -27,6 +27,7 @@ const ChallengesPage = () => {
       if (channelResult.data) {
         const channelId = channelResult.data._id;
         const challengesResult = await fetchGetPostListByChannel(channelId);
+        console.log(challengesResult.data);
         setChallenges(challengesResult.data);
       }
     })();
