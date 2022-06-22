@@ -8,70 +8,6 @@ import { useEffect } from "react";
 import useGetUserById from "@hooks/quries/useGetUser";
 import { useParams } from "react-router-dom";
 
-const followerList: User[] = [
-  {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
-    role: "role",
-    emailVerified: false, // 사용되지 않음
-    banned: false, // 사용되지 않음
-    isOnline: true,
-    posts: [],
-    likes: [],
-    comments: [],
-    followers: [],
-    following: [],
-    notifications: [],
-    messages: [],
-    _id: "follower1", // 사용자 id
-    fullName: "팔로워1", //
-    email: "asd@asd.com",
-    createdAt: "2022-05-12T09:44:19.128Z",
-    updatedAt: "2022-05-12T09:44:19.128Z",
-  },
-  {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
-    role: "role",
-    emailVerified: false, // 사용되지 않음
-    banned: false, // 사용되지 않음
-    isOnline: true,
-    posts: [],
-    likes: [],
-    comments: [],
-    followers: [],
-    following: [],
-    notifications: [],
-    messages: [],
-    _id: "follower2", // 사용자 id
-    fullName: "팔로워2", //
-    email: "asd@asd.com",
-    createdAt: "2022-05-12T09:44:19.128Z",
-    updatedAt: "2022-05-12T09:44:19.128Z",
-  },
-  {
-    coverImage: "자기소개",
-    image: "프로필이미지주소", // 프로필 이미지
-    role: "role",
-    emailVerified: false, // 사용되지 않음
-    banned: false, // 사용되지 않음
-    isOnline: true,
-    posts: [],
-    likes: [],
-    comments: [],
-    followers: [],
-    following: [],
-    notifications: [],
-    messages: [],
-    _id: "follower3", // 사용자 id
-    fullName: "팔로워3", //
-    email: "asd@asd.com",
-    createdAt: "2022-05-12T09:44:19.128Z",
-    updatedAt: "2022-05-12T09:44:19.128Z",
-  },
-];
-const followingList: User[] = [];
-
 const FollowPage = () => {
   //const [user] = useAtom(userAtom);
 
@@ -83,33 +19,42 @@ const FollowPage = () => {
   const [followerList, setFollowerList] = useState<User[]>([]);
   const [followingList, setFollowingList] = useState<User[]>([]);
 
-  const followerIdList: string[] =
-    user?.followers?.map((follow) => follow.user) ?? [];
-  const followingIdList: string[] =
-    user?.following?.map((following) => following.user) ?? [];
   console.log(user);
+  const followerIdList: string[] =
+    user?.followers?.map((follow) => follow.follower) ?? [];
+  const followingIdList: string[] =
+    user?.following?.map((following) => following.user).filter((id) => id) ??
+    [];
 
-  const { data: followerRes } = useGetFollowUserList(followerIdList);
-  const { data: followingRes } = useGetFollowUserList(followingIdList);
+  console.log(followerIdList);
+  const { data: followerResList } = useGetFollowUserList(followerIdList);
+  const { data: followingResList } = useGetFollowUserList(followingIdList);
 
   useEffect(() => {
     if (userRes) {
       console.log(userRes);
-      //setUser(userRes.data);
+      setUser(userRes.data);
     }
   }, [userRes]);
 
   useEffect(() => {
-    if (followerRes) {
-      console.log(followerRes);
-      //setFollowerList(followerRes.data);
+    if (followerResList) {
+      console.log(followerResList.map((res) => res.data));
+      setFollowerList(followerResList.map((res) => res.data));
     }
-  }, [user, followerRes]);
+  }, [userRes, followerResList]);
+
+  useEffect(() => {
+    if (followingResList) {
+      console.log(followingResList.map((res) => res.data));
+      setFollowingList(followingResList.map((res) => res.data));
+    }
+  }, [userRes, followingResList]);
 
   return (
     <PageTab
-      followingList={followerList}
-      followersList={followingList}
+      followingList={followingList}
+      followersList={followerList}
     ></PageTab>
   );
 };
