@@ -1,4 +1,4 @@
-import { Notification } from "src/types";
+import { Notification, User } from "src/types";
 import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
@@ -20,15 +20,16 @@ const NotificationPage = () => {
           return (
             <NotificationCard
               key={notification._id}
-              alarmType={
+              notificationType={
                 notification.follow
                   ? "follow"
                   : notification.comment
                   ? "comment"
-                  : "cheer"
+                  : "like"
               }
-              avatarSrc=""
+              avatarSrc={notification.author.image}
               userName={notification.author.fullName}
+              createdAt={notification.createdAt}
             ></NotificationCard>
           );
         })
