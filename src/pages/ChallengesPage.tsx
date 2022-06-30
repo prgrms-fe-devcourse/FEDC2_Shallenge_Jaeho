@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Channel, Post } from "src/types";
-import { fetchGetChannelByName, fetchGetChannels } from "@api/channel";
+import { fetchGetChannels } from "@api/channel";
 import { fetchGetPostListByChannel } from "@api/post";
 import usePageTitle from "@hooks/usePageTitle";
 import Chips from "@domain/ChallengesPage/Chips";
@@ -28,6 +28,10 @@ const ChallengesPage = () => {
         alert("다시 시도바랍니다!");
       }
     })();
+    window.addEventListener("popstate", windowListener);
+    return () => {
+      window.removeEventListener("popstate", windowListener);
+    };
   }, []);
 
   useEffect(() => {
@@ -37,8 +41,13 @@ const ChallengesPage = () => {
         const { data, status } = await fetchGetPostListByChannel(
           selectedChannelId
         );
-        if (status === 200) setChallenges(data);
-        else alert("다시 시도바랍니다!");
+        if (status === 200) {
+          setChallenges(data);
+          const clickedChannel = channels.filter(
+            (item) => item._id === selectedChannelId
+          )[0];
+          setSelectedChannel(clickedChannel);
+        } else alert("다시 시도바랍니다!");
       })();
     }
     setShow(true);
@@ -46,13 +55,16 @@ const ChallengesPage = () => {
 
   const onClickChips = (event) => {
     const channelDescription = event.target.dataset.description;
-    const clickedChannel = channels.filter(
+    const { _id } = channels.filter(
       (item) => item.description === channelDescription
     )[0];
-    setSelectedChannelId(clickedChannel._id);
-    setSelectedChannel(clickedChannel);
-    const path = `/challenges/${clickedChannel._id}`;
-    history.pushState(null, null, path);
+    setSelectedChannelId(_id);
+    history.pushState(null, null, `/challenges/${_id}`);
+  };
+
+  const windowListener = () => {
+    const clickedChannel = window.location.pathname.split("/")[2];
+    setSelectedChannelId(clickedChannel);
   };
 
   return (
