@@ -1,5 +1,3 @@
-import { string } from "prop-types";
-
 interface UserCardProps {
   userName: string;
   introduction: string;

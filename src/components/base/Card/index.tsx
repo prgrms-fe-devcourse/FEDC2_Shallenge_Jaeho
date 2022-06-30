@@ -1,6 +1,7 @@
 import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import Social from "../Social";
+import styled from "@emotion/react";
 
 type CardTypes = {
   type: "challenge" | "user";
@@ -11,6 +12,7 @@ type CardTypes = {
   commentCount?: number;
   cheerCount?: number;
   margin?: string | number;
+  author?: string;
   styleProps?: object;
   onClick?: () => void;
 };
@@ -24,6 +26,7 @@ const Card = ({
   commentCount = 0,
   cheerCount = 0,
   margin = 0,
+  author = "username",
   styleProps = {},
   onClick,
 }: CardTypes) => {
@@ -46,9 +49,9 @@ const Card = ({
       _hover={{ cursor: "pointer" }}
       onClick={onClick}
     >
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" width="64px" alignItems="center">
         <Avatar size={avatarSize} src={avatarSrc}></Avatar>
-        {type === "challenge" ? <Text>{"username"}</Text> : ""}
+        {type === "challenge" ? <Text textAlign="center">{author}</Text> : ""}
       </Flex>
       <Flex
         flexDirection="column"
