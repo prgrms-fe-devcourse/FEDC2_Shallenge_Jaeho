@@ -46,7 +46,10 @@ const Card = ({
       _hover={{ cursor: "pointer" }}
       onClick={onClick}
     >
-      <Avatar size={avatarSize} src={avatarSrc}></Avatar>
+      <Flex flexDirection="column">
+        <Avatar size={avatarSize} src={avatarSrc}></Avatar>
+        {type === "challenge" ? <Text>{"username"}</Text> : ""}
+      </Flex>
       <Flex
         flexDirection="column"
         marginLeft={"24px"}
