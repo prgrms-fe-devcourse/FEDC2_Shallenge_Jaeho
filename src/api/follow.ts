@@ -2,7 +2,7 @@ import axios from "@lib/axios";
 
 export const fetchPostFollowByUserId = (userId: string) =>
   axios.post("/follow/create", {
-    data: { userId },
+    userId,
   });
 
 export const fetchDeleteFollowByUserId = (id: string) =>

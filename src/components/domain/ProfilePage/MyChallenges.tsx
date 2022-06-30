@@ -57,14 +57,16 @@ const MyChallenges = ({ challenges }: UserChallengesProps) => {
         <Text>챌린지가 없어요!</Text>
       ) : (
         challenges.map((challenge) => {
+          console.log(challenge);
+
           const jsonString = challenge.title.replaceAll("'", '"');
           const jsonObject = JSON.parse(jsonString);
           return (
             <CardContainer
               key={challenge._id}
-              onClick={() =>
-                handleChallengeClick(challenge.channel._id, challenge._id)
-              }
+              onClick={() => {
+                handleChallengeClick(challenge.channel._id, challenge._id);
+              }}
             >
               <Card
                 type="challenge"

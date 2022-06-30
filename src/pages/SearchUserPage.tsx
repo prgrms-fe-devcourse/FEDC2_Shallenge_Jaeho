@@ -55,6 +55,7 @@ const SearchUserPage = () => {
                 text={user.coverImage ?? "한줄 소개 없음"}
                 margin="4px 0"
                 key={user._id}
+                avatarSrc={user.image}
                 onClick={() => {
                   handleClickUserCard(user._id);
                 }}

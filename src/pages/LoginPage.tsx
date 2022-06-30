@@ -9,6 +9,7 @@ import { saveTokenToLocalStorage } from "@lib/localStorage";
 import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
 import { User } from "src/types";
+import { useEffect } from "react";
 
 export interface FormData {
   logInEmail: string;
@@ -26,15 +27,17 @@ interface LoginResponse {
 }
 
 const LoginPage = () => {
-  usePageTitle("Shallange");
+  usePageTitle("Shallenge");
   const navigate = useNavigate();
   const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);
   const { setValue, handleSubmit } = useForm<FormData>();
 
-  if (myUser) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (myUser) {
+      navigate("/");
+    }
+  }, []);
 
   const onLogInSubmit = handleSubmit(async ({ logInEmail, logInPassword }) => {
     try {

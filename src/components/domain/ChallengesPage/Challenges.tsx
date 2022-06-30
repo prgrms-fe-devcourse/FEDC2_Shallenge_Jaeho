@@ -24,7 +24,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
         <div>챌린지가 없어요!</div>
       ) : (
         posts.map((challenge) => {
-          const jsonString = challenge.title.replaceAll("'", '"');
+          const jsonString: string = challenge.title.replaceAll("'", '"');
           const jsonObject = JSON.parse(jsonString);
           return (
             <CardContainer
@@ -37,6 +37,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}
                 cheerCount={challenge.likes.length}
+                avatarSrc={challenge.author.image}
               ></Card>
             </CardContainer>
           );

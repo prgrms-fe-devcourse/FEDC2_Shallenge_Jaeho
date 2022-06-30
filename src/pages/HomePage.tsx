@@ -9,10 +9,10 @@ import { Channel, Post } from "../types/index";
 const HomePage = () => {
   const navigate = useNavigate();
   const onClickMore = (channelId: string) => {
-    navigate(`challenges/${channelId}`);
+    navigate(`/challenges`);
   };
   const onClickChallenge = (channelId: string, challengeId: string): void => {
-    navigate(`challenges/${channelId}/${challengeId}`);
+    navigate(`/challenges/${channelId}/${challengeId}`);
   };
 
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
@@ -27,12 +27,12 @@ const HomePage = () => {
   }, [data]);
 
   const { data: res } = useGetPostLists(
-    channelsList.map((channel) => channel._id)
+    channelsList.map((channel: Channel) => channel._id)
   );
 
   useEffect(() => {
     if (res) {
-      setPostLists(res.map((r: { data: any }) => r.data));
+      setPostLists(res.map((r) => r.data));
     }
   }, [res]);
 
@@ -75,6 +75,7 @@ const HomePage = () => {
                   text={challenge.reward}
                   commentCount={post.comments.length}
                   cheerCount={post.likes.length}
+                  avatarSrc={post.author.image}
                   margin="16px 0"
                   onClick={() => {
                     onClickChallenge(post.channel._id, post._id);

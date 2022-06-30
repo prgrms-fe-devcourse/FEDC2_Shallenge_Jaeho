@@ -8,14 +8,14 @@ import { useAtom } from "jotai";
 import userAtom from "@store/user";
 import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
 import { fetchPutPost } from "@api/post";
+import { fetchPostNotification } from "@api/notification";
+import usePageTitle from "@hooks/usePageTitle";
+import useGetChallenge from "@hooks/quries/useGetChallenge";
 import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
 import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
-import usePageTitle from "@hooks/usePageTitle";
-import useGetChallenge from "@hooks/quries/useGetChallenge";
-import { fetchPostNotification } from "@api/notification";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
@@ -38,6 +38,7 @@ const ChallengePage = () => {
   const [endDate, setEndDate] = useState("");
   const [isCheered, setIsCheered] = useState(false);
   const [cheerUpId, setCheerUpId] = useState("");
+  const [authorId, setAuthorId] = useState("");
   const [show, setShow] = useState(false);
 
   const [, , channelId, postId] = window.location.pathname.split("/");
@@ -50,6 +51,7 @@ const ChallengePage = () => {
         new Date(format(new Date(), "yyyy-MM-dd")),
         new Date(date)
       );
+      setAuthorId(author._id);
       validateGuest(author._id);
       setReward(reward);
       setCommentCount(comments.length);
@@ -101,15 +103,21 @@ const ChallengePage = () => {
     setCheerUpId("");
   };
 
+  const checkUser = () => {
+    return myUser === null || myUser === undefined ? false : true;
+  };
+
   const onCheerUpEvent = async () => {
-    if (myUser) {
-      alert("로그인 후 이용가능합니다.");
-    } else if (isCheered) {
-      const { status } = await fetchDeleteLikeByPostId(cheerUpId);
-      status === 200 ? setCheerUpNo() : alert("다시 시도바랍니다.");
+    if (checkUser()) {
+      if (isCheered) {
+        const { status } = await fetchDeleteLikeByPostId(cheerUpId);
+        status === 200 ? setCheerUpNo() : alert("다시 시도바랍니다.");
+      } else {
+        const { data, status } = await fetchPostLikeByPostId(postId);
+        status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
+      }
     } else {
-      const { data, status } = await fetchPostLikeByPostId(postId);
-      status === 200 ? setCheerUpYes(data._id) : alert("다시 시도바랍니다.");
+      alert("로그인 후 이용가능합니다!");
     }
   };
 
@@ -117,7 +125,7 @@ const ChallengePage = () => {
     const { status } = await fetchPostNotification({
       notificationType: "LIKE",
       notificationTypeId: cheerUpId,
-      userId: myUser._id,
+      userId: authorId,
     });
     status === 200
       ? console.log("success like-notification")

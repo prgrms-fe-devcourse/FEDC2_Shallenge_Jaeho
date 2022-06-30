@@ -29,8 +29,6 @@ const OtherProfilePage = () => {
     })();
   }, []);
 
-  console.log(user);
-
   return (
     user && (
       <>
@@ -40,6 +38,7 @@ const OtherProfilePage = () => {
             introduce={user.coverImage}
             followerCount={user.followers.length}
             followingCount={user.following.length}
+            id={user._id}
           />
         </UserInfo>
         <OtherChallenges challenges={user.posts} />
