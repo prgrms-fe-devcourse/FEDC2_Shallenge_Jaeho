@@ -20,10 +20,20 @@ const TabsContainer = styled.div`
   border-radius: 6px 0;
 `;
 
+const CTab = styled(Tab)`
+  background-color: ${({ isSelectedTab }) =>
+    isSelectedTab ? "#ffffff" : "#E2E8F0"};
+  color: ${({ isSelectedTab }) => (isSelectedTab ? "#ff7900" : "#ffffff")};
+  font-size: 24px;
+  font-weight: ${({ isSelectedTab }) => (isSelectedTab ? "700" : "")};
+  border: "none";
+`;
+
 const CInput = styled(Input)`
   min-width: calc(100% - 210px);
   width: 320px;
   margin-bottom: 24px;
+  border-color: var(--chakra-colors-gray-300);
 `;
 
 const Form = styled.form`
@@ -48,47 +58,47 @@ const CButton = styled(Button)`
 interface AuthFormProps {
   setValue: UseFormSetValue<FormData>;
   onLogInSubmit: (
-    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+    e?: React.BaseSyntheticEvent<object, unknown, unknown> | undefined
   ) => Promise<void>;
   onSignUpSubmit: (
-    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+    e?: React.BaseSyntheticEvent<object, unknown, unknown> | undefined
   ) => Promise<void>;
 }
+
 const AuthForm = ({
   setValue,
   onLogInSubmit,
   onSignUpSubmit,
 }: AuthFormProps) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const inputHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.currentTarget;
+    const max = parseInt(e.currentTarget.getAttribute("maxlength"));
+    if (target.value.length > max) {
+      target.value = target.value.slice(0, max);
+    }
+    setValue("signUpFullName", target.value);
+  };
 
   return (
     <TabsContainer>
-      <Tabs isFitted variant="enclosed" align="center">
-        <TabList>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 0 ? "white" : "#E2E8F0",
-              color: selectedTab === 0 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 0 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(0)}
+      <Tabs variant="unstyled" isFitted align="center">
+        <TabList height={20}>
+          <CTab
+            isSelectedTab={tabIndex === 0}
+            borderTopRadius={15}
+            onClick={() => setTabIndex(0)}
           >
             로그인
-          </Tab>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 1 ? "white" : "#E2E8F0",
-              color: selectedTab === 1 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 1 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(1)}
+          </CTab>
+          <CTab
+            isSelectedTab={tabIndex === 1}
+            borderTopRadius={15}
+            onClick={() => setTabIndex(1)}
           >
             회원가입
-          </Tab>
+          </CTab>
         </TabList>
         <TabPanels style={{ backgroundColor: "white" }}>
           <TabPanel>
@@ -112,9 +122,7 @@ const AuthForm = ({
                     setValue("logInPassword", e.target.value);
                   }}
                 />
-                <CButton style={{}} type="submit">
-                  로그인
-                </CButton>
+                <CButton type="submit">로그인</CButton>
               </div>
             </Form>
           </TabPanel>
@@ -127,16 +135,18 @@ const AuthForm = ({
                   placeholder="이메일을 입력하세요"
                   focusBorderColor="none"
                   onChange={(e) => {
-                    setValue("signInEmail", e.target.value);
+                    setValue("signUpEmail", e.target.value);
                   }}
                 />
                 <CInput
                   type="text"
                   required
                   placeholder="닉네임을 입력하세요"
+                  maxLength={6}
                   focusBorderColor="none"
+                  onKeyUp={inputHandler}
                   onChange={(e) => {
-                    setValue("signInFullName", e.target.value);
+                    setValue("signUpFullName", e.target.value);
                   }}
                 />
                 <CInput
@@ -145,7 +155,7 @@ const AuthForm = ({
                   placeholder="비밀번호를 입력하세요"
                   focusBorderColor="none"
                   onChange={(e) => {
-                    setValue("signInPassword", e.target.value);
+                    setValue("signUpPassword", e.target.value);
                   }}
                 />
                 <CInput

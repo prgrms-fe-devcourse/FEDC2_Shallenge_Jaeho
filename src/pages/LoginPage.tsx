@@ -14,9 +14,9 @@ import { useEffect } from "react";
 export interface FormData {
   logInEmail: string;
   logInPassword: string;
-  signInEmail: string;
-  signInFullName: string;
-  signInPassword: string;
+  signUpEmail: string;
+  signUpFullName: string;
+  signUpPassword: string;
 }
 
 interface LoginResponse {
@@ -59,7 +59,7 @@ const LoginPage = () => {
     } catch (err) {
       toast({
         title: "login failed",
-        description: "로그인 실패했습니다!",
+        description: "로그인에 실패했습니다!",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -68,9 +68,9 @@ const LoginPage = () => {
   });
 
   const onSignUpSubmit = handleSubmit(
-    async ({ signInEmail, signInFullName, signInPassword }) => {
+    async ({ signUpEmail, signUpFullName, signUpPassword }) => {
       try {
-        await fetchPostSignUp(signInEmail, signInFullName, signInPassword);
+        await fetchPostSignUp(signUpEmail, signUpFullName, signUpPassword);
         toast({
           title: "signUp success",
           description: "회원가입 성공했습니다!",
