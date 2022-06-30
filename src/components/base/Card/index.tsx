@@ -55,7 +55,7 @@ const Card = ({
         marginLeft={"24px"}
         overflow="hidden"
         width="35vw"
-        maxWidth="380px"
+        maxWidth="350px"
       >
         <Heading
           size={"md"}

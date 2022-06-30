@@ -11,6 +11,7 @@ const ChipsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: 20px 0;
+  flex-wrap: wrap;
 `;
 
 const Chip = styled(Button)`
@@ -18,6 +19,7 @@ const Chip = styled(Button)`
   font-size: 24px;
   background-color: white;
   color: #838489;
+  margin-bottom: 6px;
 
   &:hover {
     color: white !important;
