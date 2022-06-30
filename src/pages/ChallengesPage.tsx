@@ -8,10 +8,11 @@ import Challenges from "@domain/ChallengesPage/Challenges";
 
 const ChallengesPage = () => {
   usePageTitle("채널");
-  const channelId = window.location.pathname.split("/")[2];
+  const [selectedChannelId, setSelectedChannelId] = useState(
+    window.location.pathname.split("/")[2]
+  );
   const [channels, setChannels] = useState<Channel[]>(); // 채널 목록 데이터전체
   const [challenges, setChallenges] = useState<Post[]>(); // 선택된 채널의 포스트 목록
-  const [channelName, setChannelName] = useState(""); // 선택된 채널 이름만
   const [selectedChannel, setSelectedChannel] = useState<Channel>(); // 선택된 채널 데이터전체
   const [show, setShow] = useState(false);
 
@@ -21,9 +22,7 @@ const ChallengesPage = () => {
       if (status === 200) {
         setChannels(data);
         setSelectedChannel(
-          data.filter((item) => {
-            return item._id === channelId;
-          })[0]
+          data.filter((item) => item._id === selectedChannelId)[0]
         );
       } else {
         alert("다시 시도바랍니다!");
@@ -32,50 +31,29 @@ const ChallengesPage = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedChannel) {
+    if (selectedChannelId) {
       setShow(false);
-      console.log(selectedChannel);
-      setChannelName(selectedChannel.name);
+      void (async () => {
+        const { data, status } = await fetchGetPostListByChannel(
+          selectedChannelId
+        );
+        if (status === 200) setChallenges(data);
+        else alert("다시 시도바랍니다!");
+      })();
     }
-  }, [selectedChannel]);
+    setShow(true);
+  }, [selectedChannelId]);
 
-  useEffect(() => {
-    if (channelName) {
-      console.log(channelName);
-      console.log(channels);
-      const { _id: nextChannelId } = channels.filter((item) => {
-        return item.name === channelName;
-      })[0];
-      console.log(nextChannelId);
-      void (async (nextChannelId) => {
-        const { data, status } = await fetchGetPostListByChannel(nextChannelId);
-        status === 200 ? setChallenges(data) : alert("다시 시도바랍니다!");
-        setShow(true);
-      })(nextChannelId);
-    }
-  }, [channelName]);
-
-  // useEffect(() => {
-  //   void (async () => {
-  //     const channelResult = await fetchGetChannelByName(channelName);
-  //     if (channelResult.data) {
-  //       const channelId = channelResult.data._id;
-  //       const challengesResult = await fetchGetPostListByChannel(channelId);
-  //       setChallenges(challengesResult.data);
-  //     }
-  //   })();
-  // }, [channels]);
-
-  // useEffect(() => {
-  //   void (async () => {
-  //     const channelResult = await fetchGetChannelByName(channelName);
-  //     if (channelResult.data) {
-  //       const channelId = channelResult.data._id;
-  //       const challengesResult = await fetchGetPostListByChannel(channelId);
-  //       setChallenges(challengesResult.data);
-  //     }
-  //   })();
-  // }, [channelName]);
+  const onClickChips = (event) => {
+    const channelDescription = event.target.dataset.description;
+    const clickedChannel = channels.filter(
+      (item) => item.description === channelDescription
+    )[0];
+    setSelectedChannelId(clickedChannel._id);
+    setSelectedChannel(clickedChannel);
+    const path = `/challenges/${clickedChannel._id}`;
+    history.pushState(null, null, path);
+  };
 
   return (
     <>
@@ -83,7 +61,8 @@ const ChallengesPage = () => {
         <>
           <Chips
             names={(channels || []).map((challenge) => challenge.description)}
-            setChannelName={setChannelName}
+            selectedChip={selectedChannel?.description}
+            onClickProp={onClickChips}
           />
           <Challenges posts={challenges || []} />
         </>
