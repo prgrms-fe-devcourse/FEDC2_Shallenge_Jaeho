@@ -1,4 +1,4 @@
-import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import CertificationButton from "@/domain/ChallengePage/CertificationButton";
 
 export default {
   title: "Domain/ChallengePage/CertificationButton",

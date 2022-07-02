@@ -1,9 +1,10 @@
-import { Notification, User } from "src/types";
-import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
-import DefaultText from "@base/DefaultText";
-import useNotifications from "@hooks/quries/useNotifications";
-import usePageTitle from "@hooks/usePageTitle";
+
+import DefaultText from "@/base/DefaultText";
+import NotificationCard from "@/domain/NotificationPage/Notification";
+import useNotifications from "@/hooks/quries/useNotifications";
+import usePageTitle from "@/hooks/usePageTitle";
+import { Notification, User } from "@/types/index";
 
 const NotificationPage = () => {
   usePageTitle("알림");

@@ -1,9 +1,9 @@
+import { Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-import Icon from "@base/Icon";
-import ChakraText from "@base/ChakraText";
-import { Flex } from "@chakra-ui/react";
-import { User } from "src/types";
+import ChakraText from "@/base/ChakraText";
+import Icon from "@/base/Icon";
+import { User } from "@/types/index";
 
 interface Props {
   user: User | null;

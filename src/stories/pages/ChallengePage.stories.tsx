@@ -1,5 +1,6 @@
-import ChallengePage from "@pages/ChallengePage";
 import GlobalStyles from "src/styles/GlobalStyles";
+
+import ChallengePage from "@/pages/ChallengePage";
 export default {
   title: "Pages/ChallengePage",
   compoenent: "ChallengePage",

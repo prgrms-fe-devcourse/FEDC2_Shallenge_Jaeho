@@ -1,5 +1,6 @@
-import Social from "@base/Social";
 import { Center } from "@chakra-ui/react";
+
+import Social from "@/base/Social";
 
 type CommentButtonType = {
   count: number;

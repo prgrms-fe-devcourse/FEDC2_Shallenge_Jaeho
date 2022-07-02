@@ -1,7 +1,8 @@
-import { fetchPostFollowByUserId } from "@api/follow";
 import { Button, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+
+import { fetchPostFollowByUserId } from "@/api/follow";
 
 interface UserSummaryProps {
   introduce: string;

@@ -1,4 +1,4 @@
-import ChallengeChannelRadio from "@domain/CreateChallengePage/ChallengeChannelRadio";
+import ChallengeChannelRadio from "@/domain/CreateChallengePage/ChallengeChannelRadio";
 
 export default {
   title: "Domain/CreateChannelPage/ChallengeChannelRadio",

@@ -1,5 +1,6 @@
 import { Circle } from "@chakra-ui/react";
-import Icon from "@base/Icon";
+
+import Icon from "@/base/Icon";
 
 type activeType = {
   isActive?: boolean;

@@ -1,4 +1,4 @@
-import axios from "@lib/axios";
+import axios from "@/lib/axios";
 
 export const fetchPostFollowByUserId = (userId: string) =>
   axios.post("/follow/create", {

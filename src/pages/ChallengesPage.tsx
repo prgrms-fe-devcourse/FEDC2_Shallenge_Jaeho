@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import Chips from "@domain/ChallengesPage/Chips";
-import { fetchGetChannelByName, fetchGetChannels } from "@api/channel";
-import { Channel, Post } from "src/types";
-import { fetchGetPostListByChannel } from "@api/post";
-import Challenges from "@domain/ChallengesPage/Challenges";
-import usePageTitle from "@hooks/usePageTitle";
+
+import { fetchGetChannelByName, fetchGetChannels } from "@/api/channel";
+import { fetchGetPostListByChannel } from "@/api/post";
+import Challenges from "@/domain/ChallengesPage/Challenges";
+import Chips from "@/domain/ChallengesPage/Chips";
+import usePageTitle from "@/hooks/usePageTitle";
+import { Channel, Post } from "@/types/index";
 
 const ChallengesPage = () => {
   usePageTitle("채널");

@@ -1,6 +1,7 @@
-import axios from "@lib/axios";
 import { AxiosResponse } from "axios";
-import { Channel } from "src/types";
+
+import axios from "@/lib/axios";
+import { Channel } from "@/types/index";
 
 export const fetchGetChannels = () => axios.get("/channels");
 

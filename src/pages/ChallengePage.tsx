@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Circle, Flex } from "@chakra-ui/react";
 import { add, differenceInDays, format } from "date-fns";
 import { useAtom } from "jotai";
-import userAtom from "@store/user";
-import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
-import { fetchPutPost } from "@api/post";
-import { fetchPostNotification } from "@api/notification";
-import usePageTitle from "@hooks/usePageTitle";
-import useGetChallenge from "@hooks/quries/useGetChallenge";
-import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
-import CommentButton from "@domain/ChallengePage/CommentButton";
-import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
-import CertificationTable from "@domain/ChallengePage/CertificationTable";
-import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import { useNavigate } from "react-router-dom";
+
+import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@/api/like";
+import { fetchPostNotification } from "@/api/notification";
+import { fetchPutPost } from "@/api/post";
+import CertificationButton from "@/domain/ChallengePage/CertificationButton";
+import CertificationTable from "@/domain/ChallengePage/CertificationTable";
+import ChallengeReward from "@/domain/ChallengePage/ChallengeReward";
+import CheerUpButton from "@/domain/ChallengePage/CheerUpButton";
+import CommentButton from "@/domain/ChallengePage/CommentButton";
+import useGetChallenge from "@/hooks/quries/useGetChallenge";
+import usePageTitle from "@/hooks/usePageTitle";
+import userAtom from "@/store/user";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);

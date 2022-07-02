@@ -1,5 +1,6 @@
-import Icon from "@base/Icon";
 import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
+
+import Icon from "@/base/Icon";
 
 const Comment = ({
   isGuest = true,

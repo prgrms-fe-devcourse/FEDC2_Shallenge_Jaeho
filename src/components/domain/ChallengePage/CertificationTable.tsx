@@ -1,5 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import CertificationBox from "@domain/ChallengePage/CertificationBox";
+
+import CertificationBox from "@/domain/ChallengePage/CertificationBox";
 
 type CertificationBoxType = {
   day: number;

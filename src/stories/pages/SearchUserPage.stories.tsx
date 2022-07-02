@@ -1,5 +1,5 @@
-import InputLayout from "@layout/InputLayout";
-import SearchUserPage from "@pages/SearchUserPage";
+import InputLayout from "@/layout/InputLayout";
+import SearchUserPage from "@/pages/SearchUserPage";
 export default {
   title: "Pages/SearchUserPage",
   compoenent: "SearchUserPage",

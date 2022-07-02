@@ -1,5 +1,6 @@
-import CommentPage from "@pages/CommentPage";
 import GlobalStyles from "src/styles/GlobalStyles";
+
+import CommentPage from "@/pages/CommentPage";
 export default {
   title: "Pages/CommentPage",
   compoenent: "CommentPage",

@@ -1,4 +1,4 @@
-import ChakraHeading from "@base/ChakraHeading";
+import ChakraHeading from "@/base/ChakraHeading";
 
 export default {
   title: "Component/ChakraHeading",

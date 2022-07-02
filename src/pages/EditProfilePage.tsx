@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { useAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
-import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
-import styled from "@emotion/styled";
-import { fetchPostLogout } from "@api/auth";
-import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
 
-import userAtom from "@store/user";
-import { deleteTokenFromLocalStorage } from "@lib/localStorage";
-import usePageTitle from "@hooks/usePageTitle";
-import { fetchPostUserProfileImage } from "@api/user";
+import { Avatar, Button, Flex, Input, useToast } from "@chakra-ui/react";
+import styled from "@emotion/styled";
+import { useAtom } from "jotai";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+
+import { User } from "../types/index";
+import { fetchPostLogout } from "@/api/auth";
+import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@/api/setting";
+import { fetchPostUserProfileImage } from "@/api/user";
+import usePageTitle from "@/hooks/usePageTitle";
+import axios from "@/lib/axios";
+import { deleteTokenFromLocalStorage } from "@/lib/localStorage";
+import userAtom from "@/store/user";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -135,26 +138,38 @@ const EditProfilePage = () => {
       });
   };
 
+  const { mutate } = useMutation(
+    (fd) => {
+      return axios.post("/users/upload-photo", fd);
+    },
+    {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    }
+  );
+
   const profileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fd = new FormData();
     const imageFile = e.target.files[0];
     fd.append("isCover", "false");
     fd.append("image", imageFile);
+    mutate();
 
-    fetchPostUserProfileImage(fd)
-      .then(() => {
-        toast({
-          title: "프로필 이미지 변경을 성공했습니다!",
-          description: "프로필 이미지 변경 성공",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-        navigate("/my/profile");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    // fetchPostUserProfileImage(fd)
+    //   .then(() => {
+    //     toast({
+    //       title: "프로필 이미지 변경을 성공했습니다!",
+    //       description: "프로필 이미지 변경 성공",
+    //       status: "success",
+    //       duration: 3000,
+    //       isClosable: true,
+    //     });
+    //     navigate("/my/profile");
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   };
 
   return (

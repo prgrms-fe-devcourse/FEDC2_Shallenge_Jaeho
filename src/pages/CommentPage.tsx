@@ -1,19 +1,21 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
+
+import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { useAtom } from "jotai";
-import userAtom from "@store/user";
-import useGetChallenge from "@hooks/quries/useGetChallenge";
+
+import { User } from "../types/index";
 import {
   fetchDeleteCommentByPostId,
   fetchPostCommentByPostId,
-} from "@api/comment";
-import { User } from "../types/index";
-import { fetchPostNotification } from "@api/notification";
-import { Box, Flex, List, ListItem } from "@chakra-ui/react";
-import DefaultText from "@base/DefaultText";
-import Comment from "@domain/CommentPage/Comment";
-import CommentInput from "@domain/CommentPage/CommentInput";
+} from "@/api/comment";
+import { fetchPostNotification } from "@/api/notification";
+import DefaultText from "@/base/DefaultText";
+import Comment from "@/domain/CommentPage/Comment";
+import CommentInput from "@/domain/CommentPage/CommentInput";
+import useGetChallenge from "@/hooks/quries/useGetChallenge";
+import userAtom from "@/store/user";
 
 const CommentPage = () => {
   const [myUser] = useAtom(userAtom);

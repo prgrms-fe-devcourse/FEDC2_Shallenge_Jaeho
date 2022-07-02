@@ -1,5 +1,6 @@
-import Comment from "@domain/CommentPage/Comment";
 import GlobalStyles from "src/styles/GlobalStyles";
+
+import Comment from "@/domain/CommentPage/Comment";
 
 export default {
   title: "Domain/CommentPage/Comment",

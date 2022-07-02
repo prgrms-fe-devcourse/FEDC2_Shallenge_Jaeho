@@ -1,4 +1,4 @@
-import CommentButton from "@domain/ChallengePage/CommentButton";
+import CommentButton from "@/domain/ChallengePage/CommentButton";
 
 export default {
   title: "Component/CommentButton",

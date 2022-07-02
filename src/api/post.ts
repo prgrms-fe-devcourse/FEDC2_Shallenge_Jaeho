@@ -1,4 +1,4 @@
-import axios from "@lib/axios";
+import axios from "@/lib/axios";
 
 export const fetchGetPostListByChannel = (channelId: string) =>
   axios.get(`/posts/channel/${channelId}`);

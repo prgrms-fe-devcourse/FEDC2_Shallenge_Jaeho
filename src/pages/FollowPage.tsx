@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { User } from "src/types";
-import PageTab from "@domain/FollowPage/FollowPageTab";
-import useGetFollowUserList from "@hooks/quries/useGetFollowUserList";
-import { useEffect } from "react";
-import useGetUserById from "@hooks/quries/useGetUser";
+import { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
+
+import PageTab from "@/domain/FollowPage/FollowPageTab";
+import useGetFollowUserList from "@/hooks/quries/useGetFollowUserList";
+import useGetUserById from "@/hooks/quries/useGetUser";
+import { User } from "@/types/index";
 
 const FollowPage = () => {
   //const [user] = useAtom(userAtom);

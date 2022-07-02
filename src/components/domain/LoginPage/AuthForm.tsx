@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { useState } from "react";
+
 import {
   Button,
   Input,
@@ -9,9 +11,9 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { FormData } from "@pages/LoginPage";
-import { useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
+
+import { FormData } from "@/pages/LoginPage";
 
 const TabsContainer = styled.div`
   margin-top: 40px;

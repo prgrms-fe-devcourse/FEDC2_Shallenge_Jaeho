@@ -1,11 +1,13 @@
-import { fetchGetUserById } from "@api/user";
-import UserAvatar from "@domain/ProfilePage/UserAvatar";
-import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+
+import styled from "@emotion/styled";
 import { useLocation } from "react-router-dom";
-import { User } from "src/types";
-import OtherSummary from "@domain/ProfilePage/OtherSummary";
-import OtherChallenges from "@domain/ProfilePage/OtherChallenges";
+
+import { fetchGetUserById } from "@/api/user";
+import OtherChallenges from "@/domain/ProfilePage/OtherChallenges";
+import OtherSummary from "@/domain/ProfilePage/OtherSummary";
+import UserAvatar from "@/domain/ProfilePage/UserAvatar";
+import { User } from "@/types/index";
 
 const UserInfo = styled.div`
   position: relative;
@@ -17,6 +19,7 @@ const UserInfo = styled.div`
 
 const OtherProfilePage = () => {
   const location = useLocation();
+  console.log(location);
   const userId = location.state as string;
   const [user, setUser] = useState<User>();
 

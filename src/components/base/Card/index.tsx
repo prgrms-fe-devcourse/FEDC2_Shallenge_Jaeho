@@ -1,5 +1,7 @@
-import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 import React from "react";
+
+import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+
 import Social from "../Social";
 
 type CardTypes = {

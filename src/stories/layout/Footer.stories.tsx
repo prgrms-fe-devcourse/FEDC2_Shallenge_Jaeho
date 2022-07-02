@@ -1,4 +1,4 @@
-import Footer from "@layout/Footer";
+import Footer from "@/layout/Footer";
 
 export default {
   title: "Layout/Footer",

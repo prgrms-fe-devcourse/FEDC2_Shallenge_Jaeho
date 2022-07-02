@@ -1,7 +1,8 @@
-import styled from "@emotion/styled";
-import ChakraText from "@base/ChakraText";
-import ChakraHeading from "@base/ChakraHeading";
 import { Flex } from "@chakra-ui/react";
+import styled from "@emotion/styled";
+
+import ChakraHeading from "@/base/ChakraHeading";
+import ChakraText from "@/base/ChakraText";
 
 type ChallengeRewardTypes = {
   startDate: string;

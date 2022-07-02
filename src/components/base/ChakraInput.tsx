@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Input } from "@chakra-ui/react";
 import { useState } from "react";
+
+import { Input } from "@chakra-ui/react";
 
 type inputTypes = {
   placeholder: string;

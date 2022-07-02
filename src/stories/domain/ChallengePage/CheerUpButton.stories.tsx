@@ -1,4 +1,4 @@
-import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
+import CheerUpButton from "@/domain/ChallengePage/CheerUpButton";
 
 export default {
   title: "Component/CheerUpButton",

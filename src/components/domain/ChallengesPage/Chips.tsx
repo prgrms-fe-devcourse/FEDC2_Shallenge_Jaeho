@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import { Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
 
 interface ChipsProps {
   names: string[];

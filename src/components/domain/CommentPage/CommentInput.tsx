@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { useState } from "react";
+
 import { Circle, Flex, Textarea } from "@chakra-ui/react";
-import Icon from "@base/Icon";
+
+import Icon from "@/base/Icon";
 
 type commentInputTypes = {
   onValueChange?: (param: string) => void;

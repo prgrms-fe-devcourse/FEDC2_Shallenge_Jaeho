@@ -1,4 +1,4 @@
-import axios from "@lib/axios";
+import axios from "@/lib/axios";
 
 export const fetchPostLikeByPostId = (postId: string) =>
   axios.post("/likes/create", {

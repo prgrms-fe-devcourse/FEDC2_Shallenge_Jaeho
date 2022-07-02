@@ -1,4 +1,4 @@
-import StartDateCalendar from "@domain/CreateChallengePage/StartDateCalendar";
+import StartDateCalendar from "@/domain/CreateChallengePage/StartDateCalendar";
 
 export default {
   title: "Domain/CreateChannelPage/StartDateCalendar",

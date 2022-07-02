@@ -1,4 +1,4 @@
-import ChannelRadio from "@domain/ChannelPage/ChannelRadio";
+import ChannelRadio from "@/domain/ChannelPage/ChannelRadio";
 
 export default {
   title: "Domain/ChannelPage/ChannelRadio",

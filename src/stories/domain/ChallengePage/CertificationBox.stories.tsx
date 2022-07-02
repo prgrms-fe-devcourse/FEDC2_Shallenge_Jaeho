@@ -1,4 +1,4 @@
-import CertificationBox from "@domain/ChallengePage/CertificationBox";
+import CertificationBox from "@/domain/ChallengePage/CertificationBox";
 
 export default {
   title: "Domain/ChallengePage/CertificationBox",

@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
-import { fetchGetFollowUserList } from "@api/user";
+
+import { fetchGetFollowUserList } from "@/api/user";
 
 const useGetFollowUserList = (followUserIdList: string[]) => {
   return useQuery(["followUserList", followUserIdList], () =>

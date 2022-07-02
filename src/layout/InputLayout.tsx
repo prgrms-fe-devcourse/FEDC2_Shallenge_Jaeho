@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate, Outlet } from "react-router-dom";
-import { useAtom } from "jotai";
 
-import Header from "@layout/Header";
-import Footer from "@layout/Footer";
-import ChakraInput from "@base/ChakraInput";
 import { Box, Flex } from "@chakra-ui/react";
-import userAtom from "@store/user";
-import searchInputAtom from "@store/searchInput";
+import { useAtom } from "jotai";
+import { useNavigate, Outlet } from "react-router-dom";
+
+import ChakraInput from "@/base/ChakraInput";
+import Footer from "@/layout/Footer";
+import Header from "@/layout/Header";
+import searchInputAtom from "@/store/searchInput";
+import userAtom from "@/store/user";
 
 const InputLayout = () => {
   const navigate = useNavigate();

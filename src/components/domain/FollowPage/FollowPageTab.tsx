@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useNavigate } from "react-router-dom";
-import { User } from "src/types";
+import { useState } from "react";
+
 import {
   Tab,
   TabList,
@@ -10,9 +10,11 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
-import Card from "@base/Card";
-import DefaultText from "@base/DefaultText";
+import { useNavigate } from "react-router-dom";
+
+import Card from "@/base/Card";
+import DefaultText from "@/base/DefaultText";
+import { User } from "@/types/index";
 
 const TabsContainer = styled.div`
   margin-top: 40px;

@@ -1,4 +1,4 @@
-import ChakraInput from "@base/ChakraInput";
+import ChakraInput from "@/base/ChakraInput";
 
 export default {
   title: "Component/ChakraInput",
