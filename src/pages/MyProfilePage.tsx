@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useAtom } from "jotai";
-
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import MyChallenges from "@domain/ProfilePage/MyChallenges";
 import MySummary from "@domain/ProfilePage/MySummary";
@@ -18,6 +17,7 @@ const UserInfo = styled.div`
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);
   usePageTitle(myUser.fullName);
+
   return (
     <>
       <UserInfo>
