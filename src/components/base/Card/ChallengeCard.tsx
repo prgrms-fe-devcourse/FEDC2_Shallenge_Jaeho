@@ -1,4 +1,4 @@
-type ChallangeCardProps = {
+type ChallengeCardProps = {
   title: string;
   reward: string;
   avatarSrc: string;
@@ -8,7 +8,7 @@ type ChallangeCardProps = {
   onClick?: () => void;
 };
 
-const ChallangeCard = ({
+const ChallengeCard = ({
   avatarSrc,
   title,
   reward,
@@ -16,8 +16,8 @@ const ChallangeCard = ({
   cheerCnt,
   styleProps = {},
   onClick,
-}: ChallangeCardProps) => {
+}: ChallengeCardProps) => {
   return <div></div>;
 };
 
-export default ChallangeCard;
+export default ChallengeCard;
