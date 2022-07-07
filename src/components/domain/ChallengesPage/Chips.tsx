@@ -9,9 +9,12 @@ interface ChipsProps {
 
 const ChipsContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
   margin: 20px 0;
-  flex-wrap: wrap;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Chip = styled(Button)`
@@ -19,7 +22,7 @@ const Chip = styled(Button)`
   font-size: 24px;
   background-color: white;
   color: #838489;
-  margin-bottom: 6px;
+  margin: 0 8px;
 
   &:hover {
     color: white !important;
