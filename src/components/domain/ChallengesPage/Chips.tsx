@@ -10,7 +10,8 @@ interface ChipsProps {
 const ChipsContainer = styled.div`
   display: flex;
   margin: 20px 0;
-  overflow-y: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
@@ -19,6 +20,7 @@ const ChipsContainer = styled.div`
 
 const Chip = styled(Button)`
   flex: 0 0 auto;
+  display: inline-block;
   font-size: 24px;
   background-color: white;
   color: #838489;
