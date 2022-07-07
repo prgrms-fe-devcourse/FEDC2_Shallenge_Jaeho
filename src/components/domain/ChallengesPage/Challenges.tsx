@@ -39,6 +39,7 @@ const Challenges = ({ posts }: ChallengesProps) => {
                 commentCount={challenge.comments.length}
                 cheerCount={challenge.likes.length}
                 avatarSrc={challenge.author.image}
+                author={challenge.author.fullName}
               ></Card>
             </CardContainer>
           );

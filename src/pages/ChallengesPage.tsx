@@ -9,38 +9,77 @@ import { Channel, Post } from "@/types/index";
 
 const ChallengesPage = () => {
   usePageTitle("채널");
-  const [channels, setChannels] = useState<Channel[]>();
-  const [challenges, setChallenges] = useState<Post[]>();
-  const [channelName, setChannelName] = useState("📖 독서");
+  const [selectedChannelId, setSelectedChannelId] = useState(
+    window.location.pathname.split("/")[2]
+  );
+  const [channels, setChannels] = useState<Channel[]>(); // 채널 목록 데이터전체
+  const [challenges, setChallenges] = useState<Post[]>(); // 선택된 채널의 포스트 목록
+  const [selectedChannel, setSelectedChannel] = useState<Channel>(); // 선택된 채널 데이터전체
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     void (async () => {
-      const result = await fetchGetChannels();
-      if (result.data) {
-        setChannels(result.data);
+      const { data, status } = await fetchGetChannels();
+      if (status === 200) {
+        setChannels(data);
+        setSelectedChannel(
+          data.filter((item) => item._id === selectedChannelId)[0]
+        );
+      } else {
+        alert("다시 시도바랍니다!");
       }
     })();
+    window.addEventListener("popstate", windowListener);
+    return () => {
+      window.removeEventListener("popstate", windowListener);
+    };
   }, []);
 
   useEffect(() => {
-    void (async () => {
-      const channelResult = await fetchGetChannelByName(channelName);
-      if (channelResult.data) {
-        const channelId = channelResult.data._id;
-        const challengesResult = await fetchGetPostListByChannel(channelId);
-        console.log(challengesResult.data);
-        setChallenges(challengesResult.data);
-      }
-    })();
-  }, [channelName]);
+    if (selectedChannelId) {
+      setShow(false);
+      void (async () => {
+        const { data, status } = await fetchGetPostListByChannel(
+          selectedChannelId
+        );
+        if (status === 200) {
+          setChallenges(data);
+          const clickedChannel = channels.filter(
+            (item) => item._id === selectedChannelId
+          )[0];
+          setSelectedChannel(clickedChannel);
+        } else alert("다시 시도바랍니다!");
+      })();
+    }
+    setShow(true);
+  }, [selectedChannelId]);
+
+  const onClickChips = (event) => {
+    const channelDescription = event.target.dataset.description;
+    const { _id } = channels.filter(
+      (item) => item.description === channelDescription
+    )[0];
+    setSelectedChannelId(_id);
+    history.pushState(null, null, `/challenges/${_id}`);
+  };
+
+  const windowListener = () => {
+    const clickedChannel = window.location.pathname.split("/")[2];
+    setSelectedChannelId(clickedChannel);
+  };
 
   return (
     <>
-      <Chips
-        names={(channels || []).map((challenge) => challenge.name)}
-        setChannelName={setChannelName}
-      />
-      <Challenges posts={challenges || []} />
+      {show && (
+        <>
+          <Chips
+            names={(channels || []).map((challenge) => challenge.description)}
+            selectedChip={selectedChannel?.description}
+            onClickProp={onClickChips}
+          />
+          <Challenges posts={challenges || []} />
+        </>
+      )}
     </>
   );
 };

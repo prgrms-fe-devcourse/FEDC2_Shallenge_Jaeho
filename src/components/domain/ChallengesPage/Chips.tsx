@@ -5,13 +5,15 @@ import styled from "@emotion/styled";
 
 interface ChipsProps {
   names: string[];
-  setChannelName: React.Dispatch<React.SetStateAction<string>>;
+  selectedChip: string;
+  onClickProp: React.MouseEventHandler;
 }
 
 const ChipsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: 20px 0;
+  flex-wrap: wrap;
 `;
 
 const Chip = styled(Button)`
@@ -19,6 +21,7 @@ const Chip = styled(Button)`
   font-size: 24px;
   background-color: white;
   color: #838489;
+  margin-bottom: 6px;
 
   &:hover {
     color: white !important;
@@ -26,23 +29,19 @@ const Chip = styled(Button)`
   }
 `;
 
-const Chips = ({ names, setChannelName }: ChipsProps) => {
-  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
-
+const Chips = ({ names, selectedChip, onClickProp }: ChipsProps) => {
   return (
     <ChipsContainer>
       {names.length !== 0 &&
-        names.map((name, index) => (
+        names.map((name) => (
           <Chip
             key={name}
-            onClick={() => {
-              setChannelName(name);
-              setSelectedChannelIndex(index);
-            }}
+            data-description={name}
             style={{
-              color: selectedChannelIndex === index ? "white" : "#838489",
-              backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
+              color: selectedChip === name ? "white" : "#838489",
+              backgroundColor: selectedChip === name ? "#ff7900" : "",
             }}
+            onClick={onClickProp}
           >
             {name}
           </Chip>

@@ -19,10 +19,10 @@ import useGetChallenge from "@/hooks/quries/useGetChallenge";
 import usePageTitle from "@/hooks/usePageTitle";
 import userAtom from "@/store/user";
 
+
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
-  usePageTitle("30일 챌린지 만들기");
-
+  const [, setPageTitle] = useAtom(titleAtom);
   const navigate = useNavigate();
   const [isGuest, setIsGuest] = useState(true);
   const [reward, setReward] = useState("");
@@ -42,17 +42,26 @@ const ChallengePage = () => {
   const [cheerUpId, setCheerUpId] = useState("");
   const [authorId, setAuthorId] = useState("");
   const [show, setShow] = useState(false);
-
   const [, , channelId, postId] = window.location.pathname.split("/");
   const { data: Contents } = useGetChallenge(postId);
+
   useEffect(() => {
     if (Contents?.status === 200) {
       const { author, title: Content, comments, likes } = Contents?.data;
-      const { days, reward, startDate: date } = JSON.parse(Content);
+      const {
+        days,
+        reward,
+        startDate: date,
+        challengeTitle,
+      } = JSON.parse(Content);
+
+      setPageTitle(challengeTitle);
+
       const calculatedPresentDay = differenceInDays(
         new Date(format(new Date(), "yyyy-MM-dd")),
         new Date(date)
       );
+
       setAuthorId(author._id);
       validateGuest(author._id);
       setReward(reward);

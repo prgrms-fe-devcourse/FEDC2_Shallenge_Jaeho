@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import usePageTitle from "@hooks/usePageTitle";
 
 import { fetchPostPostByChannelId } from "@/api/post";
 import ChakraInput from "@/base/ChakraInput";
@@ -16,6 +17,8 @@ const challengeTable = Array.from({ length: 30 }, (_, index) => ({
 
 const CreateChallengePage = () => {
   const navigate = useNavigate();
+  usePageTitle("30일 챌린지 만들기");
+
   const [challengeTitle, setChallengeTitle] = useState("");
   const [channel, setChannel] = useState("");
   const [startDate, setStartDate] = useState("");

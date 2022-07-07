@@ -79,6 +79,7 @@ const HomePage = () => {
                   cheerCount={post.likes.length}
                   avatarSrc={post.author.image}
                   margin="16px 0"
+                  author={post.author.fullName}
                   onClick={() => {
                     onClickChallenge(post.channel._id, post._id);
                   }}
