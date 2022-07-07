@@ -1,11 +1,15 @@
 import axios from "@lib/axios";
+import { User } from "src/types";
 
 export const fetchGetUserList = () => axios.get("/users/get-users");
 
 export const fetchGetOnlineUserList = () => axios.get("/users/online-users");
 
-export const fetchGetUserById = (userId: string) =>
-  axios.get(`/users/${userId}`);
+export const fetchGetUserById = async (userId: string) => {
+  const { data } = await axios.get<User>(`/users/${userId}`);
+
+  return data;
+};
 
 export const fetchGetFollowUserList = async (followUserIdList: string[]) => {
   return await Promise.all(
