@@ -22,7 +22,7 @@ const ChallengesPage = () => {
       if (status === 200) {
         setChannels(data);
         setSelectedChannel(
-          data.filter((item) => item._id === selectedChannelId)[0]
+          data.filter((item: Channel) => item._id === selectedChannelId)[0]
         );
       } else {
         alert("다시 시도바랍니다!");
@@ -53,8 +53,9 @@ const ChallengesPage = () => {
     setShow(true);
   }, [selectedChannelId]);
 
-  const onClickChips = (event) => {
-    const channelDescription = event.target.dataset.description;
+  const onClickChips = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const target = event.target as HTMLButtonElement;
+    const channelDescription = target.dataset.description;
     const { _id } = channels.filter(
       (item) => item.description === channelDescription
     )[0];
