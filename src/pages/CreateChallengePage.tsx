@@ -7,6 +7,7 @@ import useGetChannelList from "@hooks/quries/useGetChannelList";
 import { fetchPostPostByChannelId } from "@api/post";
 import { useNavigate } from "react-router-dom";
 import usePageTitle from "@hooks/usePageTitle";
+import { Channel } from "src/types";
 
 const challengeTable = Array.from({ length: 30 }, (_, index) => ({
   day: index,
@@ -31,7 +32,7 @@ const CreateChallengePage = () => {
     setChallengeTitle(newChallengeTitle.trim());
   };
   const onChannelChange = (newChannel: string) => {
-    const channelId = channelList.data.filter(({ description }: any) => {
+    const channelId = channelList.data.filter(({ description }: Channel) => {
       return description === newChannel;
     })[0]._id;
     setChannel(channelId);
@@ -61,8 +62,13 @@ const CreateChallengePage = () => {
     }
   };
 
-  const submitChallengeForm = async (newChallenge: any) => {
-    const { status }: any = await fetchPostPostByChannelId({
+  const submitChallengeForm = async (newChallenge: {
+    challengeTitle: string;
+    reward: string;
+    days: { day: number; isChecked: boolean }[];
+    startDate: string;
+  }) => {
+    const { status } = await fetchPostPostByChannelId({
       title: JSON.stringify(newChallenge),
       image: null,
       channelId: channel,
@@ -98,7 +104,7 @@ const CreateChallengePage = () => {
         {channelList && (
           <ChallengeChannelRadio
             onChangeValue={onChannelChange}
-            channelList={channelList.data.map((channel: any) => {
+            channelList={channelList.data.map((channel: Channel) => {
               return channel.description;
             })}
           />
