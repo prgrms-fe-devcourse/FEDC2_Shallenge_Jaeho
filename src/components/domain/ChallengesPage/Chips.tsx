@@ -9,8 +9,6 @@ interface Props {
 
 const Chips = ({ names, setChannelName }: Props) => {
   const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
-  console.log(window.innerWidth);
-
   return (
     <ChipsContainer>
       {names.length !== 0 &&
