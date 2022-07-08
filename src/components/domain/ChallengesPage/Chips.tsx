@@ -1,11 +1,45 @@
-import { Button } from "@chakra-ui/react";
+import { background, Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
 
-interface ChipsProps {
+interface Props {
   names: string[];
   setChannelName: React.Dispatch<React.SetStateAction<string>>;
 }
+
+const Chips = ({ names, setChannelName }: Props) => {
+  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
+  console.log(window.innerWidth);
+
+  return (
+    <ChipsContainer>
+      {names.length !== 0 &&
+        names.map((name, index) => (
+          <Button
+            flex="0 0 auto"
+            fontSize={{ base: "18px", sm: "24px" }}
+            backgroundColor="white"
+            color="#838489"
+            margin="0 8px"
+            _hover={{ color: "#ffffff", backgroundColor: "#ffaa6d" }}
+            key={name}
+            onClick={() => {
+              setChannelName(name);
+              setSelectedChannelIndex(index);
+            }}
+            style={{
+              color: selectedChannelIndex === index ? "white" : "#838489",
+              backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
+            }}
+          >
+            {name}
+          </Button>
+        ))}
+    </ChipsContainer>
+  );
+};
+
+export default Chips;
 
 const ChipsContainer = styled.div`
   display: flex;
@@ -21,47 +55,3 @@ const ChipsContainer = styled.div`
     width: calc(100vw - 30px);
   }
 `;
-
-const Chip = styled(Button)`
-  flex: 0 0 auto;
-  font-size: 24px;
-  background-color: white;
-  color: #838489;
-  margin: 0 8px;
-
-  &:hover {
-    color: white !important;
-    background-color: #ffaa6d;
-  }
-  @media all and (max-width: 480px) {
-    font-size: 18px;
-  }
-`;
-
-const Chips = ({ names, setChannelName }: ChipsProps) => {
-  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
-  console.log(window.innerWidth);
-
-  return (
-    <ChipsContainer>
-      {names.length !== 0 &&
-        names.map((name, index) => (
-          <Chip
-            key={name}
-            onClick={() => {
-              setChannelName(name);
-              setSelectedChannelIndex(index);
-            }}
-            style={{
-              color: selectedChannelIndex === index ? "white" : "#838489",
-              backgroundColor: selectedChannelIndex === index ? "#ff7900" : "",
-            }}
-          >
-            {name}
-          </Chip>
-        ))}
-    </ChipsContainer>
-  );
-};
-
-export default Chips;

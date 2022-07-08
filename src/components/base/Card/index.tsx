@@ -18,7 +18,6 @@ interface Props {
 
 const Card = ({
   type,
-  avatarSize = "lg",
   avatarSrc,
   heading,
   text,
@@ -29,27 +28,22 @@ const Card = ({
   styleProps = {},
   onClick,
 }: Props) => {
-  const CardStyle: React.CSSProperties = {
-    position: "relative",
-    borderRadius: "5px",
-    width: "100%",
-    maxWidth: "610px",
-    height: type === "challenge" ? 120 : 96,
-    backgroundColor: "#ffffff",
-    alignItems: "center",
-    padding: 16,
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-  };
-
   return (
     <Flex
-      style={{ ...CardStyle, ...styleProps }}
+      position="relative"
+      borderRadius="5px"
+      height={type === "challenge" ? "120px" : "96px"}
+      backgroundColor="#ffffff"
+      alignItems="center"
+      padding="16px"
+      boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+      style={{ ...styleProps }}
       margin={margin}
       _hover={{ cursor: "pointer" }}
       onClick={onClick}
     >
       <Flex flexDirection="column" width="80px" alignItems="center">
-        <Avatar size={avatarSize} src={avatarSrc}></Avatar>
+        <Avatar size="lg" src={avatarSrc}></Avatar>
         {type === "challenge" ? (
           <Text textAlign="center" size="xs">
             {author}
@@ -62,7 +56,7 @@ const Card = ({
         flexDirection="column"
         marginLeft={"24px"}
         overflow="hidden"
-        width="35vw"
+        width={{ base: "30vw", sm: "35vw" }}
         maxWidth="350px"
       >
         <Heading
