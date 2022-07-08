@@ -22,7 +22,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (data) {
-      setChannelsList(data.data as Array<Channel>);
+      setChannelsList(data);
     }
   }, [data]);
 
@@ -32,7 +32,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (res) {
-      setPostLists(res.map((r) => r.data));
+      setPostLists(res);
     }
   }, [res]);
 
