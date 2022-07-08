@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Circle, Flex } from "@chakra-ui/react";
@@ -16,6 +14,7 @@ import CommentButton from "@domain/ChallengePage/CommentButton";
 import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
+import { Like } from "src/types";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);
@@ -44,7 +43,7 @@ const ChallengePage = () => {
 
   useEffect(() => {
     if (Contents?.status === 200) {
-      const { author, title: Content, comments, likes } = Contents?.data;
+      const { author, title: Content, comments, likes } = Contents.data;
       const {
         days,
         reward,
@@ -78,7 +77,7 @@ const ChallengePage = () => {
     setShow(true);
   }, [presentDay]);
 
-  const validateGuest = (postUserId) => {
+  const validateGuest = (postUserId: string) => {
     if (myUser && myUser._id === postUserId) setIsGuest(false);
   };
   const validateDate = (calculatedPresentDay: number) => {
@@ -86,7 +85,7 @@ const ChallengePage = () => {
     if (calculatedPresentDay < 0) setPresentDay(0);
     if (29 < calculatedPresentDay) setPresentDay(30);
   };
-  const checkIsCheered = (cheerUpList) => {
+  const checkIsCheered = (cheerUpList: Like[]) => {
     const userCheerUp = cheerUpList.filter((cheerUpUser) => {
       return myUser && cheerUpUser.user === myUser._id;
     });
@@ -98,7 +97,7 @@ const ChallengePage = () => {
     }
   };
 
-  const setCheerUpYes = (cheerUpId) => {
+  const setCheerUpYes = (cheerUpId: string) => {
     setCheerUpCount(cheerUpCount + 1);
     setIsCheered(true);
     setCheerUpId(cheerUpId);
@@ -129,7 +128,7 @@ const ChallengePage = () => {
     }
   };
 
-  const onCheerUpNotificationEvent = async (cheerUpId) => {
+  const onCheerUpNotificationEvent = async (cheerUpId: string) => {
     const { status } = await fetchPostNotification({
       notificationType: "LIKE",
       notificationTypeId: cheerUpId,
@@ -145,13 +144,13 @@ const ChallengePage = () => {
       item.day === presentDay ? { ...item, isChecked: true } : item
     );
 
-    const { title } = Contents?.data;
+    const { title } = Contents.data;
     const newTitle = { ...JSON.parse(title), days: updatedDays };
 
     const updatedPost = {
       postId,
       title: JSON.stringify(newTitle),
-      image: null,
+      image: null as null,
       channelId,
     };
 
@@ -190,7 +189,11 @@ const ChallengePage = () => {
               >
                 <CommentButton count={commentCount}></CommentButton>
               </Flex>
-              <Flex onClick={onCheerUpEvent}>
+              <Flex
+                onClick={() => {
+                  void onCheerUpEvent();
+                }}
+              >
                 <CheerUpButton
                   isCheered={isCheered}
                   count={cheerUpCount}
@@ -207,7 +210,9 @@ const ChallengePage = () => {
           transform="translate(-50%, 0%)"
           bottom="58px"
           zIndex={2}
-          onClick={onCertificationEvent}
+          onClick={() => {
+            void onCertificationEvent();
+          }}
         >
           <CertificationButton
             isActive={!days[presentDay].isChecked}
