@@ -1,4 +1,3 @@
-import { fetchGetUserById } from "@api/user";
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";

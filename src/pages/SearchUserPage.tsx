@@ -1,5 +1,5 @@
 import QueryString from "qs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { User } from "src/types";
 import { Flex } from "@chakra-ui/react";

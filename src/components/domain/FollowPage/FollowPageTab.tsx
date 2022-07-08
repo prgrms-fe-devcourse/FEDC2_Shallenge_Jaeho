@@ -14,23 +14,16 @@ import { useState } from "react";
 import Card from "@base/Card";
 import DefaultText from "@base/DefaultText";
 
-const TabsContainer = styled.div`
-  margin-top: 40px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  border-radius: 6px 0;
-`;
-
-type FollowPageProp = {
+interface Props {
   followingList: User[];
   followersList: User[];
-};
+}
 
-const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
+const FollowPageTab = ({ followingList, followersList }: Props) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const navigate = useNavigate();
-  const handleClickUser = (userId: string): void => {
-    navigate(`/profile/${userId}`);
+  const handleClickUser = (userId: string) => {
+    navigate(`/profile/${userId}`, { state: userId });
   };
 
   return (
@@ -47,7 +40,7 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
             }}
             onClick={() => setSelectedTab(0)}
           >
-            팔로우
+            팔로워
           </Tab>
           <Tab
             fontSize={24}
@@ -59,28 +52,26 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
             }}
             onClick={() => setSelectedTab(1)}
           >
-            팔로워
+            팔로잉
           </Tab>
         </TabList>
         <TabPanels style={{ backgroundColor: "white" }}>
           <TabPanel>
             {followingList.length ? (
               <Flex flexDirection="column">
-                {followingList.map((user) => {
-                  return (
-                    <Card
-                      type="user"
-                      heading={user.fullName}
-                      text={user.coverImage ?? "자기소개 없음"}
-                      avatarSrc={user.image}
-                      styleProps={{ boxShadow: "none" }}
-                      onClick={() => {
-                        handleClickUser(user._id);
-                      }}
-                      key={user._id}
-                    ></Card>
-                  );
-                })}
+                {followingList.map((user) => (
+                  <Card
+                    type="user"
+                    heading={user.fullName}
+                    text={user.coverImage ?? "자기소개 없음"}
+                    avatarSrc={user.image}
+                    styleProps={{ boxShadow: "none" }}
+                    onClick={() => {
+                      handleClickUser(user._id);
+                    }}
+                    key={user._id}
+                  ></Card>
+                ))}
               </Flex>
             ) : (
               <DefaultText>아직 팔로잉이 없어요!</DefaultText>
@@ -115,3 +106,10 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
 };
 
 export default FollowPageTab;
+
+const TabsContainer = styled.div`
+  margin-top: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 6px 0;
+`;
