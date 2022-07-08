@@ -1,9 +1,8 @@
 import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import Social from "../Social";
-import styled from "@emotion/react";
 
-type CardTypes = {
+interface Props {
   type: "challenge" | "user";
   heading: string;
   text: string;
@@ -15,7 +14,7 @@ type CardTypes = {
   author?: string;
   styleProps?: object;
   onClick?: () => void;
-};
+}
 
 const Card = ({
   type,
@@ -29,7 +28,7 @@ const Card = ({
   author = "username",
   styleProps = {},
   onClick,
-}: CardTypes) => {
+}: Props) => {
   const CardStyle: React.CSSProperties = {
     position: "relative",
     borderRadius: "5px",
@@ -67,7 +66,7 @@ const Card = ({
         maxWidth="350px"
       >
         <Heading
-          size={"md"}
+          size={{ base: "sm", sm: "md" }}
           marginBottom={type === "challenge" ? "16px" : "8px"}
           overflow="hidden"
           whiteSpace="nowrap"
@@ -76,7 +75,7 @@ const Card = ({
           {heading}
         </Heading>
         <Text
-          fontSize={"md"}
+          fontSize={{ base: "sm", sm: "md" }}
           overflow="hidden"
           whiteSpace="nowrap"
           textOverflow="ellipsis"

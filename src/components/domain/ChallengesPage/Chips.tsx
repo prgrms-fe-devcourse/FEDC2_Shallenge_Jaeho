@@ -9,6 +9,7 @@ interface ChipsProps {
 
 const ChipsContainer = styled.div`
   display: flex;
+  width: 100%;
   margin: 20px 0;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -16,11 +17,13 @@ const ChipsContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  @media all and (max-width: 640px) {
+    width: calc(100vw - 30px);
+  }
 `;
 
 const Chip = styled(Button)`
   flex: 0 0 auto;
-  display: inline-block;
   font-size: 24px;
   background-color: white;
   color: #838489;
@@ -30,10 +33,14 @@ const Chip = styled(Button)`
     color: white !important;
     background-color: #ffaa6d;
   }
+  @media all and (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const Chips = ({ names, setChannelName }: ChipsProps) => {
   const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
+  console.log(window.innerWidth);
 
   return (
     <ChipsContainer>
