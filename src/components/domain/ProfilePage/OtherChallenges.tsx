@@ -50,6 +50,7 @@ const OtherChallenges = ({ challenges }: UserChallengesProps) => {
             >
               <Card
                 type="challenge"
+                userInfo={false}
                 heading={jsonObject.challengeTitle}
                 text={jsonObject.reward}
                 commentCount={challenge.comments.length}

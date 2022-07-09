@@ -1,4 +1,6 @@
-type ChallengeCardProps = {
+import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import Card from "@base/Card";
+interface Props {
   title: string;
   reward: string;
   avatarSrc: string;
@@ -6,7 +8,7 @@ type ChallengeCardProps = {
   cheerCnt: number;
   styleProps?: object;
   onClick?: () => void;
-};
+}
 
 const ChallengeCard = ({
   avatarSrc,
@@ -16,7 +18,7 @@ const ChallengeCard = ({
   cheerCnt,
   styleProps = {},
   onClick,
-}: ChallengeCardProps) => {
+}: Props) => {
   return <div></div>;
 };
 
