@@ -13,7 +13,7 @@ const SearchUserPage = () => {
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
   const [userList, setUserList] = useState<User[]>([]);
-  const { data: allUserList, isLoading, error } = useGetUserList();
+  const { data: allUserList, isLoading } = useGetUserList();
 
   useEffect(() => {
     if (allUserList) {
@@ -21,9 +21,6 @@ const SearchUserPage = () => {
         user.fullName.match(new RegExp(userName, "i"))
       );
       setUserList(newUserList);
-    }
-    if (error) {
-      alert(error);
     }
   }, [userName, allUserList]);
 
