@@ -64,11 +64,15 @@ const OtherSummary = ({
       <IntroduceText textAlign="center">{introduce}</IntroduceText>
       <FollowContainer>
         <div>
-          <Text onClick={handleFollowingClick}>{followerCount}</Text>
+          <Text cursor="pointer" onClick={handleFollowingClick}>
+            {followerCount}
+          </Text>
           <div>팔로워</div>
         </div>
         <div>
-          <Text onClick={handleFollowingClick}>{followingCount}</Text>
+          <Text cursor="pointer" onClick={handleFollowingClick}>
+            {followingCount}
+          </Text>
           <div>팔로잉</div>
         </div>
       </FollowContainer>
