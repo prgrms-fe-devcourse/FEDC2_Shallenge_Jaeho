@@ -6,14 +6,6 @@ import MySummary from "@domain/ProfilePage/MySummary";
 import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
 
-const UserInfo = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 32px;
-`;
-
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);
   usePageTitle(myUser.fullName);
@@ -35,3 +27,11 @@ const MyProfilePage = () => {
 };
 
 export default MyProfilePage;
+
+const UserInfo = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 32px;
+`;
