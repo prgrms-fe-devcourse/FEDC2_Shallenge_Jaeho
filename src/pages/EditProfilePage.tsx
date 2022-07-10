@@ -100,6 +100,7 @@ const EditProfilePage = () => {
       onSuccess: (data: User) => {
         setMyUser(data);
       },
+      mutationKey: "uploadProfileImage",
     }
   );
 
