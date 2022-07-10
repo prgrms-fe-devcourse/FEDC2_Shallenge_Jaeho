@@ -13,60 +13,6 @@ import usePageTitle from "@hooks/usePageTitle";
 import { fetchPostUserProfileImage } from "@api/user";
 import { useMutation } from "react-query";
 
-const EditProfilePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  margin-top: 40px;
-  padding-top: 40px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const ChangeButton = styled(Button)`
-  color: white;
-  background-color: #ffaa6d;
-  margin: 12px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
-`;
-
-const FormContainer = styled.div`
-  margin-top: 36px;
-  margin-bottom: 36px;
-`;
-
-const ProfileImageButton = styled.label`
-  padding: 6px 25px;
-  background-color: #ff6600;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-`;
-
-const CFlex = styled(Flex)`
-  align-items: center;
-`;
-
-const InfoText = styled.div`
-  width: 100px;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-const CInput = styled(Input)`
-  width: 70%;
-  outline: none;
-`;
-
-const LogoutButton = styled(Button)`
-  color: #838489;
-  background-color: #f4f6f8;
-  margin-bottom: 40px;
-`;
-
 const EditProfilePage = () => {
   const toast = useToast();
   usePageTitle("프로필 설정");
@@ -204,3 +150,57 @@ const EditProfilePage = () => {
 };
 
 export default EditProfilePage;
+
+const EditProfilePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  margin-top: 40px;
+  padding-top: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const ChangeButton = styled(Button)`
+  color: white;
+  background-color: #ffaa6d;
+  margin: 12px;
+
+  &:hover {
+    background-color: #ff7900;
+  }
+`;
+
+const FormContainer = styled.div`
+  margin-top: 36px;
+  margin-bottom: 36px;
+`;
+
+const ProfileImageButton = styled.label`
+  padding: 6px 25px;
+  background-color: #ff6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+`;
+
+const CFlex = styled(Flex)`
+  align-items: center;
+`;
+
+const InfoText = styled.div`
+  width: 100px;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+const CInput = styled(Input)`
+  width: 70%;
+  outline: none;
+`;
+
+const LogoutButton = styled(Button)`
+  color: #838489;
+  background-color: #f4f6f8;
+  margin-bottom: 40px;
+`;
