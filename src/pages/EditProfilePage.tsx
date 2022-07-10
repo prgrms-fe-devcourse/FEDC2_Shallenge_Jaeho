@@ -11,6 +11,7 @@ import userAtom from "@store/user";
 import { deleteTokenFromLocalStorage } from "@lib/localStorage";
 import usePageTitle from "@hooks/usePageTitle";
 import { fetchPostUserProfileImage } from "@api/user";
+import { useMutation } from "react-query";
 
 const EditProfilePageContainer = styled.div`
   display: flex;
@@ -135,14 +136,20 @@ const EditProfilePage = () => {
       });
   };
 
+  const uploadProfileImage = useMutation((fd: FormData) =>
+    fetchPostUserProfileImage(fd)
+  );
+
   const profileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fd = new FormData();
     const imageFile = e.target.files[0];
     fd.append("isCover", "false");
     fd.append("image", imageFile);
 
-    fetchPostUserProfileImage(fd)
-      .then(() => {
+    uploadProfileImage.mutate(fd, {
+      onSuccess: (data) => {
+        setMyUser(data);
+        navigate("/my/profile");
         toast({
           title: "프로필 이미지 변경을 성공했습니다!",
           description: "프로필 이미지 변경 성공",
@@ -150,11 +157,8 @@ const EditProfilePage = () => {
           duration: 3000,
           isClosable: true,
         });
-        navigate("/my/profile");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+      },
+    });
   };
 
   return (
