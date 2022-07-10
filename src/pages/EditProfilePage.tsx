@@ -13,6 +13,8 @@ import usePageTitle from "@hooks/usePageTitle";
 import { fetchPostUserProfileImage } from "@api/user";
 import { useMutation } from "react-query";
 
+import { User } from "../types/index";
+
 const EditProfilePage = () => {
   const toast = useToast();
   usePageTitle("프로필 설정");
@@ -82,8 +84,23 @@ const EditProfilePage = () => {
       });
   };
 
-  const uploadProfileImage = useMutation((fd: FormData) =>
-    fetchPostUserProfileImage(fd)
+  const uploadProfileImage = useMutation(
+    (fd: FormData) => fetchPostUserProfileImage(fd),
+    {
+      onMutate: () => {
+        toast({
+          title: "프로필 이미지 변경을 성공했습니다!",
+          description: "프로필 이미지 변경 성공",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/my/profile");
+      },
+      onSuccess: (data: User) => {
+        setMyUser(data);
+      },
+    }
   );
 
   const profileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,19 +109,7 @@ const EditProfilePage = () => {
     fd.append("isCover", "false");
     fd.append("image", imageFile);
 
-    uploadProfileImage.mutate(fd, {
-      onSuccess: (data) => {
-        setMyUser(data);
-        navigate("/my/profile");
-        toast({
-          title: "프로필 이미지 변경을 성공했습니다!",
-          description: "프로필 이미지 변경 성공",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-      },
-    });
+    uploadProfileImage.mutate(fd);
   };
 
   return (
