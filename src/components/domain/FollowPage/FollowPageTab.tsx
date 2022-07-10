@@ -23,10 +23,10 @@ const TabsContainer = styled.div`
 
 type FollowPageProp = {
   followingList: User[];
-  followersList: User[];
+  followerList: User[];
 };
 
-const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
+const FollowPageTab = ({ followingList, followerList }: FollowPageProp) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const navigate = useNavigate();
   const handleClickUser = (userId: string): void => {
@@ -64,6 +64,28 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
         </TabList>
         <TabPanels style={{ backgroundColor: "white" }}>
           <TabPanel>
+            {followerList.length ? (
+              <Flex flexDirection="column">
+                {followerList.map((user) => {
+                  return (
+                    <Card
+                      type="user"
+                      heading={user.fullName}
+                      text={user.coverImage ?? "자기소개 없음"}
+                      avatarSrc={user.image}
+                      onClick={() => {
+                        handleClickUser(user._id);
+                      }}
+                      key={user._id}
+                    ></Card>
+                  );
+                })}
+              </Flex>
+            ) : (
+              <DefaultText>아직 팔로워가 없어요!</DefaultText>
+            )}
+          </TabPanel>
+          <TabPanel>
             {followingList.length ? (
               <Flex flexDirection="column">
                 {followingList.map((user) => {
@@ -84,28 +106,6 @@ const FollowPageTab = ({ followingList, followersList }: FollowPageProp) => {
               </Flex>
             ) : (
               <DefaultText>아직 팔로잉이 없어요!</DefaultText>
-            )}
-          </TabPanel>
-          <TabPanel>
-            {followersList.length ? (
-              <Flex flexDirection="column">
-                {followersList.map((user) => {
-                  return (
-                    <Card
-                      type="user"
-                      heading={user.fullName}
-                      text={user.coverImage ?? "자기소개 없음"}
-                      avatarSrc={user.image}
-                      onClick={() => {
-                        handleClickUser(user._id);
-                      }}
-                      key={user._id}
-                    ></Card>
-                  );
-                })}
-              </Flex>
-            ) : (
-              <DefaultText>아직 팔로워가 없어요!</DefaultText>
             )}
           </TabPanel>
         </TabPanels>

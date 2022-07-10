@@ -46,7 +46,7 @@ const FollowPage = () => {
   return (
     <PageTab
       followingList={followingList}
-      followersList={followerList}
+      followerList={followerList}
     ></PageTab>
   );
 };
