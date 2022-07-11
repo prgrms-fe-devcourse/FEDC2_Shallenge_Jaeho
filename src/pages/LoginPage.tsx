@@ -14,9 +14,10 @@ import { useEffect } from "react";
 export interface FormData {
   logInEmail: string;
   logInPassword: string;
-  signInEmail: string;
-  signInFullName: string;
-  signInPassword: string;
+  signUpEmail: string;
+  signUpFullName: string;
+  signUpPassword: string;
+  signUpPasswordRepeat: string;
 }
 
 interface LoginResponse {
@@ -31,7 +32,13 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);
-  const { setValue, handleSubmit } = useForm<FormData>();
+  const { register: logInRegister, handleSubmit: handleLogInSubmit } =
+    useForm<FormData>();
+  const {
+    register: signUpRegister,
+    handleSubmit: handleSignUpSubmit,
+    watch,
+  } = useForm<FormData>();
 
   useEffect(() => {
     if (myUser) {
@@ -39,41 +46,43 @@ const LoginPage = () => {
     }
   }, []);
 
-  const onLogInSubmit = handleSubmit(async ({ logInEmail, logInPassword }) => {
-    try {
-      const response: LoginResponse = await fetchPostLogin(
-        logInEmail,
-        logInPassword
-      );
-      const { user, token } = response.data;
-      saveTokenToLocalStorage(token);
-      setMyUser(user);
-      toast({
-        title: "signUp success",
-        description: "로그인 성공했습니다!",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      navigate("/");
-    } catch (err) {
-      toast({
-        title: "login failed",
-        description: "로그인 실패했습니다!",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  });
-
-  const onSignUpSubmit = handleSubmit(
-    async ({ signInEmail, signInFullName, signInPassword }) => {
+  const onLogInSubmit = handleLogInSubmit(
+    async ({ logInEmail, logInPassword }) => {
       try {
-        await fetchPostSignUp(signInEmail, signInFullName, signInPassword);
+        const response: LoginResponse = await fetchPostLogin(
+          logInEmail,
+          logInPassword
+        );
+        const { user, token } = response.data;
+        saveTokenToLocalStorage(token);
+        setMyUser(user);
         toast({
           title: "signUp success",
-          description: "회원가입 성공했습니다!",
+          description: "로그인 성공했습니다!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate("/");
+      } catch (err) {
+        toast({
+          title: "login failed",
+          description: "로그인에 실패했습니다!",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    }
+  );
+
+  const onSignUpSubmit = handleSignUpSubmit(
+    async ({ signUpEmail, signUpFullName, signUpPassword }) => {
+      try {
+        await fetchPostSignUp(signUpEmail, signUpFullName, signUpPassword);
+        toast({
+          title: "signUp success",
+          description: "회원가입에 성공했습니다!",
           status: "success",
           duration: 3000,
           isClosable: true,
@@ -94,9 +103,11 @@ const LoginPage = () => {
 
   return (
     <AuthForm
-      setValue={setValue}
-      onLogInSubmit={onLogInSubmit}
+      logInRegister={logInRegister}
+      signUpRegister={signUpRegister}
+      watch={watch}
       onSignUpSubmit={onSignUpSubmit}
+      onLogInSubmit={onLogInSubmit}
     />
   );
 };
