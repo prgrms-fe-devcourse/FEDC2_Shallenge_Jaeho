@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import styled from "@emotion/styled";
 import { Buffer } from "buffer";
@@ -30,7 +26,11 @@ const Icon = ({ name, size = 38, color = "#000000" }: iconTypes) => {
 
   return (
     <IconWrapper>
-      <img src={`data:image/svg+xml;base64,${base64}`} alt={name} />
+      <img
+        src={`data:image/svg+xml;base64,${base64}`}
+        alt={name}
+        data-icon="icon"
+      />
     </IconWrapper>
   );
 };
