@@ -129,6 +129,7 @@ const ChallengePage = () => {
   };
 
   const onCheerUpNotificationEvent = async (cheerUpId: string) => {
+    if (myUser._id === authorId) return;
     const { status } = await fetchPostNotification({
       notificationType: "LIKE",
       notificationTypeId: cheerUpId,

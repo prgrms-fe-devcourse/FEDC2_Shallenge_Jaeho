@@ -40,6 +40,7 @@ const CommentPage = () => {
   }, [commentValue]);
 
   const onCommentNotificationEvent = async (commentId: string) => {
+    if (myUser._id === authorId) return;
     const { status } = await fetchPostNotification({
       notificationType: "COMMENT",
       notificationTypeId: commentId,
