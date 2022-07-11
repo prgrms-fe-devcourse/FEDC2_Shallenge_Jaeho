@@ -23,7 +23,7 @@ const FollowPageTab = ({ followingList, followersList }: Props) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const navigate = useNavigate();
   const handleClickUser = (userId: string) => {
-    navigate(`/profile/${userId}`, { state: userId });
+    navigate(`/profile/${userId}`);
   };
 
   return (

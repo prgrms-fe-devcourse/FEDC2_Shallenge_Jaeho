@@ -1,6 +1,6 @@
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { User } from "src/types";
 import OtherSummary from "@domain/ProfilePage/OtherSummary";
 import OtherChallenges from "@domain/ProfilePage/OtherChallenges";
@@ -8,8 +8,7 @@ import { Flex } from "@chakra-ui/react";
 import useGetUserById from "@hooks/quries/useGetUser";
 
 const OtherProfilePage = () => {
-  const location = useLocation();
-  const userId = location.state as string;
+  const { userId } = useParams();
   const { data } = useGetUserById(userId);
   const [user, setUser] = useState<User>();
 

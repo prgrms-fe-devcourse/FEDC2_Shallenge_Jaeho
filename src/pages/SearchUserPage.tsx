@@ -29,7 +29,7 @@ const SearchUserPage = () => {
   }
 
   const handleClickUserCard = (userId: string) => {
-    navigate(`/profile/${userId}`, { state: userId });
+    navigate(`/profile/${userId}`);
   };
 
   return (
