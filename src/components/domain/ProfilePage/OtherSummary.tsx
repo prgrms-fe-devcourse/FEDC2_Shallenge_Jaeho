@@ -3,50 +3,19 @@ import { Button, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
-interface UserSummaryProps {
+interface Props {
   introduce: string;
   followerCount: number;
   followingCount: number;
   id: string;
 }
 
-const IntroduceText = styled(Text)`
-  padding-top: 32px;
-`;
-
-const UserSummaryContainer = styled.div`
-  width: 50%;
-  display: block;
-  text-align: center;
-`;
-
-const FollowContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 40px;
-
-  & p {
-    font-weight: 700;
-  }
-`;
-
-const CButton = styled(Button)`
-  width: 100%;
-  color: white;
-  background-color: #ffaa6d;
-  margin-top: 12px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
-`;
-
 const OtherSummary = ({
   introduce,
   followerCount,
   followingCount,
   id,
-}: UserSummaryProps) => {
+}: Props) => {
   const navigate = useNavigate();
 
   const handleFollowingClick = (tab: "follower" | "following") => {
@@ -61,7 +30,9 @@ const OtherSummary = ({
 
   return (
     <UserSummaryContainer>
-      <IntroduceText textAlign="center">{introduce}</IntroduceText>
+      <Text textAlign="center" padding-top="32px">
+        {introduce}
+      </Text>
       <FollowContainer>
         <div>
           <Text
@@ -87,10 +58,35 @@ const OtherSummary = ({
         </div>
       </FollowContainer>
       <div>
-        <CButton onClick={handleFollowClick}>팔로우</CButton>
+        <Button
+          width="100%"
+          color="white"
+          backgroundColor="#ffaa6d"
+          marginTop="12px"
+          _hover={{ backgroundColor: "#ff7900" }}
+          onClick={handleFollowClick}
+        >
+          팔로우
+        </Button>
       </div>
     </UserSummaryContainer>
   );
 };
 
 export default OtherSummary;
+
+const UserSummaryContainer = styled.div`
+  width: 50%;
+  display: block;
+  text-align: center;
+`;
+
+const FollowContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
+
+  & p {
+    font-weight: 700;
+  }
+`;
