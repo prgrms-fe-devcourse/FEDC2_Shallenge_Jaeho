@@ -3,16 +3,77 @@ import { Button, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
-interface UserSummaryProps {
+interface Props {
   introduce: string;
   followerCount: number;
   followingCount: number;
   id: string;
 }
 
-const IntroduceText = styled(Text)`
-  padding-top: 32px;
-`;
+const OtherSummary = ({
+  introduce,
+  followerCount,
+  followingCount,
+  id,
+}: Props) => {
+  const navigate = useNavigate();
+
+  const handleFollowingClick = (tab: "follower" | "following") => {
+    navigate(`/follow/${id}`, { state: tab });
+  };
+
+  const handleFollowClick = () => {
+    void (async () => {
+      await fetchPostFollowByUserId(id);
+    })();
+  };
+
+  return (
+    <UserSummaryContainer>
+      <Text textAlign="center" padding-top="32px">
+        {introduce}
+      </Text>
+      <FollowContainer>
+        <div>
+          <Text
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              handleFollowingClick("follower");
+            }}
+          >
+            {followerCount}
+          </Text>
+          <div>팔로워</div>
+        </div>
+        <div>
+          <Text
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              handleFollowingClick("following");
+            }}
+          >
+            {followingCount}
+          </Text>
+          <div>팔로잉</div>
+        </div>
+      </FollowContainer>
+      <div>
+        <Button
+          width="100%"
+          color="white"
+          backgroundColor="#ffaa6d"
+          marginTop="12px"
+          _hover={{ backgroundColor: "#ff7900" }}
+          onClick={handleFollowClick}
+        >
+          팔로우
+        </Button>
+      </div>
+    </UserSummaryContainer>
+  );
+};
+
+export default OtherSummary;
 
 const UserSummaryContainer = styled.div`
   width: 50%;
@@ -29,54 +90,3 @@ const FollowContainer = styled.div`
     font-weight: 700;
   }
 `;
-
-const CButton = styled(Button)`
-  width: 100%;
-  color: white;
-  background-color: #ffaa6d;
-  margin-top: 12px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
-`;
-
-const OtherSummary = ({
-  introduce,
-  followerCount,
-  followingCount,
-  id,
-}: UserSummaryProps) => {
-  const navigate = useNavigate();
-
-  const handleFollowingClick = () => {
-    navigate(`/follow/${id}`);
-  };
-
-  const handleFollowClick = () => {
-    void (async () => {
-      await fetchPostFollowByUserId(id);
-    })();
-  };
-
-  return (
-    <UserSummaryContainer>
-      <IntroduceText textAlign="center">{introduce}</IntroduceText>
-      <FollowContainer>
-        <div>
-          <Text onClick={handleFollowingClick}>{followerCount}</Text>
-          <div>팔로워</div>
-        </div>
-        <div>
-          <Text onClick={handleFollowingClick}>{followingCount}</Text>
-          <div>팔로잉</div>
-        </div>
-      </FollowContainer>
-      <div>
-        <CButton onClick={handleFollowClick}>팔로우</CButton>
-      </div>
-    </UserSummaryContainer>
-  );
-};
-
-export default OtherSummary;
