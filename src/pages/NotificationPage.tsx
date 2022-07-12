@@ -1,4 +1,4 @@
-import { Notification, User } from "src/types";
+import { Notification } from "src/types";
 import NotificationCard from "@domain/NotificationPage/Notification";
 import { Flex } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
@@ -16,7 +16,7 @@ const NotificationPage = () => {
   return (
     <Flex direction="column" padding="40px 0">
       {data.length ? (
-        data?.map((notification: Notification) => {
+        data.map((notification: Notification) => {
           return (
             <NotificationCard
               key={notification._id}

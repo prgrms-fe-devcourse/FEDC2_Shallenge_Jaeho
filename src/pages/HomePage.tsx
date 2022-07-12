@@ -8,17 +8,17 @@ import { Channel, Post } from "../types/index";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [channelsList, setChannelsList] = useState<Channel[]>([]);
+  const [postLists, setPostLists] = useState<Array<Post[]>>([]);
+  const { data } = useGetChannelList();
+
   const onClickMore = (channelId: string) => {
     navigate(`/challenges/${channelId}`);
   };
+
   const onClickChallenge = (channelId: string, challengeId: string): void => {
     navigate(`/challenges/${channelId}/${challengeId}`);
   };
-
-  const [channelsList, setChannelsList] = useState<Channel[]>([]);
-  const [postLists, setPostLists] = useState<Array<Post[]>>([]);
-
-  const { data } = useGetChannelList();
 
   useEffect(() => {
     if (data) {

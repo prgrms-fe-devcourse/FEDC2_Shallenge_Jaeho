@@ -3,12 +3,12 @@ import ChakraText from "@base/ChakraText";
 import ChakraHeading from "@base/ChakraHeading";
 import { Flex } from "@chakra-ui/react";
 
-type ChallengeRewardTypes = {
+interface Props {
   startDate: string;
   endDate: string;
   reward: string;
   restDay: number;
-};
+}
 
 const RewardContainer = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const ChallengeReward = ({
   endDate,
   reward = "보상 내용",
   restDay = 30,
-}: ChallengeRewardTypes) => {
+}: Props) => {
   return (
     <Flex flexDirection="column" maxW="610px" w="100%">
       <Flex justifyContent="space-between" w="100%">

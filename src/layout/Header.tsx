@@ -1,11 +1,11 @@
 import React from "react";
 
-type headerTypes = {
+interface Props {
   children: React.ReactNode;
   backgroundColor?: string;
-};
+}
 
-const Header = ({ children, backgroundColor = "#ffffff" }: headerTypes) => {
+const Header = ({ children, backgroundColor = "#ffffff" }: Props) => {
   const headerStyle: React.CSSProperties = {
     height: 80,
     width: "100%",

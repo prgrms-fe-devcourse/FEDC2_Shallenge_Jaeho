@@ -13,7 +13,7 @@ const SearchUserPage = () => {
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
   const [userList, setUserList] = useState<User[]>([]);
-  const { data: allUserList, isLoading } = useGetUserList();
+  const { data: allUserList } = useGetUserList();
 
   useEffect(() => {
     if (allUserList) {

@@ -1,12 +1,12 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 
-type DefaultTextTypes = {
+interface Props {
   children: React.ReactNode;
   styleProps?: React.CSSProperties;
-};
+}
 
-const DefaultText = ({ children, styleProps = {} }: DefaultTextTypes) => {
+const DefaultText = ({ children, styleProps = {} }: Props) => {
   return (
     <Text
       fontSize="lg"

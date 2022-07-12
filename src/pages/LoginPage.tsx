@@ -8,17 +8,8 @@ import { fetchPostLogin, fetchPostSignUp } from "@api/auth";
 import { saveTokenToLocalStorage } from "@lib/localStorage";
 import userAtom from "@store/user";
 import usePageTitle from "@hooks/usePageTitle";
-import { User } from "src/types";
+import { User, FormData } from "src/types";
 import { useEffect } from "react";
-
-export interface FormData {
-  logInEmail: string;
-  logInPassword: string;
-  signUpEmail: string;
-  signUpFullName: string;
-  signUpPassword: string;
-  signUpPasswordRepeat: string;
-}
 
 interface LoginResponse {
   data: {
