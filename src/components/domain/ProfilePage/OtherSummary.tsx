@@ -49,8 +49,8 @@ const OtherSummary = ({
 }: UserSummaryProps) => {
   const navigate = useNavigate();
 
-  const handleFollowingClick = () => {
-    navigate(`/follow/${id}`);
+  const handleFollowingClick = (tab: "follower" | "following") => {
+    navigate(`/follow/${id}`, { state: tab });
   };
 
   const handleFollowClick = () => {
@@ -64,11 +64,25 @@ const OtherSummary = ({
       <IntroduceText textAlign="center">{introduce}</IntroduceText>
       <FollowContainer>
         <div>
-          <Text onClick={handleFollowingClick}>{followerCount}</Text>
+          <Text
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              handleFollowingClick("follower");
+            }}
+          >
+            {followerCount}
+          </Text>
           <div>팔로워</div>
         </div>
         <div>
-          <Text onClick={handleFollowingClick}>{followingCount}</Text>
+          <Text
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              handleFollowingClick("following");
+            }}
+          >
+            {followingCount}
+          </Text>
           <div>팔로잉</div>
         </div>
       </FollowContainer>
