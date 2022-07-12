@@ -36,8 +36,8 @@ const OtherProfilePage = () => {
           <UserAvatar image={user.image} name={user.fullName} />
           <OtherSummary
             introduce={user.coverImage}
-            followerCount={user.followers.length}
-            followingCount={user.following.length}
+            followerList={user.followers}
+            followingList={user.following}
             id={user._id}
           />
         </UserInfo>
