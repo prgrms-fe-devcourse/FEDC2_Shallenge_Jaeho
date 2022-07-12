@@ -73,6 +73,7 @@ const MyChallenges = ({ challenges }: UserChallengesProps) => {
                 type="challenge"
                 heading={jsonObject.challengeTitle}
                 text={jsonObject.reward}
+                userInfo={false}
                 commentCount={challenge.comments.length}
                 cheerCount={challenge.likes.length}
               ></Card>
