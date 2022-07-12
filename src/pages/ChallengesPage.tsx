@@ -43,8 +43,9 @@ const ChallengesPage = () => {
     setSelectedChannel(clickedChannel);
   }, [selectedChannelId]);
 
-  const onClickChips = (event) => {
-    const channelDescription = event.target.dataset.description;
+  const onClickChips = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const target = event.target as HTMLButtonElement;
+    const channelDescription = target.dataset.description;
     const { _id } = channels.filter(
       (item) => item.description === channelDescription
     )[0];

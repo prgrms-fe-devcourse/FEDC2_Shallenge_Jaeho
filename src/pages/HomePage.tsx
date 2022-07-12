@@ -9,7 +9,7 @@ import { Channel, Post } from "../types/index";
 const HomePage = () => {
   const navigate = useNavigate();
   const onClickMore = (channelId: string) => {
-    navigate(`/challenges`);
+    navigate(`/challenges/${channelId}`);
   };
   const onClickChallenge = (channelId: string, challengeId: string): void => {
     navigate(`/challenges/${channelId}/${challengeId}`);

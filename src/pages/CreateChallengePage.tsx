@@ -7,6 +7,7 @@ import useGetChannelList from "@hooks/quries/useGetChannelList";
 import { fetchPostPostByChannelId } from "@api/post";
 import { useNavigate } from "react-router-dom";
 import usePageTitle from "@hooks/usePageTitle";
+import { Channel } from "src/types";
 
 const challengeTable = Array.from({ length: 30 }, (_, index) => ({
   day: index,
