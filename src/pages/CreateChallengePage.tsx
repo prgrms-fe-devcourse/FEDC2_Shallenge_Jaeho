@@ -25,14 +25,14 @@ const CreateChallengePage = () => {
 
   const { data: channelList } = useGetChannelList();
   useEffect(() => {
-    setChannel(channelList?.data[0]._id);
+    setChannel(channelList?.[0]._id);
   }, [channelList]);
 
   const onChallengeTitleChange = (newChallengeTitle: string) => {
     setChallengeTitle(newChallengeTitle.trim());
   };
   const onChannelChange = (newChannel: string) => {
-    const channelId = channelList.data.filter(({ description }: Channel) => {
+    const channelId = channelList.filter(({ description }) => {
       return description === newChannel;
     })[0]._id;
     setChannel(channelId);
@@ -65,7 +65,10 @@ const CreateChallengePage = () => {
   const submitChallengeForm = async (newChallenge: {
     challengeTitle: string;
     reward: string;
-    days: { day: number; isChecked: boolean }[];
+    days: {
+      day: number;
+      isChecked: boolean;
+    }[];
     startDate: string;
   }) => {
     const { status } = await fetchPostPostByChannelId({
@@ -104,7 +107,7 @@ const CreateChallengePage = () => {
         {channelList && (
           <ChallengeChannelRadio
             onChangeValue={onChannelChange}
-            channelList={channelList.data.map((channel: Channel) => {
+            channelList={channelList.map((channel) => {
               return channel.description;
             })}
           />
