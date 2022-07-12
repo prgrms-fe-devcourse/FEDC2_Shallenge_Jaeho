@@ -1,4 +1,4 @@
-import { background, Button } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 interface Props {
@@ -7,12 +7,11 @@ interface Props {
   onClickProp: React.MouseEventHandler;
 }
 
-const Chips = ({ names, setChannelName }: Props) => {
-  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
+const Chips = ({ names, selectedChip, onClickProp }: Props) => {
   return (
     <ChipsContainer>
       {names.length !== 0 &&
-        names.map((name, index) => (
+        names.map((name) => (
           <Button
             flex="0 0 auto"
             fontSize={{ base: "18px", sm: "24px" }}
@@ -20,7 +19,6 @@ const Chips = ({ names, setChannelName }: Props) => {
             color="#838489"
             margin="0 8px"
             _hover={{ color: "#ffffff", backgroundColor: "#ffaa6d" }}
-
             key={name}
             data-description={name}
             style={{
