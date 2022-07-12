@@ -1,7 +1,11 @@
 import axios from "@lib/axios";
+import { Post } from "src/types";
 
-export const fetchGetPostListByChannel = (channelId: string) =>
-  axios.get(`/posts/channel/${channelId}`);
+export const fetchGetPostListByChannel = async (channelId: string) => {
+  const { data } = await axios.get<Post[]>(`/posts/channel/${channelId}`);
+
+  return data;
+};
 
 export const fetchGetUserPostList = (authorId: string) =>
   axios.get(`/posts/author/${authorId}`);

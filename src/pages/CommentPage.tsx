@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useAtom } from "jotai";
@@ -8,11 +7,11 @@ import {
   fetchDeleteCommentByPostId,
   fetchPostCommentByPostId,
 } from "@api/comment";
-import { User } from "../types/index";
+import { Comment, User } from "../types/index";
 import { fetchPostNotification } from "@api/notification";
 import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
-import Comment from "@domain/CommentPage/Comment";
+import CommentCard from "@domain/CommentPage/CommentCard";
 import CommentInput from "@domain/CommentPage/CommentInput";
 
 const CommentPage = () => {
@@ -27,7 +26,7 @@ const CommentPage = () => {
 
   useEffect(() => {
     if (Contents?.status === 200) {
-      const { author, comments } = Contents?.data;
+      const { author, comments } = Contents.data;
       setAuthorId(author._id);
       setCommentList(comments);
       setShow(true);
@@ -40,7 +39,8 @@ const CommentPage = () => {
     }
   }, [commentValue]);
 
-  const onCommentNotificationEvent = async (commentId) => {
+  const onCommentNotificationEvent = async (commentId: string) => {
+    if (myUser._id === authorId) return;
     const { status } = await fetchPostNotification({
       notificationType: "COMMENT",
       notificationTypeId: commentId,
@@ -51,7 +51,7 @@ const CommentPage = () => {
       : console.log("fail comment-notification");
   };
 
-  const setNewCommentList = (data) => {
+  const setNewCommentList = (data: Comment) => {
     setCommentList([...commentList, data]);
     void onCommentNotificationEvent(data._id);
   };
@@ -64,7 +64,7 @@ const CommentPage = () => {
     status === 200 ? setNewCommentList(data) : alert("다시 시도바랍니다!");
   };
 
-  const commentDelete = async (_id) => {
+  const commentDelete = async (_id: string) => {
     const { data, status } = await fetchDeleteCommentByPostId(_id);
     status === 200
       ? setCommentList([
@@ -78,9 +78,11 @@ const CommentPage = () => {
     if (newComment !== "") setCommentValue(newComment);
   };
 
-  const onDeleteCommentEvent = (event) => {
-    if (event.target.tagName === "IMG" && confirm("댓글을 삭제하시겠습니까?")) {
-      const targetCommentId = event.target.closest("li").dataset._id;
+  const onDeleteCommentEvent = (event: React.MouseEvent<HTMLImageElement>) => {
+    const target = event.target as HTMLImageElement;
+    if (target.dataset?.icon !== "icon") return;
+    if (target.tagName === "IMG" && confirm("댓글을 삭제하시겠습니까?")) {
+      const targetCommentId = target.closest("li").dataset._id;
       void commentDelete(targetCommentId);
     }
   };
@@ -106,16 +108,17 @@ const CommentPage = () => {
               }) => {
                 return (
                   <ListItem key={comment._id} data-_id={`${comment._id}`}>
-                    <Comment
+                    <CommentCard
                       isGuest={myUser?._id !== comment.author._id}
                       avatarSrc={comment.author.image}
                       commentAuthor={comment.author.fullName}
+                      commentAuthorId={comment.author._id}
                       commentContent={comment.comment}
                       commentCreatedAt={format(
                         new Date(comment.createdAt),
                         "yyyy-MM-dd HH:mm"
                       )}
-                    ></Comment>
+                    ></CommentCard>
                   </ListItem>
                 );
               }

@@ -7,14 +7,15 @@ import useGetUserById from "@hooks/quries/useGetUser";
 import { useParams } from "react-router-dom";
 
 const FollowPage = () => {
-  //const [user] = useAtom(userAtom);
-
   const { userId } = useParams();
-  const { data: userRes } = useGetUserById(userId);
-
-  const [user, setUser] = useState<User>({} as User);
+  const { data: userData } = useGetUserById(userId);
+  const [user, setUser] = useState<User>();
   const [followerList, setFollowerList] = useState<User[]>([]);
   const [followingList, setFollowingList] = useState<User[]>([]);
+
+  useEffect(() => {
+    setUser(userData);
+  }, [userData]);
 
   const followerIdList: string[] =
     user?.followers?.map((follow) => follow.follower) ?? [];
@@ -26,22 +27,16 @@ const FollowPage = () => {
   const { data: followingResList } = useGetFollowUserList(followingIdList);
 
   useEffect(() => {
-    if (userRes) {
-      setUser(userRes.data);
-    }
-  }, [userRes]);
-
-  useEffect(() => {
     if (followerResList) {
-      setFollowerList(followerResList.map((res) => res.data));
+      setFollowerList(followerResList);
     }
-  }, [userRes, followerResList]);
+  }, [followerResList]);
 
   useEffect(() => {
     if (followingResList) {
-      setFollowingList(followingResList.map((res) => res.data));
+      setFollowingList(followingResList);
     }
-  }, [userRes, followingResList]);
+  }, [followingResList]);
 
   return (
     <PageTab

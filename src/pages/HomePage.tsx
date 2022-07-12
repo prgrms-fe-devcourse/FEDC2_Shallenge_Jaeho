@@ -9,7 +9,7 @@ import { Channel, Post } from "../types/index";
 const HomePage = () => {
   const navigate = useNavigate();
   const onClickMore = (channelId: string) => {
-    navigate(`/challenges`);
+    navigate(`/challenges/${channelId}`);
   };
   const onClickChallenge = (channelId: string, challengeId: string): void => {
     navigate(`/challenges/${channelId}/${challengeId}`);
@@ -22,7 +22,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (data) {
-      setChannelsList(data.data as Array<Channel>);
+      setChannelsList(data);
     }
   }, [data]);
 
@@ -32,7 +32,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (res) {
-      setPostLists(res.map((r) => r.data));
+      setPostLists(res);
     }
   }, [res]);
 

@@ -1,5 +1,5 @@
 import QueryString from "qs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { User } from "src/types";
 import { Flex } from "@chakra-ui/react";
@@ -13,23 +13,23 @@ const SearchUserPage = () => {
   const query = QueryString.parse(location.search, { ignoreQueryPrefix: true });
   const [userName, setUserName] = useState(query.userName as string);
   const [userList, setUserList] = useState<User[]>([]);
-  const { data: res } = useGetUserList();
+  const { data: allUserList, isLoading } = useGetUserList();
 
   useEffect(() => {
-    if (res) {
-      const newUserList: User[] = res.data.filter((user: User) =>
+    if (allUserList) {
+      const newUserList: User[] = allUserList.filter((user: User) =>
         user.fullName.match(new RegExp(userName, "i"))
       );
       setUserList(newUserList);
     }
-  }, [userName, res]);
+  }, [userName, allUserList]);
 
   if (userName !== query.userName) {
     setUserName(query.userName as string);
   }
 
   const handleClickUserCard = (userId: string) => {
-    navigate(`/profile/${userId}`, { state: userId });
+    navigate(`/profile/${userId}`);
   };
 
   return (

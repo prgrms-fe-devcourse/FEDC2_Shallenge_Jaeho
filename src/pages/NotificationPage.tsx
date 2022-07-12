@@ -7,16 +7,16 @@ import usePageTitle from "@hooks/usePageTitle";
 
 const NotificationPage = () => {
   usePageTitle("알림");
-  const { data: response, isLoading } = useNotifications();
+  const { data, isLoading } = useNotifications();
 
   if (isLoading) {
-    return <></>;
+    return <DefaultText>Loading...</DefaultText>;
   }
 
   return (
     <Flex direction="column" padding="40px 0">
-      {response?.data.length ? (
-        response?.data.map((notification: Notification) => {
+      {data.length ? (
+        data?.map((notification: Notification) => {
           return (
             <NotificationCard
               key={notification._id}
