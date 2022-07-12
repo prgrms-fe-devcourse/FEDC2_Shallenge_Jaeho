@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { User } from "src/types";
 import {
   Tab,
@@ -20,7 +20,8 @@ interface Props {
 }
 
 const FollowPageTab = ({ followingList, followersList }: Props) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const tab = useLocation().state;
+  const [selectedTab, setSelectedTab] = useState(tab === "following" ? 1 : 0);
   const navigate = useNavigate();
   const handleClickUser = (userId: string) => {
     navigate(`/profile/${userId}`);
