@@ -20,8 +20,11 @@ interface Props {
 }
 
 const FollowPageTab = ({ followingList, followerList }: Props) => {
+  console.log("팔로잉", followingList);
+  console.log("파로워", followerList);
   const [selectedTab, setSelectedTab] = useState(0);
   const navigate = useNavigate();
+
   const handleClickUser = (userId: string) => {
     navigate(`/profile/${userId}`);
   };
@@ -55,11 +58,11 @@ const FollowPageTab = ({ followingList, followerList }: Props) => {
             팔로잉
           </Tab>
         </TabList>
-        <TabPanels style={{ backgroundColor: "white" }}>
+        <TabPanels bgColor="white">
           <TabPanel>
             {followerList.length ? (
               <Flex flexDirection="column">
-                {followingList.map((user) => (
+                {followerList.map((user) => (
                   <Card
                     type="user"
                     heading={user.fullName}

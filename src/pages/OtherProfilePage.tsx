@@ -23,8 +23,8 @@ const OtherProfilePage = () => {
           <UserAvatar image={user.image} name={user.fullName} />
           <OtherSummary
             introduce={user.coverImage}
-            followerList={user.followers}
-            followingList={user.following}
+            followers={user.followers}
+            following={user.following}
             id={user._id}
           />
         </Flex>

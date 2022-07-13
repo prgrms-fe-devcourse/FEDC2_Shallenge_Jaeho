@@ -13,33 +13,34 @@ import { Follow } from "src/types";
 
 interface UserSummaryProps {
   introduce: string;
-  followerList: Follow[];
-  followingList: Follow[];
+  followers: Follow[];
+  following: Follow[];
   id: string;
 }
 
 const OtherSummary = ({
   introduce,
-  followerList,
-  followingList,
+  followers,
+  following,
   id,
 }: UserSummaryProps) => {
   const navigate = useNavigate();
   const [me] = useAtom(userAtom);
-  const [followerListLength, setFollowerListLength] = useState(
-    followerList.length
-  );
+  const [followerList, setFollowerList] = useState(followers);
+
   const [isFollowing, setIsFollowing] = useState(false);
   const { mutate: createFollowMutate } = useMutation(fetchPostFollowByUserId, {
-    onMutate: () => {
-      setFollowerListLength((state) => state + 1);
+    onSuccess: (data) => {
+      setFollowerList((state) => [...state, data]);
     },
   });
   const { mutate: deleteFollowMutate } = useMutation(
     fetchDeleteFollowByUserId,
     {
-      onMutate: () => {
-        setFollowerListLength((state) => state - 1);
+      onSuccess: (data) => {
+        setFollowerList((state) =>
+          state.filter((item) => item._id !== data._id)
+        );
       },
     }
   );
@@ -83,13 +84,13 @@ const OtherSummary = ({
       <FollowContainer>
         <div>
           <Text cursor="pointer" onClick={handleFollowCountClick}>
-            {followerListLength}
+            {followerList.length}
           </Text>
           <div>팔로워</div>
         </div>
         <div>
           <Text cursor="pointer" onClick={handleFollowCountClick}>
-            {followingList.length}
+            {following.length}
           </Text>
           <div>팔로잉</div>
         </div>
