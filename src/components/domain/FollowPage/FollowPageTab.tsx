@@ -20,9 +20,7 @@ interface Props {
 }
 
 const FollowPageTab = ({ followingList, followerList }: Props) => {
-  console.log("팔로잉", followingList);
-  console.log("파로워", followerList);
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
   const navigate = useNavigate();
 
   const handleClickUser = (userId: string) => {
@@ -31,32 +29,25 @@ const FollowPageTab = ({ followingList, followerList }: Props) => {
 
   return (
     <TabsContainer>
-      <Tabs isFitted variant="enclosed" align="center">
-        <TabList>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 0 ? "white" : "#E2E8F0",
-              color: selectedTab === 0 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 0 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(0)}
+      <Tabs isFitted variant="unstyled" align="center">
+        <TabList height="40px">
+          <CTab
+            isSelectedTab={tabIndex === 0}
+            borderTopRadius={15}
+            fontSize="20px"
+            onClick={() => setTabIndex(0)}
           >
             팔로워
-          </Tab>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 1 ? "white" : "#E2E8F0",
-              color: selectedTab === 1 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 1 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(1)}
+          </CTab>
+          <CTab
+            isSelectedTab={tabIndex === 1}
+            borderTopRadius={15}
+            border="none"
+            fontSize="20px"
+            onClick={() => setTabIndex(1)}
           >
             팔로잉
-          </Tab>
+          </CTab>
         </TabList>
         <TabPanels bgColor="white">
           <TabPanel>
@@ -114,6 +105,12 @@ export default FollowPageTab;
 const TabsContainer = styled.div`
   margin-top: 40px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  border-radius: 6px 0;
+  background-color: none;
+`;
+
+const CTab = styled(Tab)<{ isSelectedTab: boolean }>`
+  background-color: ${({ isSelectedTab }) =>
+    isSelectedTab ? "#ffffff" : "#E2E8F0"};
+  color: ${({ isSelectedTab }) => (isSelectedTab ? "#ff7900" : "#ffffff")};
+  font-weight: ${({ isSelectedTab }) => (isSelectedTab ? "700" : "")};
 `;
