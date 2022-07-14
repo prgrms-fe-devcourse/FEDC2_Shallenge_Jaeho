@@ -2,7 +2,7 @@
 import { Input } from "@chakra-ui/react";
 import { useState } from "react";
 
-type inputTypes = {
+interface Props {
   placeholder: string;
   variant: string;
   size?: string;
@@ -10,7 +10,7 @@ type inputTypes = {
   type?: string;
   children?: string;
   onChangeValue?: any;
-};
+}
 
 const ChakraInput = ({
   children = "",
@@ -20,7 +20,7 @@ const ChakraInput = ({
   width = 400,
   type = "text",
   onChangeValue,
-}: inputTypes) => {
+}: Props) => {
   const bgColor = variant === "outline" ? "#FFFFFF" : "#E2E8F0";
   const border = variant === "outline" ? "2px solid" : "2px solid transparent";
   const borderColor = variant === "outline" ? "#E2E8F0" : "transparent";

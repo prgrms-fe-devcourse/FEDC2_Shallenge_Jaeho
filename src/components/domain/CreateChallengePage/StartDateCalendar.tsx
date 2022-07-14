@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-type StartDateCalendarProps = {
-  onChangeValue?: any;
-};
+interface Props {
+  onChangeValue: (newChallengeTitle: string) => void;
+}
 
-const StartDateCalendar = ({ onChangeValue }: StartDateCalendarProps) => {
+const StartDateCalendar = ({ onChangeValue }: Props) => {
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {

@@ -7,11 +7,6 @@ interface ChallengesProps {
   posts: Post[];
 }
 
-const CardContainer = styled.div`
-  margin-bottom: 12px;
-  cursor: pointer;
-`;
-
 const Challenges = ({ posts }: ChallengesProps) => {
   const navigate = useNavigate();
   const handleClick = (channelId: string, challengeId: string) => {
@@ -49,3 +44,8 @@ const Challenges = ({ posts }: ChallengesProps) => {
 };
 
 export default Challenges;
+
+const CardContainer = styled.div`
+  margin-bottom: 12px;
+  cursor: pointer;
+`;

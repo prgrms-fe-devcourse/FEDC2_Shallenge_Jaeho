@@ -98,3 +98,12 @@ export interface Notification {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface FormData {
+  logInEmail: string;
+  logInPassword: string;
+  signUpEmail: string;
+  signUpFullName: string;
+  signUpPassword: string;
+  signUpPasswordRepeat: string;
+}

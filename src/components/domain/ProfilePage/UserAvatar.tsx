@@ -1,18 +1,12 @@
 import { Avatar, Heading } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
-interface UserAvatarProps {
+interface Props {
   image: string;
   name: string;
 }
 
-const UserAvatarContainer = styled.div`
-  display: block;
-  margin-right: 72px;
-  text-align: center;
-`;
-
-const UserAvatar = ({ image, name }: UserAvatarProps) => {
+const UserAvatar = ({ image, name }: Props) => {
   return (
     <UserAvatarContainer>
       <Avatar src={image} size="xl" />
@@ -24,3 +18,9 @@ const UserAvatar = ({ image, name }: UserAvatarProps) => {
 };
 
 export default UserAvatar;
+
+const UserAvatarContainer = styled.div`
+  display: block;
+  margin-right: 72px;
+  text-align: center;
+`;

@@ -1,29 +1,19 @@
 import { Flex, Avatar, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
-interface NotificationProps {
+interface Props {
   avatarSrc: string;
   userName: string;
   notificationType: "follow" | "comment" | "like";
   createdAt: string;
 }
 
-const CardContainer = styled(Flex)`
-  height: 96px;
-  padding: 0 16px;
-  background-color: white;
-`;
-
-const UserNameText = styled.span`
-  font-weight: bold;
-`;
-
 const Notification = ({
   avatarSrc,
   userName,
   notificationType,
   createdAt,
-}: NotificationProps) => {
+}: Props) => {
   const notifiedTime = new Date(createdAt).toLocaleString().slice(2, 20);
 
   return (
@@ -50,3 +40,13 @@ const Notification = ({
 };
 
 export default Notification;
+
+const CardContainer = styled(Flex)`
+  height: 96px;
+  padding: 0 16px;
+  background-color: white;
+`;
+
+const UserNameText = styled.span`
+  font-weight: bold;
+`;

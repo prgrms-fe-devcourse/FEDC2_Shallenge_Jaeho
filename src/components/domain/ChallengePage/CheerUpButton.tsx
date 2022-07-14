@@ -1,15 +1,16 @@
 import Social from "@base/Social";
 import { Center } from "@chakra-ui/react";
 
-type CheerUpButtonType = {
+interface Props {
   isCheered?: boolean;
   count: number;
-};
+}
 
-const CheerUpButton = ({ isCheered = false, count }: CheerUpButtonType) => {
+const CheerUpButton = ({ isCheered = false, count }: Props) => {
   const bgColor = isCheered ? "#FFAA6D" : "#FFFFFF";
   const fill = isCheered ? "#F4F6F8" : "#000000";
   const color = isCheered ? "#F4F6F8" : "#000000";
+
   return (
     <Center
       w="120px"

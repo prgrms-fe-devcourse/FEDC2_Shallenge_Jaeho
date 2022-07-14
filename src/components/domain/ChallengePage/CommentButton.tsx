@@ -1,11 +1,11 @@
 import Social from "@base/Social";
 import { Center } from "@chakra-ui/react";
 
-type CommentButtonType = {
+interface Props {
   count: number;
-};
+}
 
-const CommentButton = ({ count }: CommentButtonType) => {
+const CommentButton = ({ count }: Props) => {
   return (
     <Center
       w="120px"

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Box, HStack, useRadio, useRadioGroup } from "@chakra-ui/react";
 
-function RadioCard(props: any) {
+const RadioCard = (props: any) => {
   const { getInputProps, getCheckboxProps } = useRadio(props);
 
   const input = getInputProps();
@@ -28,7 +28,7 @@ function RadioCard(props: any) {
       </Box>
     </Box>
   );
-}
+};
 
 const ChannelRadio = () => {
   const channels = ["운동", "독서", "공부", "루틴", "자기계발"];

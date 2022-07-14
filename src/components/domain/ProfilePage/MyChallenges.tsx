@@ -4,37 +4,11 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { Post } from "src/types";
 
-interface UserChallengesProps {
+interface Props {
   challenges: Post[];
 }
 
-const UserChallengesContainer = styled.div`
-  margin-top: 56px;
-  z-index: 1;
-  position: relative;
-`;
-
-const CardContainer = styled.div`
-  margin: 12px 0;
-  cursor: pointer;
-`;
-
-const CButton = styled(Button)`
-  color: white;
-  background-color: #ffaa6d;
-  top: 10px;
-  right: 10px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
-`;
-
-const Text = styled.div`
-  text-align: center;
-`;
-
-const MyChallenges = ({ challenges }: UserChallengesProps) => {
+const MyChallenges = ({ challenges }: Props) => {
   const handleChallengeClick = (channelId: string, challengeId: string) => {
     navigate(`/challenges/${channelId}/${challengeId}`);
   };
@@ -86,3 +60,29 @@ const MyChallenges = ({ challenges }: UserChallengesProps) => {
 };
 
 export default MyChallenges;
+
+const UserChallengesContainer = styled.div`
+  margin-top: 56px;
+  z-index: 1;
+  position: relative;
+`;
+
+const CardContainer = styled.div`
+  margin: 12px 0;
+  cursor: pointer;
+`;
+
+const CButton = styled(Button)`
+  color: white;
+  background-color: #ffaa6d;
+  top: 10px;
+  right: 10px;
+
+  &:hover {
+    background-color: #ff7900;
+  }
+`;
+
+const Text = styled.div`
+  text-align: center;
+`;

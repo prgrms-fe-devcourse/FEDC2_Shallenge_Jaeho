@@ -11,19 +11,14 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Follow } from "src/types";
 
-interface UserSummaryProps {
+interface Props {
   introduce: string;
   followers: Follow[];
   following: Follow[];
   id: string;
 }
 
-const OtherSummary = ({
-  introduce,
-  followers,
-  following,
-  id,
-}: UserSummaryProps) => {
+const OtherSummary = ({ introduce, followers, following, id }: Props) => {
   const navigate = useNavigate();
   const [me] = useAtom(userAtom);
   const [followerList, setFollowerList] = useState(followers);
