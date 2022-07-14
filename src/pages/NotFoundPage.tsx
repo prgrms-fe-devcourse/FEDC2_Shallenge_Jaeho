@@ -1,4 +1,3 @@
-import React from "react";
 import DefaultText from "@base/DefaultText";
 
 const NotFoundPage = () => {

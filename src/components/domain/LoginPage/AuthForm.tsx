@@ -9,11 +9,11 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { FormData } from "@pages/LoginPage";
+import { FormData } from "src/types";
 import { useRef, useState } from "react";
 import { UseFormRegister, UseFormWatch } from "react-hook-form";
 
-interface AuthFormProps {
+interface Props {
   logInRegister: UseFormRegister<FormData>;
   signUpRegister: UseFormRegister<FormData>;
   watch: UseFormWatch<FormData>;
@@ -31,7 +31,7 @@ const AuthForm = ({
   onSignUpSubmit,
   signUpRegister,
   watch,
-}: AuthFormProps) => {
+}: Props) => {
   const [tabIndex, setTabIndex] = useState(0);
   const password = useRef({});
   password.current = watch("signUpPassword", "");

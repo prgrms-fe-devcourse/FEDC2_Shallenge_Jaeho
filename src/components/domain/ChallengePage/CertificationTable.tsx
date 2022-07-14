@@ -6,11 +6,11 @@ type CertificationBoxType = {
   isChecked: boolean;
 };
 
-type CertificationTableType = {
+interface Props {
   children: Array<CertificationBoxType>;
-};
+}
 
-const CertificationTable = ({ children: days }: CertificationTableType) => {
+const CertificationTable = ({ children: days }: Props) => {
   return (
     <Grid templateColumns="repeat(6, 1fr)" gridGap="20px" w="340px">
       {days.length === 30 &&

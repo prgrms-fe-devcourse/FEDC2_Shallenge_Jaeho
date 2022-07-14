@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Box, HStack, Text, useRadio, useRadioGroup } from "@chakra-ui/react";
 
-type ChallengeChannelRadioType = {
-  onChangeValue?: any;
-  channelList?: any;
-};
+interface Props {
+  onChangeValue: (newChannel: string) => void;
+  channelList: string[];
+}
 
 function RadioCard(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -33,10 +33,7 @@ function RadioCard(props: any) {
   );
 }
 
-const ChallengeChannelRadio = ({
-  onChangeValue,
-  channelList,
-}: ChallengeChannelRadioType) => {
+const ChallengeChannelRadio = ({ onChangeValue, channelList }: Props) => {
   const channels = channelList;
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "channel",

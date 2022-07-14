@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Circle, Flex, Textarea } from "@chakra-ui/react";
 import Icon from "@base/Icon";
 
-type commentInputTypes = {
+interface Props {
   onValueChange?: (param: string) => void;
-};
+}
 
-const CommentInput = ({ onValueChange }: commentInputTypes) => {
+const CommentInput = ({ onValueChange }: Props) => {
   const [value, setValue] = useState("");
 
   const resize = (obj: HTMLTextAreaElement) => {

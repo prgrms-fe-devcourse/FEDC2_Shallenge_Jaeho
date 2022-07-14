@@ -3,17 +3,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Buffer } from "buffer";
 
-type iconTypes = {
+interface Props {
   name: string;
   size?: number;
   color?: string;
-};
+}
 
-const IconWrapper = styled.i`
-  display: inline-block;
-`;
-
-const Icon = ({ name, size = 38, color = "#000000" }: iconTypes) => {
+const Icon = ({ name, size = 38, color = "#000000" }: Props) => {
   const iconStyle: React.CSSProperties = {
     width: size,
     height: size,
@@ -36,3 +32,7 @@ const Icon = ({ name, size = 38, color = "#000000" }: iconTypes) => {
 };
 
 export default Icon;
+
+const IconWrapper = styled.i`
+  display: inline-block;
+`;

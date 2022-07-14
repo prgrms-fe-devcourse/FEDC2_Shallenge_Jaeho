@@ -1,11 +1,11 @@
 import { Circle } from "@chakra-ui/react";
 import Icon from "@base/Icon";
 
-type activeType = {
+interface Props {
   isActive?: boolean;
-};
+}
 
-const CertificationButton = ({ isActive }: activeType) => {
+const CertificationButton = ({ isActive }: Props) => {
   const bgColor = isActive ? "#FF7900" : "#D9D9D9";
   const name = isActive ? "arrow-up" : "check";
   const color = isActive ? "#FFFFFF" : "#000000";

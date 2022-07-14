@@ -12,63 +12,9 @@ import { deleteTokenFromLocalStorage } from "@lib/localStorage";
 import usePageTitle from "@hooks/usePageTitle";
 import { fetchPostUserProfileImage } from "@api/user";
 
-const EditProfilePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  margin-top: 40px;
-  padding-top: 40px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const ChangeButton = styled(Button)`
-  color: white;
-  background-color: #ffaa6d;
-  margin: 12px;
-
-  &:hover {
-    background-color: #ff7900;
-  }
-`;
-
-const FormContainer = styled.div`
-  margin-top: 36px;
-  margin-bottom: 36px;
-`;
-
-const ProfileImageButton = styled.label`
-  padding: 6px 25px;
-  background-color: #ff6600;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-`;
-
-const CFlex = styled(Flex)`
-  align-items: center;
-`;
-
-const InfoText = styled.div`
-  width: 100px;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-const CInput = styled(Input)`
-  width: 70%;
-  outline: none;
-`;
-
-const LogoutButton = styled(Button)`
-  color: #838489;
-  background-color: #f4f6f8;
-  margin-bottom: 40px;
-`;
-
 const EditProfilePage = () => {
-  const toast = useToast();
   usePageTitle("프로필 설정");
+  const toast = useToast();
   const [myUser, setMyUser] = useAtom(userAtom);
   const [newFullName, setNewFullName] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -170,33 +116,83 @@ const EditProfilePage = () => {
         onChange={profileChange}
       />
       <FormContainer>
-        <CFlex>
+        <Flex alignItems="center">
           <InfoText>이메일</InfoText>
           <div>{myUser?.email}</div>
-        </CFlex>
-        <CFlex>
+        </Flex>
+        <Flex alignItems="center">
           <InfoText>닉네임</InfoText>
-          <CInput
+          <Input
             type="text"
+            width="70%"
+            outline="none"
             placeholder={myUser?.fullName}
             onChange={onFullNameChange}
           />
           <ChangeButton onClick={onChangeFullNameClick}>변경</ChangeButton>
-        </CFlex>
-        <CFlex>
+        </Flex>
+        <Flex alignItems="center">
           <InfoText>새 비밀번호</InfoText>
-          <CInput
+          <Input
             type="password"
+            width="70%"
+            outline="none"
             placeholder="새 비밀번호를 입력해주세요"
             value={newPassword}
             onChange={onPasswordChange}
           />
           <ChangeButton onClick={onPasswordClick}>변경</ChangeButton>
-        </CFlex>
+        </Flex>
       </FormContainer>
-      <LogoutButton onClick={onLogoutClick}>로그아웃</LogoutButton>
+      <Button
+        marginBottom="40px"
+        color="#838489"
+        bgColor="#f4f6f8"
+        onClick={onLogoutClick}
+      >
+        로그아웃
+      </Button>
     </EditProfilePageContainer>
   );
 };
 
 export default EditProfilePage;
+
+const EditProfilePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  margin-top: 40px;
+  padding-top: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const ChangeButton = styled(Button)`
+  color: white;
+  background-color: #ffaa6d;
+  margin: 12px;
+
+  &:hover {
+    background-color: #ff7900;
+  }
+`;
+
+const FormContainer = styled.div`
+  margin-top: 36px;
+  margin-bottom: 36px;
+`;
+
+const ProfileImageButton = styled.label`
+  padding: 6px 25px;
+  background-color: #ff6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+`;
+
+const InfoText = styled.div`
+  width: 100px;
+  font-size: 16px;
+  font-weight: 400;
+`;

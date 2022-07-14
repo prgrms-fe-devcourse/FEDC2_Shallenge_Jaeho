@@ -39,11 +39,11 @@ const ChallengePage = () => {
   const [authorId, setAuthorId] = useState("");
   const [show, setShow] = useState(false);
   const [, , channelId, postId] = window.location.pathname.split("/");
-  const { data: Contents } = useGetChallenge(postId);
+  const { data: contents } = useGetChallenge(postId);
 
   useEffect(() => {
-    if (Contents?.status === 200) {
-      const { author, title: Content, comments, likes } = Contents.data;
+    if (contents?.status === 200) {
+      const { author, title: Content, comments, likes } = contents.data;
       const {
         days,
         reward,
@@ -70,7 +70,7 @@ const ChallengePage = () => {
       validateDate(calculatedPresentDay);
       setEndDate(format(add(new Date(date), { days: 29 }), "yyyy-MM-dd"));
     }
-  }, [Contents]);
+  }, [contents]);
 
   useEffect(() => {
     setRestDay(30 - presentDay);
@@ -145,7 +145,7 @@ const ChallengePage = () => {
       item.day === presentDay ? { ...item, isChecked: true } : item
     );
 
-    const { title } = Contents.data;
+    const { title } = contents.data;
     const newTitle = { ...JSON.parse(title), days: updatedDays };
 
     const updatedPost = {
