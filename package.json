@@ -38,6 +38,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
+    "lint": "eslint --fix .",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -88,6 +89,7 @@
     "craco-alias": "^3.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-storybook": "^0.5.12",
