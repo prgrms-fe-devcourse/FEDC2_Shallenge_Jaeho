@@ -90,8 +90,8 @@ const EditProfilePage = () => {
       onMutate: () => {
         navigate("/my/profile");
       },
-      onSuccess(data: AxiosResponse<User, any>) {
-        setMyUser(data.data);
+      onSuccess(data: User) {
+        setMyUser(data);
         toast({
           title: "프로필 이미지 변경을 성공했습니다!",
           description: "프로필 이미지 변경 성공",

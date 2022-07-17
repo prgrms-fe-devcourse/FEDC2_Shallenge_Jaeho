@@ -1,4 +1,5 @@
 import axios from "@lib/axios";
+import { AxiosError } from "axios";
 import { User } from "src/types";
 
 export const fetchGetUserList = async () => {
@@ -20,5 +21,7 @@ export const fetchGetFollowUserList = async (followUserIdList: string[]) => {
   );
 };
 
-export const fetchPostUserProfileImage = (formData: FormData) =>
-  axios.post("/users/upload-photo", formData);
+export const fetchPostUserProfileImage = async (formData: FormData) => {
+  const { data } = await axios.post<User>("/users/upload-photo", formData);
+  return data;
+};
