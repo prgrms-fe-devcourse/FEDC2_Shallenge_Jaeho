@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import { useAtom } from "jotai";
-import UserAvatar from "@domain/ProfilePage/UserAvatar";
+import { Flex } from "@chakra-ui/react";
 import MyChallenges from "@domain/ProfilePage/MyChallenges";
 import MySummary from "@domain/ProfilePage/MySummary";
-import userAtom from "@store/user";
+import UserAvatar from "@domain/ProfilePage/UserAvatar";
+import styled from "@emotion/styled";
 import usePageTitle from "@hooks/usePageTitle";
-import { Flex } from "@chakra-ui/react";
+import userAtom from "@store/user";
+import { useAtom } from "jotai";
 
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);

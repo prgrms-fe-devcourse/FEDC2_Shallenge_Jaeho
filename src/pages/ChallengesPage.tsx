@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Channel, Post } from "src/types";
-import usePageTitle from "@hooks/usePageTitle";
-import Chips from "@domain/ChallengesPage/Chips";
+
 import Challenges from "@domain/ChallengesPage/Challenges";
-import useChannels from "@hooks/quries/useChannels";
+import Chips from "@domain/ChallengesPage/Chips";
 import useChallenges from "@hooks/quries/useChallenges";
+import useChannels from "@hooks/quries/useChannels";
+import usePageTitle from "@hooks/usePageTitle";
+import { Channel, Post } from "src/types";
 
 const ChallengesPage = () => {
   usePageTitle("채널");

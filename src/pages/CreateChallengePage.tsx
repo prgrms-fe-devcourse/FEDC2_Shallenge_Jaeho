@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Heading } from "@chakra-ui/react";
+
+import { fetchPostPostByChannelId } from "@api/post";
 import ChakraInput from "@base/ChakraInput";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import ChallengeChannelRadio from "@domain/CreateChallengePage/ChallengeChannelRadio";
 import StartDateCalendar from "@domain/CreateChallengePage/StartDateCalendar";
 import useGetChannelList from "@hooks/quries/useGetChannelList";
-import { fetchPostPostByChannelId } from "@api/post";
-import { useNavigate } from "react-router-dom";
 import usePageTitle from "@hooks/usePageTitle";
+import { useNavigate } from "react-router-dom";
 
 const challengeTable = Array.from({ length: 30 }, (_, index) => ({
   day: index,

@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
 import { fetchGetUserList } from "@api/user";
+import { useQuery } from "react-query";
 import { User } from "src/types";
 
 const useGetUserList = () => {

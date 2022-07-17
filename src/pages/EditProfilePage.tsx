@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
-import { Avatar, Button, Flex, Input } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+
 import { fetchPostLogout } from "@api/auth";
 import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
-
-import userAtom from "@store/user";
-import { deleteTokenFromLocalStorage } from "@lib/localStorage";
-import usePageTitle from "@hooks/usePageTitle";
 import { fetchPostUserProfileImage } from "@api/user";
+import { useToast, Avatar, Button, Flex, Input } from "@chakra-ui/react";
+import styled from "@emotion/styled";
+import usePageTitle from "@hooks/usePageTitle";
+import { deleteTokenFromLocalStorage } from "@lib/localStorage";
+import userAtom from "@store/user";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 const EditProfilePage = () => {
   usePageTitle("프로필 설정");

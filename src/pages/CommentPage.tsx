@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
-import { useAtom } from "jotai";
-import userAtom from "@store/user";
-import useGetChallenge from "@hooks/quries/useGetChallenge";
+
 import {
   fetchDeleteCommentByPostId,
   fetchPostCommentByPostId,
 } from "@api/comment";
-import { Comment, User } from "../types/index";
 import { fetchPostNotification } from "@api/notification";
-import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import DefaultText from "@base/DefaultText";
+import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import CommentCard from "@domain/CommentPage/CommentCard";
 import CommentInput from "@domain/CommentPage/CommentInput";
+import useGetChallenge from "@hooks/quries/useGetChallenge";
+import userAtom from "@store/user";
+import { format } from "date-fns";
+import { useAtom } from "jotai";
+
+import { Comment, User } from "../types/index";
 
 const CommentPage = () => {
   const [myUser] = useAtom(userAtom);

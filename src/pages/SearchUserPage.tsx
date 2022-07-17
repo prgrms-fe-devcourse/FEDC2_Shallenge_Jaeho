@@ -1,11 +1,12 @@
-import QueryString from "qs";
 import { useEffect, useState } from "react";
+
+import Card from "@base/Card";
+import DefaultText from "@base/DefaultText";
+import { Flex } from "@chakra-ui/react";
+import useGetUserList from "@hooks/quries/useGetUserList";
+import QueryString from "qs";
 import { useLocation, useNavigate } from "react-router";
 import { User } from "src/types";
-import { Flex } from "@chakra-ui/react";
-import DefaultText from "@base/DefaultText";
-import Card from "@base/Card";
-import useGetUserList from "@hooks/quries/useGetUserList";
 
 const SearchUserPage = () => {
   const location = useLocation();

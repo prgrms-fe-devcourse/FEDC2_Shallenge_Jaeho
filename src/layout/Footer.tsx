@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-
-import Icon from "@base/Icon";
 import ChakraText from "@base/ChakraText";
+import Icon from "@base/Icon";
 import { Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { User } from "src/types";
 
 interface Props {

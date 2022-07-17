@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import ChakraText from "@base/ChakraText";
 import ChakraHeading from "@base/ChakraHeading";
+import ChakraText from "@base/ChakraText";
 import { Flex } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 
 interface Props {
   startDate: string;

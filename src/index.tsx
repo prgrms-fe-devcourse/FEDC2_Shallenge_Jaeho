@@ -1,12 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import GlobalStyles from "./styles/GlobalStyles";
+import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
+import GlobalStyles from "./styles/GlobalStyles";
 
 const queryClient = new QueryClient();
 

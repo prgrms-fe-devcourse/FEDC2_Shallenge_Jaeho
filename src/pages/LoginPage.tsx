@@ -1,15 +1,15 @@
+import { useEffect } from "react";
+
+import { fetchPostLogin, fetchPostSignUp } from "@api/auth";
+import { useToast } from "@chakra-ui/react";
+import AuthForm from "@domain/LoginPage/AuthForm";
+import usePageTitle from "@hooks/usePageTitle";
+import { saveTokenToLocalStorage } from "@lib/localStorage";
+import userAtom from "@store/user";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
-
-import AuthForm from "@domain/LoginPage/AuthForm";
-import { fetchPostLogin, fetchPostSignUp } from "@api/auth";
-import { saveTokenToLocalStorage } from "@lib/localStorage";
-import userAtom from "@store/user";
-import usePageTitle from "@hooks/usePageTitle";
 import { User, FormData } from "src/types";
-import { useEffect } from "react";
 
 interface LoginResponse {
   data: {

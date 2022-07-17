@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { useState } from "react";
-import { Circle, Flex, Textarea } from "@chakra-ui/react";
+
 import Icon from "@base/Icon";
+import { Circle, Flex, Textarea } from "@chakra-ui/react";
 
 interface Props {
   onValueChange?: (param: string) => void;
