@@ -1,24 +1,23 @@
-import { Route, Routes } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
-
-import LoginPage from "@pages/LoginPage";
+import InputLayout from "@layout/InputLayout";
+import TextLayout from "@layout/TextLayout";
 import ChallengePage from "@pages/ChallengePage";
 import ChallengesPage from "@pages/ChallengesPage";
+import CommentPage from "@pages/CommentPage";
 import CreateChallengePage from "@pages/CreateChallengePage";
 import EditProfilePage from "@pages/EditProfilePage";
 import FollowPage from "@pages/FollowPage";
 import HomePage from "@pages/HomePage";
+import LoginPage from "@pages/LoginPage";
+import MyProfilePage from "@pages/MyProfilePage";
 import NotFoundPage from "@pages/NotFoundPage";
 import NotificationPage from "@pages/NotificationPage";
+import OtherProfilePage from "@pages/OtherProfilePage";
 import SearchUserPage from "@pages/SearchUserPage";
-import MyProfilePage from "@pages/MyProfilePage";
+import { Helmet } from "react-helmet-async";
+import { Route, Routes } from "react-router-dom";
 
 import AuthProvider from "../Provider/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
-import InputLayout from "@layout/InputLayout";
-import TextLayout from "@layout/TextLayout";
-import OtherProfilePage from "@pages/OtherProfilePage";
-import CommentPage from "@pages/CommentPage";
 
 const AppRouter = () => {
   return (

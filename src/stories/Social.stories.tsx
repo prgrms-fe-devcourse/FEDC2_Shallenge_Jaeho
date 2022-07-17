@@ -1,5 +1,6 @@
-import Social from "../components/base/Social";
 import { Flex } from "@chakra-ui/react";
+
+import Social from "../components/base/Social";
 export default {
   title: "Component/Base/Social",
   component: "Social",

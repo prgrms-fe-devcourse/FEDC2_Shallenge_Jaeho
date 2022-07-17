@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { useRef, useState } from "react";
+
 import {
   Button,
   Input,
@@ -9,9 +11,8 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { FormData } from "src/types";
-import { useRef, useState } from "react";
 import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import { FormData } from "src/types";
 
 interface Props {
   logInRegister: UseFormRegister<FormData>;

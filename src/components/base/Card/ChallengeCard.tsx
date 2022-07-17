@@ -1,5 +1,5 @@
-import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 import Card from "@base/Card";
+import { Avatar, Heading, Text, Box, Flex } from "@chakra-ui/react";
 interface Props {
   title: string;
   reward: string;

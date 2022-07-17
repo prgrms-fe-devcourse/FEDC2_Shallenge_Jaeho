@@ -1,11 +1,10 @@
-import { Outlet } from "react-router-dom";
-import { useAtom } from "jotai";
-
-import Header from "@layout/Header";
-import Footer from "@layout/Footer";
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import userAtom from "@store/user";
+import Footer from "@layout/Footer";
+import Header from "@layout/Header";
 import pageTitleAtom from "@store/pageTitle";
+import userAtom from "@store/user";
+import { useAtom } from "jotai";
+import { Outlet } from "react-router-dom";
 
 const TextLayout = () => {
   const [myUser] = useAtom(userAtom);

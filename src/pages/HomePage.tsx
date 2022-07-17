@@ -1,9 +1,11 @@
-import { Heading, Text, Flex } from "@chakra-ui/layout";
+import { useState, useEffect } from "react";
+
 import Card from "@base/Card";
-import { useNavigate } from "react-router-dom";
+import { Heading, Text, Flex } from "@chakra-ui/layout";
 import useGetChannelList from "@hooks/quries/useGetChannelList";
 import useGetPostLists from "@hooks/quries/useGetPostLists";
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Channel, Post } from "../types/index";
 
 const HomePage = () => {
