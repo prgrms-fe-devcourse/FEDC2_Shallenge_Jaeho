@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
 import { fetchPostNotification } from "@api/notification";
-import { fetchPutPost } from "@api/post";
+import { fetchDeletePostByPostId, fetchPutPost } from "@api/post";
+import Icon from "@base/Icon";
 import { Circle, Flex } from "@chakra-ui/react";
 import CertificationButton from "@domain/ChallengePage/CertificationButton";
 import CertificationTable from "@domain/ChallengePage/CertificationTable";
@@ -22,6 +23,8 @@ const ChallengePage = () => {
   const [, setPageTitle] = useAtom(titleAtom);
   const navigate = useNavigate();
   const [isGuest, setIsGuest] = useState(true);
+  const [isWorking, setIsWorking] = useState(true);
+  const [challengeId, setChallengeId] = useState("");
   const [reward, setReward] = useState("");
   const [commentCount, setCommentCount] = useState(0);
   const [cheerUpCount, setCheerUpCount] = useState(0);
@@ -53,6 +56,7 @@ const ChallengePage = () => {
       } = JSON.parse(Content);
 
       setPageTitle(challengeTitle);
+      setChallengeId(contents.data._id);
 
       const calculatedPresentDay = differenceInDays(
         new Date(format(new Date(), "yyyy-MM-dd")),
@@ -79,10 +83,14 @@ const ChallengePage = () => {
   }, [presentDay]);
 
   const validateGuest = (postUserId: string) => {
-    if (myUser && myUser._id === postUserId) setIsGuest(false);
+    if (myUser && myUser._id === postUserId) {
+      setIsGuest(false);
+      setIsWorking(false);
+    }
   };
   const validateDate = (calculatedPresentDay: number) => {
-    if (calculatedPresentDay < 0 || 29 < calculatedPresentDay) setIsGuest(true);
+    if (calculatedPresentDay < 0 || 29 < calculatedPresentDay)
+      setIsWorking(true);
     if (calculatedPresentDay < 0) setPresentDay(0);
     if (29 < calculatedPresentDay) setPresentDay(30);
   };
@@ -113,6 +121,11 @@ const ChallengePage = () => {
 
   const checkUser = () => {
     return myUser === null || myUser === undefined ? false : true;
+  };
+
+  const challengeDelete = async (_id: string) => {
+    const { data, status } = await fetchDeletePostByPostId(_id);
+    status === 200 ? navigate("/my/profile") : alert("다시 시도바랍니다!");
   };
 
   const onCheerUpEvent = async () => {
@@ -159,6 +172,13 @@ const ChallengePage = () => {
     const { status } = await fetchPutPost(updatedPost);
     status === 200 ? setDays(updatedDays) : console.log("다시 시도해주세요!");
   };
+
+  const onDeleteChallengeEvent = () => {
+    if (confirm("목표를 포기하시겠습니까?")) {
+      void challengeDelete(challengeId);
+    }
+  };
+
   return (
     <>
       {show && (
@@ -202,10 +222,24 @@ const ChallengePage = () => {
                 ></CheerUpButton>
               </Flex>
             </Flex>
+            {show && !isGuest && (
+              <Circle
+                position="relative"
+                left={256}
+                top={4}
+                padding={1.5}
+                _hover={{ cursor: "pointer" }}
+                bg="#FFFFFF"
+                boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25)"
+                onClick={onDeleteChallengeEvent}
+              >
+                <Icon name="trash-2" size={32} color="#FF5A5A" />
+              </Circle>
+            )}
           </Flex>
         </>
       )}
-      {show && !isGuest && (
+      {show && !isWorking && (
         <Circle
           position="absolute"
           left="50%"
