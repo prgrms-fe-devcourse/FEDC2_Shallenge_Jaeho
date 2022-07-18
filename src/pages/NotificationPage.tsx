@@ -1,5 +1,5 @@
 import DefaultText from "@base/DefaultText";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spinner } from "@chakra-ui/react";
 import NotificationCard from "@domain/NotificationPage/Notification";
 import useNotifications from "@hooks/quries/useNotifications";
 import usePageTitle from "@hooks/usePageTitle";
@@ -23,7 +23,11 @@ const NotificationPage = () => {
   const { data, isLoading } = useNotifications();
 
   if (isLoading) {
-    return <DefaultText>Loading...</DefaultText>;
+    return (
+      <Flex alignItems="center" justifyContent="center">
+        <Spinner size="lg" />
+      </Flex>
+    );
   }
 
   return (
