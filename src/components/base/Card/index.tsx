@@ -9,6 +9,7 @@ interface Props {
   heading: string;
   text: string;
   userInfo?: boolean;
+  authorId?: string;
   avatarSrc?: string;
   commentCount?: number;
   cheerCount?: number;
@@ -29,6 +30,7 @@ const Card = ({
   margin = 0,
   author = "username",
   styleProps = {},
+  authorId,
   onClick,
 }: Props) => {
   return (

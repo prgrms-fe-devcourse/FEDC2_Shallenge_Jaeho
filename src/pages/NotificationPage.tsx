@@ -3,9 +3,22 @@ import { Flex } from "@chakra-ui/react";
 import NotificationCard from "@domain/NotificationPage/Notification";
 import useNotifications from "@hooks/quries/useNotifications";
 import usePageTitle from "@hooks/usePageTitle";
+import { useNavigate } from "react-router-dom";
 import { Notification } from "src/types";
 
 const NotificationPage = () => {
+  const navigate = useNavigate();
+  const handleClick = (notification: Notification) => {
+    if (notification.follow) {
+      navigate(`/profile/${notification.follow}`);
+    } else if (notification.comment) {
+      console.log(notification.comment);
+      navigate(`/`);
+    } else {
+      navigate(`/`);
+    }
+  };
+
   usePageTitle("알림");
   const { data, isLoading } = useNotifications();
 
@@ -30,6 +43,9 @@ const NotificationPage = () => {
               avatarSrc={notification.author.image}
               userName={notification.author.fullName}
               createdAt={notification.createdAt}
+              onClick={() => {
+                handleClick(notification);
+              }}
             ></NotificationCard>
           );
         })

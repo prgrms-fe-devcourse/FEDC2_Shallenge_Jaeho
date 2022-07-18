@@ -6,6 +6,7 @@ interface Props {
   userName: string;
   notificationType: "follow" | "comment" | "like";
   createdAt: string;
+  onClick?: () => void;
 }
 
 const Notification = ({
@@ -13,11 +14,18 @@ const Notification = ({
   userName,
   notificationType,
   createdAt,
+  onClick,
 }: Props) => {
   const notifiedTime = new Date(createdAt).toLocaleString().slice(2, 20);
 
   return (
-    <CardContainer alignItems="center">
+    <Flex
+      alignItems="center"
+      height="96px"
+      padding="0 16px"
+      backgroundColor="white"
+      onClick={onClick}
+    >
       <Avatar size="lg" src={avatarSrc} marginRight="16px" />
       <div>
         <Flex>
@@ -35,17 +43,11 @@ const Notification = ({
           {notifiedTime}
         </Text>
       </div>
-    </CardContainer>
+    </Flex>
   );
 };
 
 export default Notification;
-
-const CardContainer = styled(Flex)`
-  height: 96px;
-  padding: 0 16px;
-  background-color: white;
-`;
 
 const UserNameText = styled.span`
   font-weight: bold;
