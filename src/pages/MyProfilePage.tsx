@@ -1,4 +1,3 @@
-import { Flex } from "@chakra-ui/react";
 import MyChallenges from "@domain/ProfilePage/MyChallenges";
 import MySummary from "@domain/ProfilePage/MySummary";
 import UserAvatar from "@domain/ProfilePage/UserAvatar";
@@ -13,12 +12,7 @@ const MyProfilePage = () => {
 
   return (
     <>
-      <Flex
-        justifyContent="space-evenly"
-        alignItems="center"
-        marginTop="32px"
-        position="relative"
-      >
+      <UserInfo>
         <UserAvatar image={myUser.image} name={myUser.fullName} />
         <MySummary
           introduce={myUser.coverImage}
@@ -26,10 +20,18 @@ const MyProfilePage = () => {
           followingCount={myUser.following.length}
           id={myUser._id}
         />
-      </Flex>
+      </UserInfo>
       <MyChallenges challenges={myUser.posts} />
     </>
   );
 };
 
 export default MyProfilePage;
+
+const UserInfo = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 32px;
+`;
