@@ -17,50 +17,44 @@ import { User } from "src/types";
 
 interface Props {
   followingList: User[];
-  followersList: User[];
+  followerList: User[];
 }
 
-const FollowPageTab = ({ followingList, followersList }: Props) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+const FollowPageTab = ({ followingList, followerList }: Props) => {
+  const [tabIndex, setTabIndex] = useState(0);
   const navigate = useNavigate();
+
   const handleClickUser = (userId: string) => {
     navigate(`/profile/${userId}`);
   };
 
   return (
     <TabsContainer>
-      <Tabs isFitted variant="enclosed" align="center">
-        <TabList>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 0 ? "white" : "#E2E8F0",
-              color: selectedTab === 0 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 0 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(0)}
+      <Tabs isFitted variant="unstyled" align="center">
+        <TabList height="40px">
+          <CTab
+            isSelectedTab={tabIndex === 0}
+            borderTopRadius={15}
+            fontSize="20px"
+            onClick={() => setTabIndex(0)}
           >
             팔로워
-          </Tab>
-          <Tab
-            fontSize={24}
-            style={{
-              backgroundColor: selectedTab === 1 ? "white" : "#E2E8F0",
-              color: selectedTab === 1 ? "#ff7900" : "white",
-              fontWeight: selectedTab === 1 ? "700" : "",
-              border: "none",
-            }}
-            onClick={() => setSelectedTab(1)}
+          </CTab>
+          <CTab
+            isSelectedTab={tabIndex === 1}
+            borderTopRadius={15}
+            border="none"
+            fontSize="20px"
+            onClick={() => setTabIndex(1)}
           >
             팔로잉
-          </Tab>
+          </CTab>
         </TabList>
-        <TabPanels style={{ backgroundColor: "white" }}>
+        <TabPanels bgColor="white">
           <TabPanel>
-            {followingList.length ? (
+            {followerList.length ? (
               <Flex flexDirection="column">
-                {followingList.map((user) => (
+                {followerList.map((user) => (
                   <Card
                     type="user"
                     heading={user.fullName}
@@ -75,19 +69,20 @@ const FollowPageTab = ({ followingList, followersList }: Props) => {
                 ))}
               </Flex>
             ) : (
-              <DefaultText>아직 팔로잉이 없어요!</DefaultText>
+              <DefaultText>아직 팔로워가 없어요!</DefaultText>
             )}
           </TabPanel>
           <TabPanel>
-            {followersList.length ? (
+            {followingList.length ? (
               <Flex flexDirection="column">
-                {followersList.map((user) => {
+                {followingList.map((user) => {
                   return (
                     <Card
                       type="user"
                       heading={user.fullName}
                       text={user.coverImage ?? "자기소개 없음"}
                       avatarSrc={user.image}
+                      styleProps={{ boxShadow: "none" }}
                       onClick={() => {
                         handleClickUser(user._id);
                       }}
@@ -97,7 +92,7 @@ const FollowPageTab = ({ followingList, followersList }: Props) => {
                 })}
               </Flex>
             ) : (
-              <DefaultText>아직 팔로워가 없어요!</DefaultText>
+              <DefaultText>아직 팔로잉이 없어요!</DefaultText>
             )}
           </TabPanel>
         </TabPanels>
@@ -111,6 +106,12 @@ export default FollowPageTab;
 const TabsContainer = styled.div`
   margin-top: 40px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  border-radius: 6px 0;
+  background-color: none;
+`;
+
+const CTab = styled(Tab)<{ isSelectedTab: boolean }>`
+  background-color: ${({ isSelectedTab }) =>
+    isSelectedTab ? "#ffffff" : "#E2E8F0"};
+  color: ${({ isSelectedTab }) => (isSelectedTab ? "#ff7900" : "#ffffff")};
+  font-weight: ${({ isSelectedTab }) => (isSelectedTab ? "700" : "")};
 `;
