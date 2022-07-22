@@ -14,7 +14,8 @@
 
 ## 팀원
 
-|[승희](https://github.com/sunhpark42)|[계진]()|[내영]()|[재호]()|
+|[승희](https://github.com/sunhpark42)|[계진]()|[내영](https://github.com/nyoung113)|[재호]()|
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/50866506?s=400&v=4" width=200px alt="_"/> | |  |  |
+| <img src="https://avatars.githubusercontent.com/u/50866506?s=400&v=4" width=200px alt="_"/> | | <img src="https://user-images.githubusercontent.com/75849590/180480337-134d3317-2fbd-4fc9-8725-657809567e9e.jpg" width=200px alt="_"> |  |
 |프론트엔드|프론트엔드|프론트엔드|프론트엔드|
+
