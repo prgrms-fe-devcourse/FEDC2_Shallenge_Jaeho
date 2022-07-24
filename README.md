@@ -1,6 +1,9 @@
-# ⭐️ Shallenge 프로젝트
+# ⭐️ Shallenge
 
-#### Share + Challenge 의 혼합어로 습관 만들기를 독려하는 서비스
+## 목표 인증 공유 SNS 서비스
+
+<img src="https://user-images.githubusercontent.com/50866506/180643633-e357d51e-36eb-4ff0-8990-7d0002ebc0ef.png" width=250px alt="logo">
+
 #### 수행기간 : 2022.06.06 ~ 2022.06.22
 #### [배포 링크](https://shallenge.vercel.app/) / [노션 링크](https://prgrms.notion.site/Shallenge-0609c326406e4869b5b2673ddd31eece) / [Github Wiki](https://github.com/prgrms-fe-devcourse/FEDC2_Shallenge_Jaeho/wiki)
 
@@ -9,7 +12,7 @@
 ## 👥 팀원
 
 <table>
-  <tr>    
+  <tr>
     <td align="center">
       <div>프론트엔드</div>
     </td>
@@ -37,7 +40,7 @@
       <img src="https://user-images.githubusercontent.com/75886763/180628961-94bbf84b-50fc-425f-a993-89b870262c9d.png" width=130px alt="조승희">
     </td>
   </tr>
-  <tr>    
+  <tr>
     <td align="center">
       <a href="https://github.com/nyoung113">
         <div>권내영</div>
@@ -52,9 +55,9 @@
       <a href="https://github.com/taewook1">
         <div>조계진</div>
       </a>
-    </td>    
+    </td>
     <td align="center">
-      <a href="https://github.com/sunhpark42">
+      <a href="https://github.com/sa02045">
         <div>조승희</div>
       </a>
     </td>
@@ -62,6 +65,7 @@
 </table>
 
 <br>
+
 
 ## 🌁 기획 배경
 - 대다수의 사람들이 계획을 세우고 달성하기 위해 어플리케이션을 사용하지만 잘 지키지 못한다.
@@ -94,7 +98,7 @@
 ## 💻 화면 예시
 
 <table>
-  <tr>    
+  <tr>
     <td align="center">
       <div>메인 화면</div>
     </td>
@@ -143,7 +147,7 @@
 ## 📃 기술 스택
 
 <table>
-  <tr>    
+  <tr>
     <td align="center">
       <div>프레임워크</div>
     </td>
@@ -157,7 +161,7 @@
       <div>협업</div>
     </td>
   </tr>
-  <tr>    
+  <tr>
     <td align="center">
       <img src="https://img.shields.io/badge/React-18.1.0-61DAFB?style=for-the-badge">
       <img src="https://img.shields.io/badge/Typescript-4.7.3-3178C6?style=for-the-badge">
