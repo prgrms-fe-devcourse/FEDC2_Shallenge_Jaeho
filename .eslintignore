@@ -2,3 +2,5 @@
 build
 *.stories.tsx
 craco.config.js
+/cypress
+cypress.config.ts
