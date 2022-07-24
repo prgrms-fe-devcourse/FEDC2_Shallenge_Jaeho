@@ -1,11 +1,8 @@
-
-
 # ⭐️ Shallenge 프로젝트
 
 #### Share + Challenge 의 혼합어로 습관 만들기를 독려하는 서비스
 #### 수행기간 : 2022.06.06 ~ 2022.06.22
-#### [배포 링크](https://shallenge.vercel.app/)
-#### [노션 링크](https://prgrms.notion.site/Shallenge-0609c326406e4869b5b2673ddd31eece)
+#### [배포 링크](https://shallenge.vercel.app/) / [노션 링크](https://prgrms.notion.site/Shallenge-0609c326406e4869b5b2673ddd31eece) / [Github Wiki](https://github.com/prgrms-fe-devcourse/FEDC2_Shallenge_Jaeho/wiki)
 
 <br>
 
