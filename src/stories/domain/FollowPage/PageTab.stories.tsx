@@ -1,5 +1,5 @@
-import FollowPageTab from "@domain/FollowPage/FollowPageTab";
-import TextLayout from "@layout/TextLayout";
+import FollowPageTab from "@/domain/FollowPage/FollowPageTab";
+import TextLayout from "@/layout/TextLayout";
 
 export default {
   title: "Component/Domain/FollowPage/PageTab",

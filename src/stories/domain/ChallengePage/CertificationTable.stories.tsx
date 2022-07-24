@@ -1,4 +1,4 @@
-import CertificationTable from "@domain/ChallengePage/CertificationTable";
+import CertificationTable from "@/domain/ChallengePage/CertificationTable";
 
 const dummyData = [
   { day: 1, isChecked: true },

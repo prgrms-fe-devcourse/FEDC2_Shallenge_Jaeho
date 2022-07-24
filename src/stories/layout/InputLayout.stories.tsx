@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import InputLayout from "@layout/InputLayout";
+import InputLayout from "@/layout/InputLayout";
 
 export default {
   title: "Component/Layout/InputLayout",

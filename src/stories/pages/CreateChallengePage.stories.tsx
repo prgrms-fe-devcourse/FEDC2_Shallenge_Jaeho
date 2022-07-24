@@ -1,4 +1,4 @@
-import CreateChallengePage from "@pages/CreateChallengePage";
+import CreateChallengePage from "@/pages/CreateChallengePage";
 import GlobalStyles from "src/styles/GlobalStyles";
 export default {
   title: "Pages/CreateChallengePage",

@@ -1,6 +1,7 @@
-import Icon from "@base/Icon";
 import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+
+import Icon from "@/base/Icon";
 
 interface Prop {
   isGuest: boolean;

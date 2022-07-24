@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 
-import { fetchGetAuthUser } from "@api/auth";
-import userAtom from "@store/user";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
+
+import { fetchGetAuthUser } from "@/api/auth";
+import userAtom from "@/store/user";
 
 const useAuth = () => {
   const [, setMyUser] = useAtom(userAtom);

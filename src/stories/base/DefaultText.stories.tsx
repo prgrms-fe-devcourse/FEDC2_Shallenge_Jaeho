@@ -1,4 +1,4 @@
-import DefaultText from "@base/DefaultText";
+import DefaultText from "@/base/DefaultText";
 import { Box } from "@chakra-ui/react";
 export default {
   title: "Component/Base/DefaultText",

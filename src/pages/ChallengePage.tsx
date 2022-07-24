@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 
-import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@api/like";
-import { fetchPostNotification } from "@api/notification";
-import { fetchDeletePostByPostId, fetchPutPost } from "@api/post";
-import Icon from "@base/Icon";
 import { Circle, Flex } from "@chakra-ui/react";
-import CertificationButton from "@domain/ChallengePage/CertificationButton";
-import CertificationTable from "@domain/ChallengePage/CertificationTable";
-import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
-import CheerUpButton from "@domain/ChallengePage/CheerUpButton";
-import CommentButton from "@domain/ChallengePage/CommentButton";
-import useGetChallenge from "@hooks/quries/useGetChallenge";
-import titleAtom from "@store/pageTitle";
-import userAtom from "@store/user";
 import { add, differenceInDays, format } from "date-fns";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { Like } from "src/types";
+
+import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@/api/like";
+import { fetchPostNotification } from "@/api/notification";
+import { fetchDeletePostByPostId, fetchPutPost } from "@/api/post";
+import Icon from "@/base/Icon";
+import CertificationButton from "@/domain/ChallengePage/CertificationButton";
+import CertificationTable from "@/domain/ChallengePage/CertificationTable";
+import ChallengeReward from "@/domain/ChallengePage/ChallengeReward";
+import CheerUpButton from "@/domain/ChallengePage/CheerUpButton";
+import CommentButton from "@/domain/ChallengePage/CommentButton";
+import useGetChallenge from "@/hooks/quries/useGetChallenge";
+import titleAtom from "@/store/pageTitle";
+import userAtom from "@/store/user";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);

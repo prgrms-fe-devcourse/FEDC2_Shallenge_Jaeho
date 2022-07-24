@@ -1,5 +1,6 @@
-import Icon from "@base/Icon";
 import { Circle } from "@chakra-ui/react";
+
+import Icon from "@/base/Icon";
 
 interface Props {
   isActive?: boolean;

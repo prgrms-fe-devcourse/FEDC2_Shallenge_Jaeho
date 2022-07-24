@@ -1,4 +1,4 @@
-import ChakraText from "@base/ChakraText";
+import ChakraText from "@/base/ChakraText";
 
 export default {
   title: "Component/ChakraText",

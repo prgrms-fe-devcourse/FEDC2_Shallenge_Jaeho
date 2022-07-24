@@ -1,7 +1,7 @@
 import React from "react";
 
-import useAuth from "@hooks/useAuth";
-import InputLayout from "@layout/InputLayout";
+import useAuth from "@/hooks/useAuth";
+import InputLayout from "@/layout/InputLayout";
 
 interface Props {
   children: React.ReactNode;

@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import TextLayout from "@layout/TextLayout";
+import TextLayout from "@/layout/TextLayout";
 
 export default {
   title: "Component/Layout/TextLayout",

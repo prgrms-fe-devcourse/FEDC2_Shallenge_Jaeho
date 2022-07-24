@@ -1,4 +1,4 @@
-import CommentCard from "@domain/CommentPage/CommentCard";
+import CommentCard from "@/domain/CommentPage/CommentCard";
 import GlobalStyles from "src/styles/GlobalStyles";
 
 export default {

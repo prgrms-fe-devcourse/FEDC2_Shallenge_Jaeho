@@ -1,5 +1,6 @@
-import axios from "@lib/axios";
 import { Notification } from "src/types";
+
+import axios from "@/lib/axios";
 
 export const fetchGetNotificationList = async () => {
   const { data } = await axios.get<Notification[]>("/notifications");

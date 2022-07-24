@@ -1,4 +1,4 @@
-import CommentInput from "@domain/CommentPage/CommentInput";
+import CommentInput from "@/domain/CommentPage/CommentInput";
 import GlobalStyles from "src/styles/GlobalStyles";
 
 export default {

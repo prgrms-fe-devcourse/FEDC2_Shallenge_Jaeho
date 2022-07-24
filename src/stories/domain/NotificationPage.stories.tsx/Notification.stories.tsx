@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import Notification from "@domain/NotificationPage/Notification";
+import Notification from "@/domain/NotificationPage/Notification";
 export default {
   title: "Component/Domain/NotificationPage/Notification",
   component: Notification,

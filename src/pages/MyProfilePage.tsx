@@ -1,10 +1,11 @@
-import MyChallenges from "@domain/ProfilePage/MyChallenges";
-import MySummary from "@domain/ProfilePage/MySummary";
-import UserAvatar from "@domain/ProfilePage/UserAvatar";
 import styled from "@emotion/styled";
-import usePageTitle from "@hooks/usePageTitle";
-import userAtom from "@store/user";
 import { useAtom } from "jotai";
+
+import MyChallenges from "@/domain/ProfilePage/MyChallenges";
+import MySummary from "@/domain/ProfilePage/MySummary";
+import UserAvatar from "@/domain/ProfilePage/UserAvatar";
+import usePageTitle from "@/hooks/usePageTitle";
+import userAtom from "@/store/user";
 
 const MyProfilePage = () => {
   const [myUser] = useAtom(userAtom);

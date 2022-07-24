@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState } from "react";
 
-import Card from "@base/Card";
-import DefaultText from "@base/DefaultText";
 import {
   Tab,
   TabList,
@@ -14,6 +12,9 @@ import {
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { User } from "src/types";
+
+import Card from "@/base/Card";
+import DefaultText from "@/base/DefaultText";
 
 interface Props {
   followingList: User[];

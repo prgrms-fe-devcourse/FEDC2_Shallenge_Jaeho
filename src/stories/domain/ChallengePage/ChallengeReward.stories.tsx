@@ -1,4 +1,4 @@
-import ChallengeReward from "@domain/ChallengePage/ChallengeReward";
+import ChallengeReward from "@/domain/ChallengePage/ChallengeReward";
 
 export default {
   title: "Domain/ChallengePage/ChallengeReward",

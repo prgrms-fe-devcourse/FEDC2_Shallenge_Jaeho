@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
-import { fetchPostLogout } from "@api/auth";
-import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@api/setting";
-import { fetchPostUserProfileImage } from "@api/user";
 import { useToast, Avatar, Button, Flex, Input } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import usePageTitle from "@hooks/usePageTitle";
-import { deleteTokenFromLocalStorage } from "@lib/localStorage";
-import userAtom from "@store/user";
 import { AxiosResponse } from "axios";
 import { useAtom } from "jotai";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { User } from "../types/index";
+import { fetchPostLogout } from "@/api/auth";
+import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@/api/setting";
+import { fetchPostUserProfileImage } from "@/api/user";
+import usePageTitle from "@/hooks/usePageTitle";
+import { deleteTokenFromLocalStorage } from "@/lib/localStorage";
+import userAtom from "@/store/user";
 
 const EditProfilePage = () => {
   const toast = useToast();

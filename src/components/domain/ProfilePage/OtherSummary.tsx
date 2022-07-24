@@ -1,15 +1,17 @@
-import {
-  fetchDeleteFollowByUserId,
-  fetchPostFollowByUserId,
-} from "@api/follow";
+import { useEffect, useState } from "react";
+
 import { Button, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import userAtom from "@store/user";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Follow } from "src/types";
+
+import {
+  fetchDeleteFollowByUserId,
+  fetchPostFollowByUserId,
+} from "@/api/follow";
+import userAtom from "@/store/user";
 
 interface Props {
   introduce: string;
