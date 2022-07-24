@@ -75,6 +75,63 @@
 
 <br>
 
+## 💡 기능
+- 챌린지 설정 기능
+    - 기간 및 요일을 설정해서 챌린지를 설정 가능
+- 챌린지 인증 기능
+    - 사진 업로드 기능을 통해  사진을 통한 기록 가능
+- 기록 보기 기능
+    - 각 챌린지별로 달성 퍼센트 및 남은 기간 보기 가능
+- 계정 공개 기능
+    - 자신의 기록 계정 공개 기능을 통해 다른 사람이 자신의 챌린지들과 기록들을 볼 수 있도록 공개
+- 계정 팔로우, 응원하기 기능
+    - 다른 사용자를 팔로우하거나, 다른 사용자의 특정 챌린지를 응원하기
+- 알람 기능
+    - 자신의 계정에 다른 사용자가 팔로우, 댓글, 응원을 하면 알림 울리기
+
+<br>
+
+## 💻 화면 예시
+
+<table>
+  <tr>    
+    <td align="center">
+      <div>메인 화면</div>
+    </td>
+    <td align="center">
+      <div>채널 화면</div>
+    </td>
+    <td align="center">
+      <div>알림 화면</div>
+    </td>
+    <td align="center">
+      <div>목표 상세 화면</div>
+    </td>
+    <td align="center">
+      <div>사용자 정보 화면</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="642" alt="메인 화면" src="https://user-images.githubusercontent.com/75886763/180639962-bcf16715-21ee-4091-ba83-87273fbba549.png">
+    </td>
+    <td align="center">
+      <img width="655" alt="채널 화면" src="https://user-images.githubusercontent.com/75886763/180639980-dbb9001b-7328-47ba-ab85-3289a75374b2.png">
+    </td>
+    <td align="center">
+      <img width="650" alt="알림 화면" src="https://user-images.githubusercontent.com/75886763/180639986-03578ed7-8e1d-46c6-b458-37942b60efa8.png">
+    </td>
+    <td align="center">
+      <img width="658" alt="상세 화면" src="https://user-images.githubusercontent.com/75886763/180639992-40f0c057-a3f6-4b85-a562-999fc7bbf982.png">
+    </td>
+    <td align="center">
+      <img width="652" alt="회원 정보 화면" src="https://user-images.githubusercontent.com/75886763/180639997-d5501d90-d7a1-44d4-93cb-584a62de16fd.png">
+    </td>
+  </tr>
+</table>
+
+<br>
+
 ## ⚙️ 개발 환경
 - VScode
 - NPM ^8
@@ -120,9 +177,9 @@
     </td>
     <td align="center">
       <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge">
-      <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge">
+      <img src="https://img.shields.io/badge/Figma-000000?style=for-the-badge">
       <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge">
-      <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge">
+      <img src="https://img.shields.io/badge/Notion-FFFFFF?style=for-the-badge">
       <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge">
     </td>
   </tr>
