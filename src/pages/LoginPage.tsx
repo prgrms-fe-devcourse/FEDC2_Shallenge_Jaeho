@@ -4,13 +4,13 @@ import { useToast } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { User, FormData } from "src/types";
 
 import { fetchPostLogin, fetchPostSignUp } from "@/api/auth";
 import AuthForm from "@/domain/LoginPage/AuthForm";
 import usePageTitle from "@/hooks/usePageTitle";
 import { saveTokenToLocalStorage } from "@/lib/localStorage";
 import userAtom from "@/store/user";
+import { User, FormData } from "src/types";
 
 interface LoginResponse {
   data: {

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
-import { Channel } from "src/types";
 
 import Challenges from "@/domain/ChallengesPage/Challenges";
 import Chips from "@/domain/ChallengesPage/Chips";
 import useChallenges from "@/hooks/quries/useChallenges";
 import useChannels from "@/hooks/quries/useChannels";
 import usePageTitle from "@/hooks/usePageTitle";
+import { Channel } from "src/types";
 
 const ChallengesPage = () => {
   usePageTitle("채널");

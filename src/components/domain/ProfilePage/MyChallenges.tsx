@@ -1,9 +1,9 @@
 import { Button, Flex, Heading, Spacer } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import { Post } from "src/types";
 
 import Card from "@/base/Card";
+import { Post } from "src/types";
 
 interface Props {
   challenges: Post[];

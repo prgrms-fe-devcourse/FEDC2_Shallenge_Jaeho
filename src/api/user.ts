@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
-import { User } from "src/types";
 
 import axios from "@/lib/axios";
+import { User } from "src/types";
 
 export const fetchGetUserList = async () => {
   const { data } = await axios.get<User[]>("/users/get-users");

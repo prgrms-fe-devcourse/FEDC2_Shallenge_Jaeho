@@ -4,9 +4,10 @@ import { Heading, Text, Flex } from "@chakra-ui/layout";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-import { Channel } from "../../../types/index";
 import { fetchGetPostListByChannel } from "@/api/post";
 import Card from "@/base/Card";
+
+import { Channel } from "../../../types/index";
 
 interface Props {
   channel: Channel;

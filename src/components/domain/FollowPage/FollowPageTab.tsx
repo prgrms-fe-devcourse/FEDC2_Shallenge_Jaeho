@@ -11,10 +11,10 @@ import {
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import { User } from "src/types";
 
 import Card from "@/base/Card";
 import DefaultText from "@/base/DefaultText";
+import { User } from "src/types";
 
 interface Props {
   followingList: User[];

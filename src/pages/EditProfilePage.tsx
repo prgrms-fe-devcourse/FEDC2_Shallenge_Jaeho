@@ -7,13 +7,14 @@ import { useAtom } from "jotai";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-import { User } from "../types/index";
 import { fetchPostLogout } from "@/api/auth";
 import { fetchPutUpdatedPassword, fetchPutUpdateMyInfo } from "@/api/setting";
 import { fetchPostUserProfileImage } from "@/api/user";
 import usePageTitle from "@/hooks/usePageTitle";
 import { deleteTokenFromLocalStorage } from "@/lib/localStorage";
 import userAtom from "@/store/user";
+
+import { User } from "../types/index";
 
 const EditProfilePage = () => {
   const toast = useToast();

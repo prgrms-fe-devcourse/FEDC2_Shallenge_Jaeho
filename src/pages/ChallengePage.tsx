@@ -4,7 +4,6 @@ import { Circle, Flex } from "@chakra-ui/react";
 import { add, differenceInDays, format } from "date-fns";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { Like } from "src/types";
 
 import { fetchDeleteLikeByPostId, fetchPostLikeByPostId } from "@/api/like";
 import { fetchPostNotification } from "@/api/notification";
@@ -18,6 +17,7 @@ import CommentButton from "@/domain/ChallengePage/CommentButton";
 import useGetChallenge from "@/hooks/quries/useGetChallenge";
 import titleAtom from "@/store/pageTitle";
 import userAtom from "@/store/user";
+import { Like } from "src/types";
 
 const ChallengePage = () => {
   const [myUser] = useAtom(userAtom);

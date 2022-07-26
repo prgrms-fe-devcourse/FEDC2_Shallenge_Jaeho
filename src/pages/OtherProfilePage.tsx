@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import { Flex } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { User } from "src/types";
 
 import OtherChallenges from "@/domain/ProfilePage/OtherChallenges";
 import OtherSummary from "@/domain/ProfilePage/OtherSummary";
 import UserAvatar from "@/domain/ProfilePage/UserAvatar";
 import useGetUserById from "@/hooks/quries/useGetUser";
+import { User } from "src/types";
 
 const OtherProfilePage = () => {
   const { userId } = useParams();

@@ -5,13 +5,13 @@ import styled from "@emotion/styled";
 import { useAtom } from "jotai";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Follow } from "src/types";
 
 import {
   fetchDeleteFollowByUserId,
   fetchPostFollowByUserId,
 } from "@/api/follow";
 import userAtom from "@/store/user";
+import { Follow } from "src/types";
 
 interface Props {
   introduce: string;

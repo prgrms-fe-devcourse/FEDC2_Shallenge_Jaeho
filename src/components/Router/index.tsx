@@ -1,8 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
-import AuthProvider from "../Provider/AuthProvider";
-import PrivateRoute from "./PrivateRoute";
 import InputLayout from "@/layout/InputLayout";
 import TextLayout from "@/layout/TextLayout";
 import ChallengePage from "@/pages/ChallengePage";
@@ -18,6 +16,9 @@ import NotFoundPage from "@/pages/NotFoundPage";
 import NotificationPage from "@/pages/NotificationPage";
 import OtherProfilePage from "@/pages/OtherProfilePage";
 import SearchUserPage from "@/pages/SearchUserPage";
+
+import AuthProvider from "../Provider/AuthProvider";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRouter = () => {
   return (

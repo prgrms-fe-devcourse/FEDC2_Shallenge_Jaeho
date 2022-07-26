@@ -1,6 +1,5 @@
-import { Post } from "src/types";
-
 import axios from "@/lib/axios";
+import { Post } from "src/types";
 
 export const fetchGetPostListByChannel = async (channelId: string) => {
   const { data } = await axios.get<Post[]>(`/posts/channel/${channelId}`);

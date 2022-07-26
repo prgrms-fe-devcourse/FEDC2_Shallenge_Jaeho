@@ -1,6 +1,5 @@
-import { Follow } from "src/types";
-
 import axios from "@/lib/axios";
+import { Follow } from "src/types";
 
 export const fetchPostFollowByUserId = async (userId: string) => {
   const { data } = await axios.post<Follow>("/follow/create", {

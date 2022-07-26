@@ -4,7 +4,6 @@ import { Box, Flex, List, ListItem } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { useAtom } from "jotai";
 
-import { Comment, User } from "../types/index";
 import {
   fetchDeleteCommentByPostId,
   fetchPostCommentByPostId,
@@ -15,6 +14,8 @@ import CommentCard from "@/domain/CommentPage/CommentCard";
 import CommentInput from "@/domain/CommentPage/CommentInput";
 import useGetChallenge from "@/hooks/quries/useGetChallenge";
 import userAtom from "@/store/user";
+
+import { Comment, User } from "../types/index";
 
 const CommentPage = () => {
   const [myUser] = useAtom(userAtom);

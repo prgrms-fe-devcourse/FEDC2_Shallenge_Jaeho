@@ -55,7 +55,14 @@
     ]
   },
   "settings": {
-    "import/parsers": { "@typescript-eslint/parser": [".ts"] }
+    "import/parsers": { "@typescript-eslint/parser": [".ts"] },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "@types"]
+      },
+      "typescript": {}
+    }
   },
   "ignorePatterns": ["dist/", "node_modules/"]
 }
